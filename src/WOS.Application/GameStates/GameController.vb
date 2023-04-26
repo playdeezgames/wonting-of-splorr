@@ -13,5 +13,36 @@ Public Class GameController
 
     Private Sub SetBoilerplateStates()
         SetState(GameState.Title, New TitleState(Me, AddressOf SetCurrentState))
+        SetState(GameState.MainMenu, New BaseMenuState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 MainMenuCaptionText,
+                 New List(Of String) From {
+                    QuitText
+                 },
+                 Sub(menuItem)
+                     Select Case menuItem
+                         Case QuitText
+                             SetCurrentState(GameState.ConfirmQuit, False)
+                     End Select
+                 End Sub,
+                 Sub()
+                     SetCurrentState(GameState.ConfirmQuit, False)
+                 End Sub))
+        SetState(GameState.ConfirmQuit, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 ConfirmQuitPromptText,
+                 Hue.Red,
+                 Sub(confirmed)
+                     If confirmed Then
+                         SetCurrentState(Nothing, False)
+                     Else
+                         SetCurrentState(GameState.MainMenu, False)
+                     End If
+                 End Sub,
+                 Sub()
+                     SetCurrentState(GameState.MainMenu, False)
+                 End Sub))
     End Sub
 End Class
