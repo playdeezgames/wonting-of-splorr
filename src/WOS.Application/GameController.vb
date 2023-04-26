@@ -6,6 +6,7 @@ Public Class GameController
         MyBase.New(windowSizeSource(), volumeSource())
         _configSink = configSink
         _configSink(Size, Volume)
+        Initialize()
         SetBoilerplateStates()
         SetCurrentState(GameState.Title, True)
     End Sub

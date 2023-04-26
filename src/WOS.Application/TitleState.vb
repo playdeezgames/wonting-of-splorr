@@ -10,5 +10,7 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
+        Dim font = Fonts(GameFont.Font8x8)
+        font.WriteText(displayBuffer, (0, 0), "Title", Hue.White)
     End Sub
 End Class
