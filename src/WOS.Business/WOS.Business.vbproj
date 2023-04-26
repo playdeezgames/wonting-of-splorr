@@ -4,6 +4,7 @@
     <RootNamespace>WOS.Business</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OptionStrict>On</OptionStrict>
+    <ImportedNamespaces>WOS.Data=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,WOS.Business=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,6 +17,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WOS.Data\WOS.Data.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="WOS.Data" />
   </ItemGroup>
 
 </Project>
