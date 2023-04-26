@@ -19,6 +19,12 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WOS.Business", "WOS.Busines
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WOS.Data", "WOS.Data\WOS.Data.vbproj", "{771890BA-8555-497A-8E02-FA254F5833C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_STUFF", "_STUFF", "{0C77C93D-816A-4268-937A-CA792A30031A}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+		..\shippit.sh = ..\shippit.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
