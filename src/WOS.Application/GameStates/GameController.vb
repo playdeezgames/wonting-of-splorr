@@ -38,6 +38,7 @@ Public Class GameController
                      If confirmed Then
                          SetCurrentState(Nothing, False)
                      Else
+                         PlaySfx(Sfx.PlayerHit)
                          SetCurrentState(GameState.MainMenu, False)
                      End If
                  End Sub,

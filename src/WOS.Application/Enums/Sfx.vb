@@ -1,3 +1,3 @@
 ﻿Public Enum Sfx
-    PlayerDeath
+    PlayerHit
 End Enum

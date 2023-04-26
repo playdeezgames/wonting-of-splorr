@@ -15,6 +15,7 @@ Module Program
             AddressOf GamePadTransformer,
             New Dictionary(Of Sfx, String) From
             {
+                {Sfx.PlayerHit, "Content/PlayerHit.wav"}
             })
             host.Run()
         End Using
