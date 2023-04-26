@@ -5,7 +5,7 @@
     <RootNamespace>WontingOfSplorr</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <OptionStrict>On</OptionStrict>
-    <ImportedNamespaces>AOS.Presentation=False,AOS.UI=False,Microsoft.Xna.Framework=False,Microsoft.Xna.Framework.Audio=False,Microsoft.Xna.Framework.Graphics=False,Microsoft.Xna.Framework.Input=False,System.IO=False,System.Text.Json=False,WOS.Application=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,WontingOfSplorr=True</ImportedNamespaces>
+    <ImportedNamespaces>AOS.Presentation=False,AOS.UI=False,Microsoft.Xna.Framework=False,Microsoft.Xna.Framework.Audio=False,Microsoft.Xna.Framework.Graphics=False,Microsoft.Xna.Framework.Input=False,System.IO=False,System.Text.Json=False,WOS.Application=False,WOS.Business=False,WOS.Data=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,WontingOfSplorr=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -62,6 +62,8 @@
     <Import Include="System.IO" />
     <Import Include="System.Text.Json" />
     <Import Include="WOS.Application" />
+    <Import Include="WOS.Business" />
+    <Import Include="WOS.Data" />
   </ItemGroup>
 
 </Project>
