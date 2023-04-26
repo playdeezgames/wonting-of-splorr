@@ -11,6 +11,8 @@ Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.UI", "..\abettor-of-spl
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.Presentation", "..\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj", "{578DD030-D382-411C-8E5E-083A9D9938AC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodule", "Submodule", "{0475EE83-DC0E-4ACF-BB35-AA32700E3A0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5316A870-69B5-4F98-BD2D-6260DFA00C59} = {0475EE83-DC0E-4ACF-BB35-AA32700E3A0E}
+		{BEF96342-5A5A-49EA-BCCC-2D37AB27FEAA} = {0475EE83-DC0E-4ACF-BB35-AA32700E3A0E}
+		{578DD030-D382-411C-8E5E-083A9D9938AC} = {0475EE83-DC0E-4ACF-BB35-AA32700E3A0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1552099D-4E75-424C-A703-1496B8E68E87}
