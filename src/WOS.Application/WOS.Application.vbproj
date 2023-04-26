@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>WOS.Application</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <OptionStrict>On</OptionStrict>
+    <ImportedNamespaces>AOS.UI=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,WOS.Application=True</ImportedNamespaces>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\abettor-of-splorr\src\AOS.UI\AOS.UI.vbproj" />
+    <ProjectReference Include="..\WOS.Business\WOS.Business.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="AOS.UI" />
+  </ItemGroup>
+
+</Project>

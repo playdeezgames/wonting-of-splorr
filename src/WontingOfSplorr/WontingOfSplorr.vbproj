@@ -1,10 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <RootNamespace>WontingOfSplorr</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <OptionStrict>On</OptionStrict>
+    <ImportedNamespaces>AOS.Presentation=False,AOS.UI=False,Microsoft.Xna.Framework=False,Microsoft.Xna.Framework.Audio=False,Microsoft.Xna.Framework.Graphics=False,Microsoft.Xna.Framework.Input=False,System.IO=False,System.Text.Json=False,WOS.Application=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,WontingOfSplorr=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,7 +17,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icon.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj" />
+    <ProjectReference Include="..\WOS.Application\WOS.Application.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="AOS.Presentation" />
+    <Import Include="AOS.UI" />
+    <Import Include="Microsoft.Xna.Framework" />
+    <Import Include="Microsoft.Xna.Framework.Audio" />
+    <Import Include="Microsoft.Xna.Framework.Graphics" />
+    <Import Include="Microsoft.Xna.Framework.Input" />
+    <Import Include="System.IO" />
+    <Import Include="System.Text.Json" />
+    <Import Include="WOS.Application" />
   </ItemGroup>
 
 </Project>
