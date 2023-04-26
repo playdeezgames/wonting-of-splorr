@@ -18,16 +18,39 @@ Public Class GameController
                  AddressOf SetCurrentState,
                  MainMenuCaptionText,
                  New List(Of String) From {
+                    OptionsText,
                     QuitText
                  },
                  Sub(menuItem)
                      Select Case menuItem
+                         Case OptionsText
+                             SetCurrentState(GameState.OptionsMenu, False)
                          Case QuitText
                              SetCurrentState(GameState.ConfirmQuit, False)
                      End Select
                  End Sub,
                  Sub()
                      SetCurrentState(GameState.ConfirmQuit, False)
+                 End Sub))
+        SetState(GameState.OptionsMenu, New BaseMenuState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 OptionsMenuCaptionText,
+                 New List(Of String) From
+                 {
+                    WindowSizeText,
+                    SfxVolumeText
+                 },
+                 Sub(menuItem)
+                     Select Case menuItem
+                         Case WindowSizeText
+                             SetCurrentState(GameState.PickWindowSize, False)
+                         Case SfxVolumeText
+                             SetCurrentState(GameState.PickSfxVolume, False)
+                     End Select
+                 End Sub,
+                 Sub()
+                     SetCurrentState(GameState.MainMenu, False)
                  End Sub))
         SetState(GameState.ConfirmQuit, New BaseConfirmState(
                  Me,

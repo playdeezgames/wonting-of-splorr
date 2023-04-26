@@ -2,4 +2,7 @@
     Title
     MainMenu
     ConfirmQuit
+    OptionsMenu
+    PickWindowSize
+    PickSfxVolume
 End Enum
