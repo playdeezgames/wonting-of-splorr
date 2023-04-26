@@ -1,6 +1,7 @@
 ﻿Public Module GameContext
     Public Const ViewWidth = 192
     Public Const ViewHeight = 108
+    Public World As IWorld = Nothing
     Public ReadOnly AllHues As IReadOnlyList(Of Hue) = New List(Of Hue) From {
             Hue.Black,
             Hue.Blue,
@@ -20,6 +21,7 @@
             Hue.White
             }
     Friend Sub Initialize()
+        World = New World(New WorldData)
         InitializeFonts()
     End Sub
     Friend ReadOnly Fonts As New Dictionary(Of GameFont, Font)
