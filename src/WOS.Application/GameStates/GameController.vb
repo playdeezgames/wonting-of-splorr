@@ -64,6 +64,18 @@ Public Class GameController
                  End Sub,
                  AddressOf WindowSizeIndexSource,
                  AddressOf WindowSizeListSource))
+        SetState(GameState.PickSfxVolume, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "SFX Volume",
+                 AddressOf OnSelectSfxVolume,
+                 Sub(picked)
+                     SetCurrentState(GameState.OptionsMenu, False)
+                 End Sub,
+                 Sub()
+                 End Sub,
+                 AddressOf SfxVolumeIndexSource,
+                 AddressOf SfxVolumeListSource))
         SetState(GameState.ConfirmQuit, New BaseConfirmState(
                  Me,
                  AddressOf SetCurrentState,
@@ -80,6 +92,27 @@ Public Class GameController
                      SetCurrentState(GameState.MainMenu, False)
                  End Sub))
     End Sub
+
+    Private Shared ReadOnly _indexedSfxVolumes As IReadOnlyList(Of (Integer, Single)) = New List(Of (Integer, Single)) From
+        {
+            (0, 0.0F), (1, 0.1F), (2, 0.2F), (3, 0.3F), (4, 0.4F), (5, 0.5F), (6, 0.6F), (7, 0.7F), (8, 0.8F), (9, 0.9F), (10, 1.0F)
+        }
+    Private Shared ReadOnly _sfxVolumePickTexts As IReadOnlyList(Of String) = _indexedSfxVolumes.Select(Function(x) $"{x.Item2 * 100}%").ToList
+    Private Shared ReadOnly _sfxIndexToVolume As IReadOnlyDictionary(Of Integer, Single) = _indexedSfxVolumes.ToDictionary(Function(x) x.Item1, Function(x) x.Item2)
+    Private Function SfxVolumeListSource() As IEnumerable(Of String)
+        Return _sfxVolumePickTexts
+    End Function
+
+    Private Function SfxVolumeIndexSource(dummy As Integer) As Integer
+        Return CInt(Volume * 10.0F)
+    End Function
+
+    Private Sub OnSelectSfxVolume(index As Integer)
+        Volume = _sfxIndexToVolume(index)
+        PlaySfx(Sfx.PlayerHit)
+        _configSink(Size, Volume)
+    End Sub
+
     Private Shared ReadOnly _indexedWindowSizes As IReadOnlyList(Of (Integer, Integer)) = New List(Of (Integer, Integer)) From
         {
             (0, 4), (1, 6), (2, 8), (3, 10), (4, 12), (5, 14), (6, 16), (7, 18), (8, 20)
