@@ -907,9 +907,15 @@
           "AOS.UI.dll": {}
         }
       },
+      "SPLORR.Game/1.0.0": {
+        "runtime": {
+          "SPLORR.Game.dll": {}
+        }
+      },
       "WOS.Application/1.0.0": {
         "dependencies": {
           "AOS.UI": "1.0.0",
+          "SPLORR.Game": "1.0.0",
           "System.Net.Http.Json": "7.0.1",
           "WOS.Business": "1.0.0"
         },
@@ -984,6 +990,11 @@
       "sha512": ""
     },
     "AOS.UI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SPLORR.Game/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
