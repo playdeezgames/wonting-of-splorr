@@ -19,6 +19,10 @@
         _row = row
     End Sub
 
+    Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements ICharacterInstance.Render
+        Character.Render(displayBuffer, x, y)
+    End Sub
+
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
         Get
             Return New Character(_data, CharacterInstanceData.CharacterName)
@@ -34,6 +38,12 @@
     Public ReadOnly Property Row As Integer Implements ICharacterInstance.Row
         Get
             Return _row
+        End Get
+    End Property
+
+    Public ReadOnly Property Map As IMap Implements ICharacterInstance.Map
+        Get
+            Return New Map(_data, _mapName)
         End Get
     End Property
 End Class

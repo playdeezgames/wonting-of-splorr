@@ -33,8 +33,8 @@ Public Class World
     Private Sub InitializeFonts()
         _data.Fonts.Clear()
         InitializeFont(CharacterFontName, CharacterFontFilename)
-        InitializeFont(TerrainFontName, ItemFontFilename)
-        InitializeFont(ItemFontName, TerrainFontFilename)
+        InitializeFont(TerrainFontName, TerrainFontFilename)
+        InitializeFont(ItemFontName, ItemFontFilename)
     End Sub
 
     Private Sub InitializeMaps()
