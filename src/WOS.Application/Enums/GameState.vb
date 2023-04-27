@@ -6,4 +6,5 @@
     PickWindowSize
     PickSfxVolume
     Prologue
+    Neutral
 End Enum

@@ -18,6 +18,7 @@ Public Class World
     End Sub
     Const N00bCharacterName = "n00b"
     Private Sub InitializeCharacters()
+        _data.Characters.Clear()
         InitializeCharacter(N00bCharacterName, " "c, Hue.Brown)
     End Sub
 
@@ -30,12 +31,14 @@ Public Class World
     End Sub
 
     Private Sub InitializeFonts()
+        _data.Fonts.Clear()
         InitializeFont(CharacterFontName, CharacterFontFilename)
         InitializeFont(TerrainFontName, ItemFontFilename)
         InitializeFont(ItemFontName, TerrainFontFilename)
     End Sub
 
     Private Sub InitializeMaps()
+        _data.Maps.Clear()
         InitializeTown()
     End Sub
 
@@ -89,6 +92,7 @@ Public Class World
         _data.Terrains.Add(terrainName, New TerrainData With {.FontName = TerrainFontName, .Glyph = glyph, .Hue = hue})
     End Sub
     Private Sub InitializeTerrains()
+        _data.Terrains.Clear()
         InitializeTerrain(EmptyTerrainName, " "c, Hue.Black)
         InitializeTerrain(WallTerrainName, "!"c, Hue.Red)
         InitializeTerrain(OpenDoorTerrainName, """"c, Hue.Brown)

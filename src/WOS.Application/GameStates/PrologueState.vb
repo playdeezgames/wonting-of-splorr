@@ -8,7 +8,7 @@
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
             Case Command.FireReleased
-
+                SetState(GameState.Neutral)
         End Select
     End Sub
 
