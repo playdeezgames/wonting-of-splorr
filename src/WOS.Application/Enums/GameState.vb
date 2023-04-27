@@ -5,4 +5,5 @@
     OptionsMenu
     PickWindowSize
     PickSfxVolume
+    Prologue
 End Enum

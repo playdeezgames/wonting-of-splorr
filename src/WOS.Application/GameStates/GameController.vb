@@ -8,7 +8,12 @@ Public Class GameController
         _configSink(Size, Volume)
         Initialize()
         SetBoilerplateStates()
+        SetInPlayStates()
         SetCurrentState(GameState.Title, True)
+    End Sub
+
+    Private Sub SetInPlayStates()
+        SetState(GameState.Prologue, New PrologueState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetBoilerplateStates()
@@ -26,6 +31,7 @@ Public Class GameController
                      Select Case menuItem
                          Case EmbarkText
                              World.Initialize()
+                             SetCurrentState(GameState.Prologue, False)
                          Case OptionsText
                              SetCurrentState(GameState.OptionsMenu, False)
                          Case QuitText
