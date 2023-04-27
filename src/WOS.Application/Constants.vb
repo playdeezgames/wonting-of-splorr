@@ -1,5 +1,6 @@
 ﻿Friend Module Constants
     Friend Const ConfirmQuitPromptText = "Confirm quit?"
+    Friend Const EmbarkText = "Embark!"
     Friend Const MainMenuCaptionText = "Main Menu:"
     Friend Const OptionsMenuCaptionText = "Options Menu:"
     Friend Const OptionsText = "Options..."

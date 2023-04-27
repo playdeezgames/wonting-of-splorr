@@ -18,11 +18,14 @@ Public Class GameController
                  AddressOf SetCurrentState,
                  MainMenuCaptionText,
                  New List(Of String) From {
+                    EmbarkText,
                     OptionsText,
                     QuitText
                  },
                  Sub(menuItem)
                      Select Case menuItem
+                         Case EmbarkText
+                             World.Initialize()
                          Case OptionsText
                              SetCurrentState(GameState.OptionsMenu, False)
                          Case QuitText

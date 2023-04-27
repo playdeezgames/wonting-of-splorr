@@ -6,22 +6,26 @@ Public Class World
     Const CharacterFontName = "characters"
     Const TerrainFontName = "terrains"
     Const ItemFontName = "items"
-    Const CharacterFontFilename = "character-font.json"
-    Const TerrainFontFilename = "terrain-font.json"
-    Const ItemFontFilename = "item-font.json"
+    Const CharacterFontFilename = "Content/character-font.json"
+    Const TerrainFontFilename = "Content/terrain-font.json"
+    Const ItemFontFilename = "Content/item-font.json"
     Sub New(data As WorldData)
         _data = data
     End Sub
-    Sub Initialize()
+    Public Sub Initialize() Implements IWorld.Initialize
         InitializeFonts()
         InitializeTerrains()
         InitializeMaps()
     End Sub
 
+    Private Sub InitializeFont(fontName As String, fontFilename As String)
+        _data.Fonts.Add(fontName, JsonSerializer.Deserialize(Of FontData)(File.ReadAllText(fontFilename)))
+    End Sub
+
     Private Sub InitializeFonts()
-        _data.Fonts.Add(CharacterFontName, JsonSerializer.Deserialize(Of FontData)(CharacterFontFilename))
-        _data.Fonts.Add(TerrainFontName, JsonSerializer.Deserialize(Of FontData)(TerrainFontFilename))
-        _data.Fonts.Add(ItemFontName, JsonSerializer.Deserialize(Of FontData)(ItemFontFilename))
+        InitializeFont(CharacterFontName, CharacterFontFilename)
+        InitializeFont(TerrainFontName, ItemFontFilename)
+        InitializeFont(ItemFontName, TerrainFontFilename)
     End Sub
 
     Private Sub InitializeMaps()
