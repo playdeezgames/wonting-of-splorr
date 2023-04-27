@@ -7,4 +7,6 @@
     Friend Const QuitText = "Quit"
     Friend Const SfxVolumeText = "Sfx Volume..."
     Friend Const WindowSizeText = "Window Size..."
+    Friend Const MapCellWidth = 12
+    Friend Const MapCellHeight = 12
 End Module

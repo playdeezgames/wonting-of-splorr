@@ -7,4 +7,5 @@
     PickSfxVolume
     Prologue
     Neutral
+    Navigation
 End Enum

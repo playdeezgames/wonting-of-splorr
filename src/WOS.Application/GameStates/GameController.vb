@@ -15,6 +15,7 @@ Public Class GameController
     Private Sub SetInPlayStates()
         SetState(GameState.Prologue, New PrologueState(Me, AddressOf SetCurrentState))
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetBoilerplateStates()

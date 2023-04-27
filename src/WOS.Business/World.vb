@@ -88,6 +88,16 @@ Public Class World
     Const LeftCounterTerrainName = "left-counter"
     Const CounterTerrainName = "counter"
     Const RightCounterTerrainName = "right-counter"
+
+    Public ReadOnly Property Avatar As IAvatar Implements IWorld.Avatar
+        Get
+            If _data.Avatar Is Nothing Then
+                Return Nothing
+            End If
+            Return New Avatar(_data)
+        End Get
+    End Property
+
     Private Sub InitializeTerrain(terrainName As String, glyph As Char, hue As Hue)
         _data.Terrains.Add(terrainName, New TerrainData With {.FontName = TerrainFontName, .Glyph = glyph, .Hue = hue})
     End Sub

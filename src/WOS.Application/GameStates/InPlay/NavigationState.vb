@@ -1,4 +1,4 @@
-﻿Friend Class NeutralState
+﻿Friend Class NavigationState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
@@ -9,10 +9,8 @@
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-    End Sub
-
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-        MyBase.Update(elapsedTime)
-        SetState(GameState.MainMenu)
+        Dim character = World.Avatar.Character
+        Dim offsetX = ViewWidth \ 2 - MapCellWidth \ 2 - character.Column * MapCellWidth
+        Dim offsetY = ViewHeight \ 2 - MapCellHeight \ 2 - character.Row * MapCellHeight
     End Sub
 End Class

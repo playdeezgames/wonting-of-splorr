@@ -24,4 +24,16 @@
             Return New Character(_data, CharacterInstanceData.CharacterName)
         End Get
     End Property
+
+    Public ReadOnly Property Column As Integer Implements ICharacterInstance.Column
+        Get
+            Return _column
+        End Get
+    End Property
+
+    Public ReadOnly Property Row As Integer Implements ICharacterInstance.Row
+        Get
+            Return _row
+        End Get
+    End Property
 End Class
