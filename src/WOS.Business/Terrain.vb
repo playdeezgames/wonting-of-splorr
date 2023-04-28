@@ -21,6 +21,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Tenantable As Boolean Implements ITerrain.Tenantable
+        Get
+            Return TerrainData.Tenantable
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, terrainName As String)
         _data = data
         _terrainName = terrainName

@@ -40,6 +40,11 @@
             'no moving
             Return
         End If
+        Dim terrain = nextCell.Terrain
+        If Not terrain.Tenantable Then
+            'no moving
+            Return
+        End If
         'TODO: check terrain
         Dim instanceData = CharacterInstanceData
         MapCellData.Character = Nothing
