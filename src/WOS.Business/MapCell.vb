@@ -24,8 +24,11 @@
         Return Character
     End Function
 
-    Public Sub TriggerBump(character As ICharacterInstance) Implements IMapCell.TriggerBump
-        Dim trigger = MapCellData.Triggers(TriggerKind.Bump)
+    Public Sub DoTrigger(triggerKind As TriggerKind, character As ICharacterInstance) Implements IMapCell.DoTrigger
+        If Not MapCellData.Triggers.ContainsKey(triggerKind) Then
+            Return
+        End If
+        Dim trigger = MapCellData.Triggers(triggerKind)
         If trigger Is Nothing Then
             Return
         End If
@@ -37,8 +40,8 @@
         End Select
     End Sub
 
-    Public Sub SetBump(triggerType As TriggerType) Implements IMapCell.SetBump
-        MapCellData.Triggers(TriggerKind.Bump) = New TriggerData With {.TriggerType = triggerType}
+    Public Sub SetTrigger(triggerKind As TriggerKind, triggerType As TriggerType) Implements IMapCell.SetTrigger
+        MapCellData.Triggers(triggerKind) = New TriggerData With {.TriggerType = triggerType}
     End Sub
 
     Public Property Terrain As ITerrain Implements IMapCell.Terrain

@@ -42,7 +42,7 @@
         End If
         Dim terrain = nextCell.Terrain
         If Not terrain.Tenantable Then
-            nextCell.TriggerBump(Me)
+            nextCell.DoTrigger(TriggerKind.Bump, Me)
             Return
         End If
         Teleport(_mapName, nextColumn, nextRow)

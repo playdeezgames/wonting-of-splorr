@@ -25,6 +25,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Name As String Implements IMap.Name
+        Get
+            Return _mapName
+        End Get
+    End Property
+
     Public Function GetCell(column As Integer, row As Integer) As IMapCell Implements IMap.GetCell
         Return New MapCell(_data, _mapName, column, row)
     End Function

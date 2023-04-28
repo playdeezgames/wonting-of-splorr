@@ -77,14 +77,50 @@ Public Class World
         FillMap(map, 18, 5, 1, 1, HouseTerrainName)
         FillMap(map, 5, 18, 1, 1, HouseTerrainName)
         FillMap(map, 19, 18, 1, 1, HouseTerrainName)
-        CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, TownMapName, TownColumns \ 2, TownRows \ 2)
+        CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, TownMapName, TownColumns \ 2, TownRows \ 2) 'TODO: go outside of town
+        CreateTeleportTrigger(map, 6, 5, InnMapName, InnMapColumns \ 2, InnMapRows - 2)
+        CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
         CreateCharacterInstance(TownMapName, TownColumns \ 2, TownRows \ 2, N00bCharacterName)
         CreateAvatar(TownMapName, TownColumns \ 2, TownRows \ 2)
+        InitializeInn()
+        InitializeExchange()
+    End Sub
+    Const InnMapName = "inn"
+    Const InnMapColumns = 7
+    Const InnMapRows = 7
+    Private Sub InitializeInn()
+        Dim map As IMap = CreateMap(InnMapName, InnMapColumns, InnMapRows, EmptyTerrainName)
+        For column = 0 To map.Columns - 1
+            map.GetCell(column, 0).Terrain = GetTerrain(WallTerrainName)
+            map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(WallTerrainName)
+        Next
+        For row = 1 To map.Rows - 2
+            map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
+            map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
+        Next
+        FillMap(map, InnMapColumns \ 2, InnMapRows - 1, 1, 1, ClosedDoorTerrainName)
+        CreateTeleportTrigger(map, InnMapColumns \ 2, InnMapRows - 1, TownMapName, 6, 6)
+    End Sub
+    Const ExchangeMapName = "exchange"
+    Const ExchangeMapColumns = 7
+    Const ExchangeMapRows = 7
+    Private Sub InitializeExchange()
+        Dim map As IMap = CreateMap(ExchangeMapName, ExchangeMapColumns, ExchangeMapRows, EmptyTerrainName)
+        For column = 0 To map.Columns - 1
+            map.GetCell(column, 0).Terrain = GetTerrain(WallTerrainName)
+            map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(WallTerrainName)
+        Next
+        For row = 1 To map.Rows - 2
+            map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
+            map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
+        Next
+        FillMap(map, InnMapColumns \ 2, InnMapRows - 1, 1, 1, ClosedDoorTerrainName)
+        CreateTeleportTrigger(map, InnMapColumns \ 2, InnMapRows - 1, TownMapName, 18, 6)
     End Sub
 
     Private Sub CreateTeleportTrigger(map As IMap, fromColumn As Integer, fromRow As Integer, toMapName As String, toColumn As Integer, toRow As Integer)
         Dim mapCell = map.GetCell(fromColumn, fromRow)
-        mapCell.SetBump(TriggerType.Teleport)
+        mapCell.SetTrigger(TriggerKind.Bump, TriggerType.Teleport)
         mapCell.Bump.SetTeleport(toMapName, toColumn, toRow)
     End Sub
 

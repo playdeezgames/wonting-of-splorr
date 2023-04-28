@@ -16,6 +16,7 @@
     Public Sub Move(direction As Direction) Implements IAvatar.Move
         Dim c = Character
         c.Move(direction)
+        AvatarData.MapName = c.Map.Name
         AvatarData.Column = c.Column
         AvatarData.Row = c.Row
     End Sub
