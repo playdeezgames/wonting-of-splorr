@@ -24,6 +24,23 @@
         Return Character
     End Function
 
+    Public Sub TriggerBump(character As ICharacterInstance) Implements IMapCell.TriggerBump
+        Dim trigger = MapCellData.Triggers(TriggerKind.Bump)
+        If trigger Is Nothing Then
+            Return
+        End If
+        Select Case trigger.TriggerType
+            Case TriggerType.Teleport
+                character.Teleport(trigger.Teleport.MapName, trigger.Teleport.Column, trigger.Teleport.Row)
+            Case Else
+                Throw New NotImplementedException
+        End Select
+    End Sub
+
+    Public Sub SetBump(triggerType As TriggerType) Implements IMapCell.SetBump
+        MapCellData.Triggers(TriggerKind.Bump) = New TriggerData With {.TriggerType = triggerType}
+    End Sub
+
     Public Property Terrain As ITerrain Implements IMapCell.Terrain
         Get
             Return New Terrain(_data, MapCellData.TerrainName)
@@ -47,5 +64,11 @@
             End If
             CreateCharacterInstance(value.Character.Name)
         End Set
+    End Property
+
+    Public ReadOnly Property Bump As ITrigger Implements IMapCell.Bump
+        Get
+            Return New Trigger(_data, _mapName, _column, _row, TriggerKind.Bump)
+        End Get
     End Property
 End Class

@@ -2,7 +2,7 @@
     Implements ICharacterInstance
 
     Private ReadOnly _data As WorldData
-    Private ReadOnly _mapName As String
+    Private _mapName As String
     Private _column As Integer
     Private _row As Integer
     Private ReadOnly Property MapCellData As MapCellData
@@ -42,14 +42,18 @@
         End If
         Dim terrain = nextCell.Terrain
         If Not terrain.Tenantable Then
-            'no moving
+            nextCell.TriggerBump(Me)
             Return
         End If
-        'TODO: check terrain
+        Teleport(_mapName, nextColumn, nextRow)
+    End Sub
+
+    Public Sub Teleport(mapName As String, column As Integer, row As Integer) Implements ICharacterInstance.Teleport
         Dim instanceData = CharacterInstanceData
         MapCellData.Character = Nothing
-        _column = nextColumn
-        _row = nextRow
+        _mapName = mapName
+        _column = column
+        _row = row
         MapCellData.Character = instanceData
     End Sub
 

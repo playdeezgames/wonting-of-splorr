@@ -5,4 +5,5 @@
     ReadOnly Property Map As IMap
     Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer)
     Sub Move(direction As Direction)
+    Sub Teleport(mapName As String, column As Integer, row As Integer)
 End Interface

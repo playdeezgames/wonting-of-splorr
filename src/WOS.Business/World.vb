@@ -57,7 +57,6 @@ Public Class World
             map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(FenceTerrainName)
         Next
         map.GetCell(TownColumns \ 2, TownRows - 1).Terrain = GetTerrain(GateTerrainName)
-        CreateCharacterInstance(TownMapName, TownColumns \ 2, TownRows \ 2, N00bCharacterName)
         FillMap(map, 6, 7, 1, 5, Path5TerrainName)
         FillMap(map, 18, 7, 1, 5, Path5TerrainName)
         FillMap(map, 12, 13, 1, 5, Path5TerrainName)
@@ -78,7 +77,15 @@ Public Class World
         FillMap(map, 18, 5, 1, 1, HouseTerrainName)
         FillMap(map, 5, 18, 1, 1, HouseTerrainName)
         FillMap(map, 19, 18, 1, 1, HouseTerrainName)
+        CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, TownMapName, TownColumns \ 2, TownRows \ 2)
+        CreateCharacterInstance(TownMapName, TownColumns \ 2, TownRows \ 2, N00bCharacterName)
         CreateAvatar(TownMapName, TownColumns \ 2, TownRows \ 2)
+    End Sub
+
+    Private Sub CreateTeleportTrigger(map As IMap, fromColumn As Integer, fromRow As Integer, toMapName As String, toColumn As Integer, toRow As Integer)
+        Dim mapCell = map.GetCell(fromColumn, fromRow)
+        mapCell.SetBump(TriggerType.Teleport)
+        mapCell.Bump.SetTeleport(toMapName, toColumn, toRow)
     End Sub
 
     Private Sub FillMap(map As IMap, x As Integer, y As Integer, w As Integer, h As Integer, terrainName As String)
