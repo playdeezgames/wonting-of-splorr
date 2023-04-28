@@ -14,11 +14,11 @@
     End Property
 
     Public Sub New(data As WorldData, mapName As String, column As Integer, row As Integer, kind As TriggerKind)
-        Me._data = data
-        Me._mapName = mapName
-        Me._column = column
-        Me._row = row
-        Me._kind = kind
+        _data = data
+        _mapName = mapName
+        _column = column
+        _row = row
+        _kind = kind
     End Sub
 
     Public Sub SetTeleport(toMapName As String, toColumn As Integer, toRow As Integer) Implements ITrigger.SetTeleport
