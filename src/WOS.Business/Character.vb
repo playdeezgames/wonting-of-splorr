@@ -25,7 +25,7 @@
 
     Public ReadOnly Property Font As Font
         Get
-            Return New Font(_data.Fonts(CharacterData.FontName))
+            Return GetCachedFont(CharacterData.FontName)
         End Get
     End Property
 End Class

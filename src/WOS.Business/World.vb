@@ -28,6 +28,7 @@ Public Class World
 
     Private Sub InitializeFont(fontName As String, fontFilename As String)
         _data.Fonts.Add(fontName, JsonSerializer.Deserialize(Of FontData)(File.ReadAllText(fontFilename)))
+        SetCachedFont(fontName, New Font(_data.Fonts(fontName)))
     End Sub
 
     Private Sub InitializeFonts()
@@ -66,8 +67,13 @@ Public Class World
         FillMap(map, 7, 18, 5, 1, PathATerrainName)
         FillMap(map, 13, 18, 5, 1, PathATerrainName)
         FillMap(map, 6, 12, 1, 1, Path3TerrainName)
-        FillMap(map, 12, 12, 1, 1, PathETerrainName)
         FillMap(map, 18, 12, 1, 1, Path9TerrainName)
+        FillMap(map, 12, 12, 1, 1, PathETerrainName)
+        FillMap(map, 12, 18, 1, 1, PathFTerrainName)
+        FillMap(map, 6, 6, 1, 1, Path4TerrainName)
+        FillMap(map, 18, 6, 1, 1, Path4TerrainName)
+        FillMap(map, 6, 18, 1, 1, Path2TerrainName)
+        FillMap(map, 18, 18, 1, 1, Path8TerrainName)
         CreateAvatar(TownMapName, TownColumns \ 2, TownRows \ 2)
     End Sub
 

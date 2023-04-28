@@ -14,7 +14,10 @@
     End Sub
 
     Public Sub Move(direction As Direction) Implements IAvatar.Move
-        Character.Move(direction)
+        Dim c = Character
+        c.Move(direction)
+        AvatarData.Column = c.Column
+        AvatarData.Row = c.Row
     End Sub
 
     Public ReadOnly Property Character As ICharacterInstance Implements IAvatar.Character

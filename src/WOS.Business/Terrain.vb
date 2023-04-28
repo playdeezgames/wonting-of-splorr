@@ -17,7 +17,7 @@
 
     Private ReadOnly Property Font As Font
         Get
-            Return New Font(_data.Fonts(TerrainData.FontName))
+            Return GetCachedFont(TerrainData.FontName)
         End Get
     End Property
 

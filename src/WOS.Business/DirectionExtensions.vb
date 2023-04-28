@@ -18,7 +18,7 @@ Friend Module DirectionExtensions
     <Extension>
     Function GetNextY(direction As Direction, y As Integer) As Integer
         Select Case direction
-            Case Direction.East, direction, Direction.West
+            Case Direction.East, Direction.West
                 Return y
             Case Direction.North
                 Return y - 1
