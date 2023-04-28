@@ -74,9 +74,13 @@ Public Class World
         FillMap(map, 6, 18, 1, 1, Path2TerrainName)
         FillMap(map, 18, 18, 1, 1, Path8TerrainName)
         FillMap(map, 6, 5, 1, 1, HouseTerrainName)
+        FillMap(map, 7, 5, 1, 1, SignTerrainName)
         FillMap(map, 18, 5, 1, 1, HouseTerrainName)
+        FillMap(map, 19, 5, 1, 1, SignTerrainName)
         FillMap(map, 5, 18, 1, 1, HouseTerrainName)
+        FillMap(map, 5, 17, 1, 1, SignTerrainName)
         FillMap(map, 19, 18, 1, 1, HouseTerrainName)
+        FillMap(map, 19, 19, 1, 1, SignTerrainName)
         CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, TownMapName, TownColumns \ 2, TownRows \ 2) 'TODO: go outside of town
         CreateTeleportTrigger(map, 6, 5, InnMapName, InnMapColumns \ 2, InnMapRows - 2)
         CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
@@ -177,6 +181,7 @@ Public Class World
     Const PathDTerrainName = "PathD"
     Const PathETerrainName = "PathE"
     Const PathFTerrainName = "PathF"
+    Const SignTerrainName = "Sign"
 
 
     Public ReadOnly Property Avatar As IAvatar Implements IWorld.Avatar
@@ -225,6 +230,7 @@ Public Class World
         InitializeTerrain(PathDTerrainName, "="c, Hue.DarkGray, True)
         InitializeTerrain(PathETerrainName, ">"c, Hue.DarkGray, True)
         InitializeTerrain(PathFTerrainName, "?"c, Hue.DarkGray, True)
+        InitializeTerrain(SignTerrainName, "@"c, Hue.Brown, False)
     End Sub
 
     Public Function GetMap(mapName As String) As IMap Implements IWorld.GetMap
