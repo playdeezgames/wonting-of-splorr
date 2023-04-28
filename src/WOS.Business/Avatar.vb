@@ -13,6 +13,10 @@
         Me._data = data
     End Sub
 
+    Public Sub Move(direction As Direction) Implements IAvatar.Move
+        Character.Move(direction)
+    End Sub
+
     Public ReadOnly Property Character As ICharacterInstance Implements IAvatar.Character
         Get
             If AvatarData Is Nothing Then

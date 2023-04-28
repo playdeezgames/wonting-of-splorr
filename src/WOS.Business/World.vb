@@ -43,8 +43,8 @@ Public Class World
     End Sub
 
     Const TownMapName = "town"
-    Const TownColumns = 16
-    Const TownRows = 9
+    Const TownColumns = 25
+    Const TownRows = 25
     Private Sub InitializeTown()
         Dim map As IMap = CreateMap(TownMapName, TownColumns, TownRows, EmptyTerrainName)
         For column = 0 To map.Columns - 1
@@ -55,8 +55,28 @@ Public Class World
             map.GetCell(0, row).Terrain = GetTerrain(FenceTerrainName)
             map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(FenceTerrainName)
         Next
+        map.GetCell(TownColumns \ 2, TownRows - 1).Terrain = GetTerrain(GateTerrainName)
         CreateCharacterInstance(TownMapName, TownColumns \ 2, TownRows \ 2, N00bCharacterName)
+        FillMap(map, 6, 7, 1, 5, Path5TerrainName)
+        FillMap(map, 18, 7, 1, 5, Path5TerrainName)
+        FillMap(map, 12, 13, 1, 5, Path5TerrainName)
+        FillMap(map, 12, 19, 1, 5, Path5TerrainName)
+        FillMap(map, 7, 12, 5, 1, PathATerrainName)
+        FillMap(map, 13, 12, 5, 1, PathATerrainName)
+        FillMap(map, 7, 18, 5, 1, PathATerrainName)
+        FillMap(map, 13, 18, 5, 1, PathATerrainName)
+        FillMap(map, 6, 12, 1, 1, Path3TerrainName)
+        FillMap(map, 12, 12, 1, 1, PathETerrainName)
+        FillMap(map, 18, 12, 1, 1, Path9TerrainName)
         CreateAvatar(TownMapName, TownColumns \ 2, TownRows \ 2)
+    End Sub
+
+    Private Sub FillMap(map As IMap, x As Integer, y As Integer, w As Integer, h As Integer, terrainName As String)
+        For dx = 0 To w - 1
+            For dy = 0 To h - 1
+                map.GetCell(x + dx, y + dy).Terrain = GetTerrain(terrainName)
+            Next
+        Next
     End Sub
 
     Private Sub CreateAvatar(mapName As String, column As Integer, row As Integer)
@@ -88,6 +108,23 @@ Public Class World
     Const LeftCounterTerrainName = "left-counter"
     Const CounterTerrainName = "counter"
     Const RightCounterTerrainName = "right-counter"
+    Const Path0TerrainName = "Path0"
+    Const Path1TerrainName = "Path1"
+    Const Path2TerrainName = "Path2"
+    Const Path3TerrainName = "Path3"
+    Const Path4TerrainName = "Path4"
+    Const Path5TerrainName = "Path5"
+    Const Path6TerrainName = "Path6"
+    Const Path7TerrainName = "Path7"
+    Const Path8TerrainName = "Path8"
+    Const Path9TerrainName = "Path9"
+    Const PathATerrainName = "PathA"
+    Const PathBTerrainName = "PathB"
+    Const PathCTerrainName = "PathC"
+    Const PathDTerrainName = "PathD"
+    Const PathETerrainName = "PathE"
+    Const PathFTerrainName = "PathF"
+
 
     Public ReadOnly Property Avatar As IAvatar Implements IWorld.Avatar
         Get
@@ -112,13 +149,29 @@ Public Class World
         InitializeTerrain(UpStairsTerrainName, "&"c, Hue.Brown)
         InitializeTerrain(TreeTerrainName, "'"c, Hue.Green)
         InitializeTerrain(GateTerrainName, "("c, Hue.Brown)
-        InitializeTerrain(FenceTerrainName, ")"c, Hue.Brown)
+        InitializeTerrain(FenceTerrainName, ")"c, Hue.Gray)
         InitializeTerrain(HouseTerrainName, "*"c, Hue.Red)
         InitializeTerrain(TownTerrainName, "+"c, Hue.Red)
         InitializeTerrain(ForestTerrainName, ","c, Hue.Green)
         InitializeTerrain(LeftCounterTerrainName, "-"c, Hue.Brown)
         InitializeTerrain(CounterTerrainName, "."c, Hue.Brown)
         InitializeTerrain(RightCounterTerrainName, "/"c, Hue.Brown)
+        InitializeTerrain(Path0TerrainName, "0"c, Hue.DarkGray)
+        InitializeTerrain(Path1TerrainName, "1"c, Hue.DarkGray)
+        InitializeTerrain(Path2TerrainName, "2"c, Hue.DarkGray)
+        InitializeTerrain(Path3TerrainName, "3"c, Hue.DarkGray)
+        InitializeTerrain(Path4TerrainName, "4"c, Hue.DarkGray)
+        InitializeTerrain(Path5TerrainName, "5"c, Hue.DarkGray)
+        InitializeTerrain(Path6TerrainName, "6"c, Hue.DarkGray)
+        InitializeTerrain(Path7TerrainName, "7"c, Hue.DarkGray)
+        InitializeTerrain(Path8TerrainName, "8"c, Hue.DarkGray)
+        InitializeTerrain(Path9TerrainName, "9"c, Hue.DarkGray)
+        InitializeTerrain(PathATerrainName, ":"c, Hue.DarkGray)
+        InitializeTerrain(PathBTerrainName, ";"c, Hue.DarkGray)
+        InitializeTerrain(PathCTerrainName, "<"c, Hue.DarkGray)
+        InitializeTerrain(PathDTerrainName, "="c, Hue.DarkGray)
+        InitializeTerrain(PathETerrainName, ">"c, Hue.DarkGray)
+        InitializeTerrain(PathFTerrainName, "?"c, Hue.DarkGray)
     End Sub
 
     Public Function GetMap(mapName As String) As IMap Implements IWorld.GetMap

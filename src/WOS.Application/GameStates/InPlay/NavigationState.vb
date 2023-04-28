@@ -6,6 +6,16 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
+        Select Case command
+            Case Command.UpReleased
+                World.Avatar.Move(Direction.North)
+            Case Command.RightReleased
+                World.Avatar.Move(Direction.East)
+            Case Command.DownReleased
+                World.Avatar.Move(Direction.South)
+            Case Command.LeftReleased
+                World.Avatar.Move(Direction.West)
+        End Select
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
