@@ -99,6 +99,7 @@ Public Class World
         CreateTeleportTrigger(map, 6, 5, InnMapName, InnMapColumns \ 2, InnMapRows - 2)
         CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMapName, 1, SmokeShoppeMapRows \ 2)
+        CreateTeleportTrigger(map, 5, 18, ArmoryMapName, ArmoryMapColumns - 2, ArmoryMapRows \ 2)
         CreateMessageTrigger(map, 7, 5, New List(Of (Hue, String)) From {
                                 (Hue.Gray, "The Dog's Face Inn"),
                                 (Hue.Gray, "Proprietor:"),
@@ -134,11 +135,24 @@ Public Class World
             map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
         Next
-        FillMap(map, 0, InnMapRows \ 2, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, 0, InnMapRows \ 2, TownMapName, 18, 18)
+        FillMap(map, 0, SmokeShoppeMapRows \ 2, 1, 1, ClosedDoorTerrainName)
+        CreateTeleportTrigger(map, 0, SmokeShoppeMapRows \ 2, TownMapName, 18, 18)
     End Sub
-
+    Const ArmoryMapName = "armory"
+    Const ArmoryMapColumns = 7
+    Const ArmoryMapRows = 7
     Private Sub InitializeArmory()
+        Dim map As IMap = CreateMap(ArmoryMapName, ArmoryMapColumns, ArmoryMapRows, EmptyTerrainName)
+        For column = 0 To map.Columns - 1
+            map.GetCell(column, 0).Terrain = GetTerrain(WallTerrainName)
+            map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(WallTerrainName)
+        Next
+        For row = 1 To map.Rows - 2
+            map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
+            map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
+        Next
+        FillMap(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, 1, 1, ClosedDoorTerrainName)
+        CreateTeleportTrigger(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, TownMapName, 6, 18)
     End Sub
 
     Private Sub CreateMessageTrigger(map As IMap, column As Integer, row As Integer, lines As List(Of (Hue, String)))
