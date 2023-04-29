@@ -19,3 +19,12 @@ There is a way of exchanging between Crowns and Jools.
 ## "Bonus Theme"
 
 Climbing the ladder
+
+## The Forest
+
+NXN 3x3 sections, with 1 tile between each section, and 1 tile on each edge.
+
+So, S =  N x 3 + N+1 = 4 x N + 1
+
+
+

@@ -63,6 +63,24 @@ Public Class World
     Private Sub InitializeMaps()
         _data.Maps.Clear()
         InitializeTown()
+        InitializeForest()
+    End Sub
+
+    Const ForestGridColumns = 16
+    Const ForestGridRows = 16
+    Const ForestGridSizeX = 3
+    Const ForestGridSizeY = 3
+    Const ForestMapName = "forest"
+    Const ForestMapColumns = (ForestGridSizeX * ForestGridColumns) + ForestGridColumns + 1
+    Const ForestMapRows = (ForestGridSizeY * ForestGridRows) + ForestGridRows + 1
+    Private Sub InitializeForest()
+        Const mapName = ForestMapName
+        Const mapColumns = ForestMapColumns
+        Const mapRows = ForestMapRows
+        Dim map = CreateMap(mapName, mapColumns, mapRows, ForestTerrainName)
+        FillMap(map, 1, 1, mapColumns - 2, mapRows - 2, EmptyTerrainName)
+        FillMap(map, mapColumns \ 2, mapRows \ 2, 1, 1, TownTerrainName)
+        CreateTeleportTrigger(map, mapColumns \ 2, mapRows \ 2, TownMapName, TownColumns \ 2, TownRows - 2)
     End Sub
 
     Const TownMapName = "town"
@@ -103,7 +121,7 @@ Public Class World
         FillMap(map, 5, 17, 1, 1, SignTerrainName)
         FillMap(map, 19, 18, 1, 1, HouseTerrainName)
         FillMap(map, 19, 19, 1, 1, SignTerrainName)
-        CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, TownMapName, TownColumns \ 2, TownRows \ 2) 'TODO: go outside of town
+        CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, ForestMapName, ForestMapColumns \ 2, ForestMapRows \ 2) 'TODO: go outside of town
         CreateTeleportTrigger(map, 6, 5, InnMapName, InnMapColumns \ 2, InnMapRows - 2)
         CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMapName, 1, SmokeShoppeMapRows \ 2)

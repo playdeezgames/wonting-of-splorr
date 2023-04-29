@@ -31,8 +31,14 @@
 
         For column = 0 To map.Columns - 1
             Dim x = offsetX + column * MapCellWidth
+            If x < -MapCellWidth OrElse x >= ViewWidth Then
+                Continue For
+            End If
             For row = 0 To map.Rows - 1
                 Dim y = offsetY + row * MapCellHeight
+                If y < -MapCellHeight OrElse y >= ViewHeight Then
+                    Continue For
+                End If
                 Dim cell = map.GetCell(column, row)
                 Dim terrain = cell.Terrain
                 terrain.Render(displayBuffer, x, y)
