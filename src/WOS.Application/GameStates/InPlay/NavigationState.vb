@@ -47,12 +47,5 @@
                 End If
             Next
         Next
-        For column = 0 To map.Columns - 1
-            For row = 0 To map.Rows - 1
-                Dim cell = map.GetCell(column, row)
-                Dim terrain = cell.Terrain
-                displayBuffer.SetPixel(column, row, terrain.Hue)
-            Next
-        Next
     End Sub
 End Class

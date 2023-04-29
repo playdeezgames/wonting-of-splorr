@@ -13,17 +13,19 @@ Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.Presentation", "..\abet
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodule", "Submodule", "{0475EE83-DC0E-4ACF-BB35-AA32700E3A0E}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WOS.Application", "WOS.Application\WOS.Application.vbproj", "{97BCAD2D-1429-4E57-A34C-9A96ECC7A639}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "WOS.Application", "WOS.Application\WOS.Application.vbproj", "{97BCAD2D-1429-4E57-A34C-9A96ECC7A639}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WOS.Business", "WOS.Business\WOS.Business.vbproj", "{360DA931-0ECB-4526-835F-E14E18A085B4}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "WOS.Business", "WOS.Business\WOS.Business.vbproj", "{360DA931-0ECB-4526-835F-E14E18A085B4}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WOS.Data", "WOS.Data\WOS.Data.vbproj", "{771890BA-8555-497A-8E02-FA254F5833C5}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "WOS.Data", "WOS.Data\WOS.Data.vbproj", "{771890BA-8555-497A-8E02-FA254F5833C5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_STUFF", "_STUFF", "{0C77C93D-816A-4268-937A-CA792A30031A}"
 	ProjectSection(SolutionItems) = preProject
 		..\README.md = ..\README.md
 		..\shippit.sh = ..\shippit.sh
 	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MazeTester", "MazeTester\MazeTester.vbproj", "{3F7F96DE-A57D-447D-AD91-D5E63FC214D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{771890BA-8555-497A-8E02-FA254F5833C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{771890BA-8555-497A-8E02-FA254F5833C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{771890BA-8555-497A-8E02-FA254F5833C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F7F96DE-A57D-447D-AD91-D5E63FC214D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F7F96DE-A57D-447D-AD91-D5E63FC214D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F7F96DE-A57D-447D-AD91-D5E63FC214D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F7F96DE-A57D-447D-AD91-D5E63FC214D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

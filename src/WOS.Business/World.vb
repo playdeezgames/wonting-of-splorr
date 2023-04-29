@@ -73,7 +73,7 @@ Public Class World
     Const ForestMapName = "forest"
     Const ForestMapColumns = (ForestGridSizeX * ForestGridColumns) + ForestGridColumns + 1
     Const ForestMapRows = (ForestGridSizeY * ForestGridRows) + ForestGridRows + 1
-    Const ForestCellShrubCount = 0
+    Const ForestCellShrubCount = 2
     Private Shared ReadOnly mazeDirections As IReadOnlyDictionary(Of Direction, MazeDirection(Of Direction)) =
         New Dictionary(Of Direction, MazeDirection(Of Direction)) From
         {
@@ -86,20 +86,32 @@ Public Class World
         Const mapName = ForestMapName
         Const mapColumns = ForestMapColumns
         Const mapRows = ForestMapRows
-        Dim maze = New Maze(Of Direction)(ForestMapRows, ForestGridRows, mazeDirections)
+        Dim maze = New Maze(Of Direction)(ForestGridColumns, ForestGridRows, mazeDirections)
         maze.Generate()
         Dim map = CreateMap(mapName, mapColumns, mapRows, ForestTerrainName)
         FillMap(map, 1, 1, mapColumns - 2, mapRows - 2, EmptyTerrainName)
         For mazeColumn = 0 To ForestGridColumns - 1
             Dim column = mazeColumn * (ForestGridSizeX + 1)
             For mazeRow = 0 To ForestGridRows - 1
+                Dim cell = maze.GetCell(mazeColumn, mazeRow)
                 Dim row = mazeRow * (ForestGridSizeY + 1)
-                FillMap(map, column, row, 1, 1, ForestTerrainName)
-                If Not If(maze.GetCell(mazeColumn, mazeRow)?.GetDoor(Direction.North)?.Open, False) Then
-                    FillMap(map, column + 1, row, ForestGridSizeX, 1, ForestTerrainName)
+                FillMap(map, column, row, ForestGridSizeX + 1, ForestGridSizeY + 1, ForestTerrainName)
+                FillMap(map, column + 1, row + 1, ForestGridSizeX, ForestGridSizeY, EmptyTerrainName)
+                Dim door = cell.GetDoor(Direction.North)
+                If door IsNot Nothing AndAlso door.Open Then
+                    FillMap(map, column + 1, row, ForestGridSizeX, 1, EmptyTerrainName)
                 End If
-                If Not If(maze.GetCell(mazeColumn, mazeRow)?.GetDoor(Direction.West)?.Open, False) Then
-                    FillMap(map, column, row + 1, 1, ForestGridSizeY, ForestTerrainName)
+                door = cell.GetDoor(Direction.South)
+                If door IsNot Nothing AndAlso door.Open Then
+                    FillMap(map, column + 1, row + ForestGridSizeY + 1, ForestGridSizeX, 1, EmptyTerrainName)
+                End If
+                door = cell.GetDoor(Direction.West)
+                If door IsNot Nothing AndAlso door.Open Then
+                    FillMap(map, column, row + 1, 1, ForestGridSizeY, EmptyTerrainName)
+                End If
+                door = cell.GetDoor(Direction.East)
+                If door IsNot Nothing AndAlso door.Open Then
+                    FillMap(map, column + ForestGridSizeX + 1, row + 1, 1, ForestGridSizeY, EmptyTerrainName)
                 End If
                 Dim shrubs = ForestCellShrubCount
                 While shrubs > 0
