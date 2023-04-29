@@ -27,6 +27,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Hue As Hue Implements ITerrain.Hue
+        Get
+            Return TerrainData.Hue
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, terrainName As String)
         _data = data
         _terrainName = terrainName

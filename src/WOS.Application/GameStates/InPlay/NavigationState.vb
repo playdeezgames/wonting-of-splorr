@@ -28,7 +28,6 @@
         Dim offsetX = ViewWidth \ 2 - MapCellWidth \ 2 - avatarCharacter.Column * MapCellWidth
         Dim offsetY = ViewHeight \ 2 - MapCellHeight \ 2 - avatarCharacter.Row * MapCellHeight
         Dim map As IMap = avatarCharacter.Map
-
         For column = 0 To map.Columns - 1
             Dim x = offsetX + column * MapCellWidth
             If x < -MapCellWidth OrElse x >= ViewWidth Then
@@ -46,6 +45,13 @@
                 If character IsNot Nothing Then
                     character.Render(displayBuffer, x, y)
                 End If
+            Next
+        Next
+        For column = 0 To map.Columns - 1
+            For row = 0 To map.Rows - 1
+                Dim cell = map.GetCell(column, row)
+                Dim terrain = cell.Terrain
+                displayBuffer.SetPixel(column, row, terrain.Hue)
             Next
         Next
     End Sub

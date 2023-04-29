@@ -73,7 +73,7 @@ Public Class World
     Const ForestMapName = "forest"
     Const ForestMapColumns = (ForestGridSizeX * ForestGridColumns) + ForestGridColumns + 1
     Const ForestMapRows = (ForestGridSizeY * ForestGridRows) + ForestGridRows + 1
-    Const ForestCellShrubCount = 2
+    Const ForestCellShrubCount = 0
     Private Shared ReadOnly mazeDirections As IReadOnlyDictionary(Of Direction, MazeDirection(Of Direction)) =
         New Dictionary(Of Direction, MazeDirection(Of Direction)) From
         {
