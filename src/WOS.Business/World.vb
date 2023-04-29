@@ -19,9 +19,17 @@ Public Class World
         InitializeMaps()
     End Sub
     Const N00bCharacterName = "n00b"
+    Const MarcusCharacterName = "marcus"
+    Const GrahamCharacterName = "graham"
+    Const DanCharacterName = "dan"
+    Const SamuliCharacterName = "samuli"
     Private Sub InitializeCharacters()
         _data.Characters.Clear()
         InitializeCharacter(N00bCharacterName, " "c, Hue.Brown, isMessageSink:=True)
+        InitializeCharacter(MarcusCharacterName, "Z"c, Hue.Magenta)
+        InitializeCharacter(GrahamCharacterName, "["c, Hue.Red)
+        InitializeCharacter(DanCharacterName, "\"c, Hue.Cyan)
+        InitializeCharacter(SamuliCharacterName, "Y"c, Hue.LightMagenta)
     End Sub
 
     Private Sub InitializeCharacter(
@@ -135,8 +143,12 @@ Public Class World
             map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
         Next
+        FillMap(map, 2, 2, 3, 1, CounterTerrainName)
+        FillMap(map, 1, 2, 1, 1, LeftCounterTerrainName)
+        FillMap(map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(map, 0, SmokeShoppeMapRows \ 2, 1, 1, ClosedDoorTerrainName)
         CreateTeleportTrigger(map, 0, SmokeShoppeMapRows \ 2, TownMapName, 18, 18)
+        CreateCharacterInstance(SmokeShoppeMapName, SmokeShoppeMapColumns \ 2, 1, MarcusCharacterName)
     End Sub
     Const ArmoryMapName = "armory"
     Const ArmoryMapColumns = 7
@@ -151,6 +163,9 @@ Public Class World
             map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
         Next
+        FillMap(map, 2, 2, 3, 1, CounterTerrainName)
+        FillMap(map, 1, 2, 1, 1, LeftCounterTerrainName)
+        FillMap(map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, 1, 1, ClosedDoorTerrainName)
         CreateTeleportTrigger(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, TownMapName, 6, 18)
     End Sub
@@ -174,6 +189,9 @@ Public Class World
             map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
         Next
+        FillMap(map, 2, 2, 3, 1, CounterTerrainName)
+        FillMap(map, 1, 2, 1, 1, LeftCounterTerrainName)
+        FillMap(map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(map, InnMapColumns \ 2, InnMapRows - 1, 1, 1, ClosedDoorTerrainName)
         CreateTeleportTrigger(map, InnMapColumns \ 2, InnMapRows - 1, TownMapName, 6, 6)
     End Sub
@@ -190,8 +208,12 @@ Public Class World
             map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
         Next
-        FillMap(map, InnMapColumns \ 2, InnMapRows - 1, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, InnMapColumns \ 2, InnMapRows - 1, TownMapName, 18, 6)
+        FillMap(map, 2, 2, 3, 1, CounterTerrainName)
+        FillMap(map, 1, 2, 1, 1, LeftCounterTerrainName)
+        FillMap(map, 5, 2, 1, 1, RightCounterTerrainName)
+        FillMap(map, ExchangeMapColumns \ 2, ExchangeMapRows - 1, 1, 1, ClosedDoorTerrainName)
+        CreateTeleportTrigger(map, ExchangeMapColumns \ 2, ExchangeMapRows - 1, TownMapName, 18, 6)
+        CreateCharacterInstance(ExchangeMapName, ExchangeMapColumns \ 2, 1, DanCharacterName)
     End Sub
 
     Private Sub CreateTeleportTrigger(map As IMap, fromColumn As Integer, fromRow As Integer, toMapName As String, toColumn As Integer, toRow As Integer)
