@@ -925,6 +925,8 @@
       },
       "WOS.Business/1.0.0": {
         "dependencies": {
+          "SPLORR.Game": "1.0.0",
+          "System.Text.Json": "7.0.2",
           "WOS.Data": "1.0.0"
         },
         "runtime": {
@@ -932,6 +934,9 @@
         }
       },
       "WOS.Data/1.0.0": {
+        "dependencies": {
+          "AOS.UI": "1.0.0"
+        },
         "runtime": {
           "WOS.Data.dll": {}
         }
