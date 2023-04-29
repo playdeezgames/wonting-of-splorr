@@ -168,6 +168,7 @@ Public Class World
         FillMap(map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, 1, 1, ClosedDoorTerrainName)
         CreateTeleportTrigger(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, TownMapName, 6, 18)
+        CreateCharacterInstance(ArmoryMapName, ArmoryMapColumns \ 2, 1, SamuliCharacterName)
     End Sub
 
     Private Sub CreateMessageTrigger(map As IMap, column As Integer, row As Integer, lines As List(Of (Hue, String)))
@@ -194,6 +195,7 @@ Public Class World
         FillMap(map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(map, InnMapColumns \ 2, InnMapRows - 1, 1, 1, ClosedDoorTerrainName)
         CreateTeleportTrigger(map, InnMapColumns \ 2, InnMapRows - 1, TownMapName, 6, 6)
+        CreateCharacterInstance(InnMapName, InnMapColumns \ 2, 1, GrahamCharacterName)
     End Sub
     Const ExchangeMapName = "exchange"
     Const ExchangeMapColumns = 7
