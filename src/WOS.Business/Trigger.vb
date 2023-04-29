@@ -24,4 +24,13 @@
     Public Sub SetTeleport(toMapName As String, toColumn As Integer, toRow As Integer) Implements ITrigger.SetTeleport
         TriggerData.Teleport = New TeleportData With {.MapName = toMapName, .Column = toColumn, .Row = toRow}
     End Sub
+
+    Public Sub SetMessage(lines As IEnumerable(Of (Hue, String))) Implements ITrigger.SetMessage
+        TriggerData.Message = New MessageData With {
+            .MessageLines = lines.Select(Function(line) New MessageLineData With
+            {
+                .Hue = line.Item1,
+                .Text = line.Item2
+            }).ToList}
+    End Sub
 End Class

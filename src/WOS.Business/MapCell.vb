@@ -36,13 +36,17 @@
             Case TriggerType.Teleport
                 character.Teleport(trigger.Teleport.MapName, trigger.Teleport.Column, trigger.Teleport.Row)
             Case Else
-                Throw New NotImplementedException
+                character.AddMessage(trigger.Message.MessageLines.Select(Function(line) (line.Hue, line.Text)))
         End Select
     End Sub
 
     Public Sub SetTrigger(triggerKind As TriggerKind, triggerType As TriggerType) Implements IMapCell.SetTrigger
         MapCellData.Triggers(triggerKind) = New TriggerData With {.TriggerType = triggerType}
     End Sub
+
+    Public Function GetTrigger(triggerKind As TriggerKind) As ITrigger Implements IMapCell.GetTrigger
+        Return New Trigger(_data, _mapName, _column, _row, triggerKind)
+    End Function
 
     Public Property Terrain As ITerrain Implements IMapCell.Terrain
         Get
@@ -67,11 +71,5 @@
             End If
             CreateCharacterInstance(value.Character.Name)
         End Set
-    End Property
-
-    Public ReadOnly Property Bump As ITrigger Implements IMapCell.Bump
-        Get
-            Return New Trigger(_data, _mapName, _column, _row, TriggerKind.Bump)
-        End Get
     End Property
 End Class

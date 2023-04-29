@@ -28,4 +28,10 @@
             Return GetCachedFont(CharacterData.FontName)
         End Get
     End Property
+
+    Public ReadOnly Property IsMessageSink As Boolean Implements ICharacter.IsMessageSink
+        Get
+            Return CharacterData.IsMessageSink
+        End Get
+    End Property
 End Class

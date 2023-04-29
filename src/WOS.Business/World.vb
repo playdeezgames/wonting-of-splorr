@@ -1,3 +1,5 @@
+Imports System.Data.Common
+
 Public Class World
     Implements IWorld
     Private ReadOnly _data As WorldData
@@ -19,11 +21,23 @@ Public Class World
     Const N00bCharacterName = "n00b"
     Private Sub InitializeCharacters()
         _data.Characters.Clear()
-        InitializeCharacter(N00bCharacterName, " "c, Hue.Brown)
+        InitializeCharacter(N00bCharacterName, " "c, Hue.Brown, isMessageSink:=True)
     End Sub
 
-    Private Sub InitializeCharacter(characterName As String, glyph As Char, hue As Hue)
-        _data.Characters.Add(characterName, New CharacterData With {.FontName = CharacterFontName, .Glyph = glyph, .Hue = hue})
+    Private Sub InitializeCharacter(
+                                   characterName As String,
+                                   glyph As Char,
+                                   hue As Hue,
+                                   Optional isMessageSink As Boolean = False)
+        _data.Characters.Add(
+            characterName,
+            New CharacterData With
+            {
+                .FontName = CharacterFontName,
+                .Glyph = glyph,
+                .Hue = hue,
+                .IsMessageSink = isMessageSink
+            })
     End Sub
 
     Private Sub InitializeFont(fontName As String, fontFilename As String)
@@ -84,11 +98,55 @@ Public Class World
         CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, TownMapName, TownColumns \ 2, TownRows \ 2) 'TODO: go outside of town
         CreateTeleportTrigger(map, 6, 5, InnMapName, InnMapColumns \ 2, InnMapRows - 2)
         CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
+        CreateTeleportTrigger(map, 19, 18, SmokeShoppeMapName, 1, SmokeShoppeMapRows \ 2)
+        CreateMessageTrigger(map, 7, 5, New List(Of (Hue, String)) From {
+                                (Hue.Gray, "The Dog's Face Inn"),
+                                (Hue.Gray, "Proprietor:"),
+                                (Hue.Gray, "Graham W.")
+                             })
+        CreateMessageTrigger(map, 19, 5, New List(Of (Hue, String)) From {
+                                (Hue.Gray, """Honest"" Dan's Currency Exchange")
+                             })
+        CreateMessageTrigger(map, 19, 19, New List(Of (Hue, String)) From {
+                                (Hue.Gray, "Marcus's Magick and Smoke Shoppe")
+                             })
+        CreateMessageTrigger(map, 5, 17, New List(Of (Hue, String)) From {
+                                (Hue.Gray, "Samuli's Armory")
+                             })
         CreateCharacterInstance(TownMapName, TownColumns \ 2, TownRows \ 2, N00bCharacterName)
         CreateAvatar(TownMapName, TownColumns \ 2, TownRows \ 2)
         InitializeInn()
         InitializeExchange()
+        InitializeArmory()
+        InitializeSmokeShoppe()
     End Sub
+
+    Const SmokeShoppeMapName = "smoke-shoppe"
+    Const SmokeShoppeMapColumns = 7
+    Const SmokeShoppeMapRows = 7
+    Private Sub InitializeSmokeShoppe()
+        Dim map As IMap = CreateMap(SmokeShoppeMapName, SmokeShoppeMapColumns, SmokeShoppeMapRows, EmptyTerrainName)
+        For column = 0 To map.Columns - 1
+            map.GetCell(column, 0).Terrain = GetTerrain(WallTerrainName)
+            map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(WallTerrainName)
+        Next
+        For row = 1 To map.Rows - 2
+            map.GetCell(0, row).Terrain = GetTerrain(WallTerrainName)
+            map.GetCell(map.Columns - 1, row).Terrain = GetTerrain(WallTerrainName)
+        Next
+        FillMap(map, 0, InnMapRows \ 2, 1, 1, ClosedDoorTerrainName)
+        CreateTeleportTrigger(map, 0, InnMapRows \ 2, TownMapName, 18, 18)
+    End Sub
+
+    Private Sub InitializeArmory()
+    End Sub
+
+    Private Sub CreateMessageTrigger(map As IMap, column As Integer, row As Integer, lines As List(Of (Hue, String)))
+        Dim mapCell = map.GetCell(column, row)
+        mapCell.SetTrigger(TriggerKind.Bump, TriggerType.Message)
+        mapCell.GetTrigger(TriggerKind.Bump).SetMessage(lines)
+    End Sub
+
     Const InnMapName = "inn"
     Const InnMapColumns = 7
     Const InnMapRows = 7
@@ -125,7 +183,7 @@ Public Class World
     Private Sub CreateTeleportTrigger(map As IMap, fromColumn As Integer, fromRow As Integer, toMapName As String, toColumn As Integer, toRow As Integer)
         Dim mapCell = map.GetCell(fromColumn, fromRow)
         mapCell.SetTrigger(TriggerKind.Bump, TriggerType.Teleport)
-        mapCell.Bump.SetTeleport(toMapName, toColumn, toRow)
+        mapCell.GetTrigger(TriggerKind.Bump).SetTeleport(toMapName, toColumn, toRow)
     End Sub
 
     Private Sub FillMap(map As IMap, x As Integer, y As Integer, w As Integer, h As Integer, terrainName As String)

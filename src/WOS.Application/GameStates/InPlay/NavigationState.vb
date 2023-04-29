@@ -9,12 +9,16 @@
         Select Case command
             Case Command.UpReleased
                 World.Avatar.Move(Direction.North)
+                SetState(GameState.Neutral)
             Case Command.RightReleased
                 World.Avatar.Move(Direction.East)
+                SetState(GameState.Neutral)
             Case Command.DownReleased
                 World.Avatar.Move(Direction.South)
+                SetState(GameState.Neutral)
             Case Command.LeftReleased
                 World.Avatar.Move(Direction.West)
+                SetState(GameState.Neutral)
         End Select
     End Sub
 

@@ -8,4 +8,5 @@
     Prologue
     Neutral
     Navigation
+    Message
 End Enum

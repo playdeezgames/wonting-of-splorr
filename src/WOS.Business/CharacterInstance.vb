@@ -57,6 +57,16 @@
         MapCellData.Character = instanceData
     End Sub
 
+    Public Sub AddMessage(lines As IEnumerable(Of (Hue, String))) Implements ICharacterInstance.AddMessage
+        If Character.IsMessageSink Then
+            CharacterInstanceData.Messages.Add(lines)
+        End If
+    End Sub
+
+    Public Sub NextMessage() Implements ICharacterInstance.NextMessage
+        CharacterInstanceData.Messages.RemoveAt(0)
+    End Sub
+
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
         Get
             Return New Character(_data, CharacterInstanceData.CharacterName)
@@ -78,6 +88,18 @@
     Public ReadOnly Property Map As IMap Implements ICharacterInstance.Map
         Get
             Return New Map(_data, _mapName)
+        End Get
+    End Property
+
+    Public ReadOnly Property HasMessage As Boolean Implements ICharacterInstance.HasMessage
+        Get
+            Return CharacterInstanceData.Messages.Any
+        End Get
+    End Property
+
+    Public ReadOnly Property Message As IEnumerable(Of (Hue, String)) Implements ICharacterInstance.Message
+        Get
+            Return CharacterInstanceData.Messages.FirstOrDefault
         End Get
     End Property
 End Class
