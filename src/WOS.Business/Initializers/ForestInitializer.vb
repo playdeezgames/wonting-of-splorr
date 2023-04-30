@@ -60,7 +60,7 @@
         FillMap(_data, map, 1, mapRows - 4, 3, 3, EmptyTerrainName)
         FillMap(_data, map, mapColumns - 4, mapRows - 4, 3, 3, EmptyTerrainName)
         PopulateMap(map, forestSpawns)
-        CreateTeleportTrigger(map, mapColumns \ 2, mapRows \ 2, TownMapName, TownColumns \ 2, TownRows - 2)
+        CreateTeleportTrigger(map, mapColumns \ 2, mapRows \ 2, TownInitializer.MapName, TownInitializer.MapColumns \ 2, TownInitializer.MapRows - 2)
     End Sub
     Private ReadOnly forestSpawns As IReadOnlyDictionary(Of String, Integer) =
         New Dictionary(Of String, Integer) From

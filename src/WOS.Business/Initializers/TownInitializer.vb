@@ -1,14 +1,14 @@
 ﻿Friend Module TownInitializer
-    Friend Const TownMapName = "town"
-    Friend Const TownColumns = 25
-    Friend Const TownRows = 25
+    Friend Const MapName = "town"
+    Friend Const MapColumns = 25
+    Friend Const MapRows = 25
     Friend Sub InitializeTown(_data As WorldData)
-        Dim map As IMap = CreateMap(_data, TownMapName, TownColumns, TownRows, EmptySpawnTerrainName)
+        Dim map As IMap = CreateMap(_data, MapName, MapColumns, MapRows, EmptySpawnTerrainName)
         FillMap(_data, map, 0, 0, map.Columns, 1, FenceTerrainName)
         FillMap(_data, map, 0, map.Rows - 1, map.Columns, 1, FenceTerrainName)
         FillMap(_data, map, 0, 1, 1, map.Rows - 2, FenceTerrainName)
         FillMap(_data, map, map.Columns - 1, 1, 1, map.Rows - 2, FenceTerrainName)
-        FillMap(_data, map, TownColumns \ 2, TownRows - 1, 1, 1, GateTerrainName)
+        FillMap(_data, map, MapColumns \ 2, MapRows - 1, 1, 1, GateTerrainName)
         FillMap(_data, map, 6, 7, 1, 5, Path5TerrainName)
         FillMap(_data, map, 18, 7, 1, 5, Path5TerrainName)
         FillMap(_data, map, 12, 13, 1, 5, Path5TerrainName)
@@ -33,7 +33,7 @@
         FillMap(_data, map, 5, 17, 1, 1, SignTerrainName)
         FillMap(_data, map, 19, 18, 1, 1, HouseTerrainName)
         FillMap(_data, map, 19, 19, 1, 1, SignTerrainName)
-        CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, ForestInitializer.MapName, ForestInitializer.MapColumns \ 2, ForestInitializer.MapRows \ 2)
+        CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, ForestInitializer.MapName, ForestInitializer.MapColumns \ 2, ForestInitializer.MapRows \ 2)
         CreateTeleportTrigger(map, 6, 5, InnMapName, InnMapColumns \ 2, InnMapRows - 2)
         CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMapName, 1, SmokeShoppeMapRows \ 2)
@@ -52,8 +52,8 @@
         CreateMessageTrigger(map, 5, 17, New List(Of (Hue, String)) From {
                                 (Hue.Gray, "Samuli's Armory")
                              })
-        CreateCharacterInstance(_data, TownMapName, TownColumns \ 2, TownRows \ 2, N00bCharacterName)
-        CreateAvatar(_data, TownMapName, TownColumns \ 2, TownRows \ 2)
+        CreateCharacterInstance(_data, MapName, MapColumns \ 2, MapRows \ 2, N00bCharacterName)
+        CreateAvatar(_data, MapName, MapColumns \ 2, MapRows \ 2)
         InitializeInn(_data)
         InitializeExchange(_data)
         InitializeArmory(_data)
@@ -73,7 +73,7 @@
         FillMap(_data, map, 1, 2, 1, 1, LeftCounterTerrainName)
         FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(_data, map, 0, SmokeShoppeMapRows \ 2, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, 0, SmokeShoppeMapRows \ 2, TownMapName, 18, 18)
+        CreateTeleportTrigger(map, 0, SmokeShoppeMapRows \ 2, MapName, 18, 18)
         CreateCharacterInstance(_data, SmokeShoppeMapName, SmokeShoppeMapColumns \ 2, 1, MarcusCharacterName)
     End Sub
     Const ArmoryMapName = "armory"
@@ -89,7 +89,7 @@
         FillMap(_data, map, 1, 2, 1, 1, LeftCounterTerrainName)
         FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(_data, map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, TownMapName, 6, 18)
+        CreateTeleportTrigger(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, MapName, 6, 18)
         CreateCharacterInstance(_data, ArmoryMapName, ArmoryMapColumns \ 2, 1, SamuliCharacterName)
     End Sub
     Const InnMapName = "inn"
@@ -105,7 +105,7 @@
         FillMap(_data, map, 1, 2, 1, 1, LeftCounterTerrainName)
         FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(_data, map, InnMapColumns \ 2, InnMapRows - 1, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, InnMapColumns \ 2, InnMapRows - 1, TownMapName, 6, 6)
+        CreateTeleportTrigger(map, InnMapColumns \ 2, InnMapRows - 1, MapName, 6, 6)
         CreateCharacterInstance(_data, InnMapName, InnMapColumns \ 2, 1, GrahamCharacterName)
     End Sub
     Const ExchangeMapName = "exchange"
@@ -121,7 +121,7 @@
         FillMap(_data, map, 1, 2, 1, 1, LeftCounterTerrainName)
         FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(_data, map, ExchangeMapColumns \ 2, ExchangeMapRows - 1, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, ExchangeMapColumns \ 2, ExchangeMapRows - 1, TownMapName, 18, 6)
+        CreateTeleportTrigger(map, ExchangeMapColumns \ 2, ExchangeMapRows - 1, MapName, 18, 6)
         CreateCharacterInstance(_data, ExchangeMapName, ExchangeMapColumns \ 2, 1, DanCharacterName)
     End Sub
 
