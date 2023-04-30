@@ -1,63 +1,14 @@
 Public Class World
     Implements IWorld
     Private ReadOnly _data As WorldData
-    Const CharacterFontName = "characters"
-    Const TerrainFontName = "terrains"
-    Const ItemFontName = "items"
-    Const CharacterFontFilename = "Content/character-font.json"
-    Const TerrainFontFilename = "Content/terrain-font.json"
-    Const ItemFontFilename = "Content/item-font.json"
     Sub New(data As WorldData)
         _data = data
     End Sub
     Public Sub Initialize() Implements IWorld.Initialize
-        InitializeFonts()
-        InitializeTerrains()
-        InitializeCharacters()
+        InitializeFonts(_data)
+        InitializeTerrains(_data)
+        InitializeCharacters(_data)
         InitializeMaps()
-    End Sub
-    Const N00bCharacterName = "n00b"
-    Const MarcusCharacterName = "marcus"
-    Const GrahamCharacterName = "graham"
-    Const DanCharacterName = "dan"
-    Const SamuliCharacterName = "samuli"
-    Const BlobCharacterName = "blob"
-    Private Sub InitializeCharacters()
-        _data.Characters.Clear()
-        InitializeCharacter(N00bCharacterName, " "c, Hue.Brown, isMessageSink:=True)
-        InitializeCharacter(MarcusCharacterName, "Z"c, Hue.Magenta)
-        InitializeCharacter(GrahamCharacterName, "["c, Hue.Red)
-        InitializeCharacter(DanCharacterName, "\"c, Hue.Cyan)
-        InitializeCharacter(SamuliCharacterName, "Y"c, Hue.LightMagenta)
-        InitializeCharacter(BlobCharacterName, "="c, Hue.Cyan)
-    End Sub
-
-    Private Sub InitializeCharacter(
-                                   characterName As String,
-                                   glyph As Char,
-                                   hue As Hue,
-                                   Optional isMessageSink As Boolean = False)
-        _data.Characters.Add(
-            characterName,
-            New CharacterData With
-            {
-                .FontName = CharacterFontName,
-                .Glyph = glyph,
-                .Hue = hue,
-                .IsMessageSink = isMessageSink
-            })
-    End Sub
-
-    Private Sub InitializeFont(fontName As String, fontFilename As String)
-        _data.Fonts.Add(fontName, JsonSerializer.Deserialize(Of FontData)(File.ReadAllText(fontFilename)))
-        SetCachedFont(fontName, New Font(_data.Fonts(fontName)))
-    End Sub
-
-    Private Sub InitializeFonts()
-        _data.Fonts.Clear()
-        InitializeFont(CharacterFontName, CharacterFontFilename)
-        InitializeFont(TerrainFontName, TerrainFontFilename)
-        InitializeFont(ItemFontName, ItemFontFilename)
     End Sub
 
     Private Sub InitializeMaps()
@@ -338,40 +289,6 @@ Public Class World
         Return GetMap(mapName)
     End Function
 
-    Const EmptySpawnTerrainName = "empty-spawn"
-    Const EmptyTerrainName = "empty"
-    Const WallTerrainName = "wall"
-    Const OpenDoorTerrainName = "open-door"
-    Const LadderTerrainName = "ladder"
-    Const ClosedDoorTerrainName = "closed-door"
-    Const DownStairsTerrainName = "down-stairs"
-    Const UpStairsTerrainName = "up-stairs"
-    Const TreeTerrainName = "tree"
-    Const GateTerrainName = "gate"
-    Const FenceTerrainName = "fence"
-    Const HouseTerrainName = "house"
-    Const TownTerrainName = "town"
-    Const ForestTerrainName = "forest"
-    Const LeftCounterTerrainName = "left-counter"
-    Const CounterTerrainName = "counter"
-    Const RightCounterTerrainName = "right-counter"
-    Const Path0TerrainName = "Path0"
-    Const Path1TerrainName = "Path1"
-    Const Path2TerrainName = "Path2"
-    Const Path3TerrainName = "Path3"
-    Const Path4TerrainName = "Path4"
-    Const Path5TerrainName = "Path5"
-    Const Path6TerrainName = "Path6"
-    Const Path7TerrainName = "Path7"
-    Const Path8TerrainName = "Path8"
-    Const Path9TerrainName = "Path9"
-    Const PathATerrainName = "PathA"
-    Const PathBTerrainName = "PathB"
-    Const PathCTerrainName = "PathC"
-    Const PathDTerrainName = "PathD"
-    Const PathETerrainName = "PathE"
-    Const PathFTerrainName = "PathF"
-    Const SignTerrainName = "Sign"
 
 
     Public ReadOnly Property Avatar As IAvatar Implements IWorld.Avatar
@@ -382,47 +299,6 @@ Public Class World
             Return New Avatar(_data)
         End Get
     End Property
-
-    Private Sub InitializeTerrain(terrainName As String, glyph As Char, hue As Hue, tenantability As Boolean, Optional canSpawn As Boolean = False)
-        _data.Terrains.Add(terrainName, New TerrainData With {.FontName = TerrainFontName, .Glyph = glyph, .Hue = hue, .Tenantable = tenantability, .CanSpawn = canSpawn})
-    End Sub
-    Private Sub InitializeTerrains()
-        _data.Terrains.Clear()
-        InitializeTerrain(EmptySpawnTerrainName, " "c, Hue.Black, True, canSpawn:=True)
-        InitializeTerrain(EmptyTerrainName, " "c, Hue.Black, True)
-        InitializeTerrain(WallTerrainName, "!"c, Hue.Red, False)
-        InitializeTerrain(OpenDoorTerrainName, """"c, Hue.Brown, False)
-        InitializeTerrain(LadderTerrainName, "#"c, Hue.Brown, False)
-        InitializeTerrain(ClosedDoorTerrainName, "$"c, Hue.Brown, False)
-        InitializeTerrain(DownStairsTerrainName, "%"c, Hue.Brown, False)
-        InitializeTerrain(UpStairsTerrainName, "&"c, Hue.Brown, False)
-        InitializeTerrain(TreeTerrainName, "'"c, Hue.Green, False)
-        InitializeTerrain(GateTerrainName, "("c, Hue.Brown, False)
-        InitializeTerrain(FenceTerrainName, ")"c, Hue.Gray, False)
-        InitializeTerrain(HouseTerrainName, "*"c, Hue.Red, False)
-        InitializeTerrain(TownTerrainName, "+"c, Hue.Red, False)
-        InitializeTerrain(ForestTerrainName, ","c, Hue.Green, False)
-        InitializeTerrain(LeftCounterTerrainName, "-"c, Hue.Brown, False)
-        InitializeTerrain(CounterTerrainName, "."c, Hue.Brown, False)
-        InitializeTerrain(RightCounterTerrainName, "/"c, Hue.Brown, False)
-        InitializeTerrain(Path0TerrainName, "0"c, Hue.DarkGray, True)
-        InitializeTerrain(Path1TerrainName, "1"c, Hue.DarkGray, True)
-        InitializeTerrain(Path2TerrainName, "2"c, Hue.DarkGray, True)
-        InitializeTerrain(Path3TerrainName, "3"c, Hue.DarkGray, True)
-        InitializeTerrain(Path4TerrainName, "4"c, Hue.DarkGray, True)
-        InitializeTerrain(Path5TerrainName, "5"c, Hue.DarkGray, True)
-        InitializeTerrain(Path6TerrainName, "6"c, Hue.DarkGray, True)
-        InitializeTerrain(Path7TerrainName, "7"c, Hue.DarkGray, True)
-        InitializeTerrain(Path8TerrainName, "8"c, Hue.DarkGray, True)
-        InitializeTerrain(Path9TerrainName, "9"c, Hue.DarkGray, True)
-        InitializeTerrain(PathATerrainName, ":"c, Hue.DarkGray, True)
-        InitializeTerrain(PathBTerrainName, ";"c, Hue.DarkGray, True)
-        InitializeTerrain(PathCTerrainName, "<"c, Hue.DarkGray, True)
-        InitializeTerrain(PathDTerrainName, "="c, Hue.DarkGray, True)
-        InitializeTerrain(PathETerrainName, ">"c, Hue.DarkGray, True)
-        InitializeTerrain(PathFTerrainName, "?"c, Hue.DarkGray, True)
-        InitializeTerrain(SignTerrainName, "@"c, Hue.Brown, False)
-    End Sub
 
     Public Function GetMap(mapName As String) As IMap Implements IWorld.GetMap
         Return New Map(_data, mapName)
