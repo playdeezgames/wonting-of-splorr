@@ -9,4 +9,5 @@
     Neutral
     Navigation
     Message
+    Combat
 End Enum

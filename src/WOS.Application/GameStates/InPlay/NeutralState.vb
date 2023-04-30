@@ -13,8 +13,13 @@
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)
         MyBase.Update(elapsedTime)
-        If World.Avatar.Character.HasMessage Then
+        Dim mainCharacter = World.Avatar.Character
+        If mainCharacter.HasMessage Then
             SetState(GameState.Message)
+            Return
+        End If
+        If mainCharacter.Target IsNot Nothing Then
+            SetState(GameState.Combat)
             Return
         End If
         SetState(GameState.Navigation)
