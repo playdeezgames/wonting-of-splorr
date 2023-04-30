@@ -33,5 +33,10 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
+        Dim font = Fonts(GameFont.Font5x7)
+        Dim mainCharacter = World.Avatar.Character
+        font.WriteText(displayBuffer, (0, font.Height * 5), $"{mainCharacter.Name}: {mainCharacter.Health}/{mainCharacter.MaximumHealth}", Hue.Gray)
+        Dim enemy = mainCharacter.Target
+        font.WriteText(displayBuffer, (0, font.Height * 6), $"{enemy.Name}: {enemy.Health}/{enemy.MaximumHealth}", Hue.Gray)
     End Sub
 End Class

@@ -11,4 +11,8 @@
     Sub Teleport(mapName As String, column As Integer, row As Integer)
     Sub AddMessage(lines As IEnumerable(Of (Hue, String)))
     Sub NextMessage()
+    ReadOnly Property Name As String
+    ReadOnly Property Health As Integer
+    ReadOnly Property MaximumHealth As Integer
+    Function GetStatistic(statisticType As StatisticType) As Integer
 End Interface

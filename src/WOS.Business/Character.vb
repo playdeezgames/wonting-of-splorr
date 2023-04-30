@@ -17,6 +17,10 @@
         font.WriteText(displayBuffer, (x, y), $"{CharacterData.Glyph}", CharacterData.Hue)
     End Sub
 
+    Public Function GetStatistic(statisticType As StatisticType) As Integer Implements ICharacter.GetStatistic
+        Return CharacterData.Statistics(statisticType)
+    End Function
+
     Public ReadOnly Property Name As String Implements ICharacter.Name
         Get
             Return _characterName

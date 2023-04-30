@@ -67,6 +67,10 @@
         CharacterInstanceData.Messages.RemoveAt(0)
     End Sub
 
+    Public Function GetStatistic(statisticType As StatisticType) As Integer Implements ICharacterInstance.GetStatistic
+        Return CharacterInstanceData.Statistics(statisticType)
+    End Function
+
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
         Get
             Return New Character(_data, CharacterInstanceData.CharacterName)
@@ -121,5 +125,24 @@
                 .Column = _column,
                 .Row = _row}
         End Set
+    End Property
+
+    Public ReadOnly Property Name As String Implements ICharacterInstance.Name
+        Get
+            Return Character.Name
+        End Get
+    End Property
+
+    Public ReadOnly Property Health As Integer Implements ICharacterInstance.Health
+        Get
+            Dim maxHealth = MaximumHealth
+            Return Math.Clamp(maxHealth - GetStatistic(StatisticType.Wounds), 0, maxHealth)
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumHealth As Integer Implements ICharacterInstance.MaximumHealth
+        Get
+            Return Character.GetStatistic(StatisticType.MaximumHealth)
+        End Get
     End Property
 End Class
