@@ -37,7 +37,7 @@
         End If
         Dim nextCell = Map.GetCell(nextColumn, nextRow)
         If nextCell.Character IsNot Nothing Then
-            'no moving
+            Target = nextCell.Character
             Return
         End If
         Dim terrain = nextCell.Terrain
@@ -101,5 +101,25 @@
         Get
             Return CharacterInstanceData.Messages.FirstOrDefault
         End Get
+    End Property
+
+    Public Property Target As ICharacterInstance Implements ICharacterInstance.Target
+        Get
+            Dim currentTarget = CharacterInstanceData.Target
+            If currentTarget Is Nothing Then
+                Return Nothing
+            End If
+            Return New CharacterInstance(_data, currentTarget.MapName, currentTarget.Column, currentTarget.Row)
+        End Get
+        Set(value As ICharacterInstance)
+            If value Is Nothing Then
+                CharacterInstanceData.Target = Nothing
+                Return
+            End If
+            CharacterInstanceData.Target = New CharacterInstanceTargetData With {
+                .MapName = _mapName,
+                .Column = _column,
+                .Row = _row}
+        End Set
     End Property
 End Class
