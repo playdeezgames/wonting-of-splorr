@@ -29,6 +29,14 @@
     End Sub
 
     Private Shared Sub HandleFight()
+        Dim mainCharacter = World.Avatar.Character
+        mainCharacter.Attack(mainCharacter.Target)
+        If Not mainCharacter.Target.IsDead Then
+            mainCharacter.Target.Attack(mainCharacter)
+        Else
+            'TODO: clean up corpse
+            mainCharacter.Target = Nothing
+        End If
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

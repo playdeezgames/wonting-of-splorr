@@ -14,5 +14,7 @@
     ReadOnly Property Name As String
     ReadOnly Property Health As Integer
     ReadOnly Property MaximumHealth As Integer
+    ReadOnly Property IsDead As Boolean
     Function GetStatistic(statisticType As StatisticType) As Integer
+    Sub Attack(target As ICharacterInstance)
 End Interface

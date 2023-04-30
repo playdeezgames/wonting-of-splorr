@@ -71,6 +71,19 @@
         Return CharacterInstanceData.Statistics(statisticType)
     End Function
 
+    Public Sub Attack(target As ICharacterInstance) Implements ICharacterInstance.Attack
+        Dim msg As New List(Of (Hue, String))
+        msg.Add((Hue.Gray, $"{Name} attacks {target.Name}!"))
+        'TODO: roll attack
+        'TODO: roll defend
+        'TODO: hit or miss
+        'TODO: check for kill
+        msg.Add((Hue.Gray, $"{Name} misses!"))
+        msg.Add((Hue.Gray, $"{target.Name} has {target.Health} health"))
+        AddMessage(msg)
+        target.AddMessage(msg)
+    End Sub
+
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
         Get
             Return New Character(_data, CharacterInstanceData.CharacterName)
@@ -143,6 +156,12 @@
     Public ReadOnly Property MaximumHealth As Integer Implements ICharacterInstance.MaximumHealth
         Get
             Return Character.GetStatistic(StatisticType.MaximumHealth)
+        End Get
+    End Property
+
+    Public ReadOnly Property IsDead As Boolean Implements ICharacterInstance.IsDead
+        Get
+            Return Health <= 0
         End Get
     End Property
 End Class
