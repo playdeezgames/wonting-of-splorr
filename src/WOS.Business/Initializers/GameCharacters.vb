@@ -14,7 +14,11 @@
             Hue.Brown,
             statistics:=New Dictionary(Of StatisticType, Integer) From
             {
-                {StatisticType.MaximumHealth, 3}
+                {StatisticType.MaximumHealth, 3},
+                {StatisticType.BaseAttack, 3},
+                {StatisticType.MaximumAttack, 1},
+                {StatisticType.BaseDefend, 4},
+                {StatisticType.MaximumDefend, 2}
             },
             isMessageSink:=True)
         InitializeCharacter(_data, MarcusCharacterName, "Z"c, Hue.Magenta)
@@ -28,7 +32,11 @@
             Hue.Cyan,
             statistics:=New Dictionary(Of StatisticType, Integer) From
             {
-                {StatisticType.MaximumHealth, 1}
+                {StatisticType.MaximumHealth, 1},
+                {StatisticType.BaseAttack, 2},
+                {StatisticType.MaximumAttack, 1},
+                {StatisticType.BaseDefend, 1},
+                {StatisticType.MaximumDefend, 1}
             })
     End Sub
 

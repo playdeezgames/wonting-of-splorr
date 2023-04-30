@@ -72,16 +72,66 @@
     End Function
 
     Public Sub Attack(target As ICharacterInstance) Implements ICharacterInstance.Attack
-        Dim msg As New List(Of (Hue, String))
-        msg.Add((Hue.Gray, $"{Name} attacks {target.Name}!"))
-        'TODO: roll attack
-        'TODO: roll defend
-        'TODO: hit or miss
-        'TODO: check for kill
-        msg.Add((Hue.Gray, $"{Name} misses!"))
-        msg.Add((Hue.Gray, $"{target.Name} has {target.Health} health"))
+        Dim defend As Integer = target.RollDefend()
+        Dim attack As Integer = RollAttack()
+        Dim msg As New List(Of (Hue, String)) From {
+            (Hue.Gray, $"{Name} attacks {target.Name}!"),
+            (Hue.Gray, $"{Name} rolls attack of {attack}!"),
+            (Hue.Gray, $"{target.Name} rolls defend of {defend}!")
+        }
+        If attack > defend Then
+            Dim damage = attack - defend
+            msg.Add((Hue.Gray, $"{target.Name} takes {damage} damage!"))
+            target.Health -= damage
+            If target.IsDead Then
+                msg.Add((Hue.Gray, $"{Name} kills {target.Name}!"))
+            Else
+                msg.Add((Hue.Gray, $"{target.Name} has {target.Health} health"))
+            End If
+        Else
+            msg.Add((Hue.Gray, $"{Name} misses!"))
+        End If
         AddMessage(msg)
         target.AddMessage(msg)
+    End Sub
+
+    Private Function RollDice(dice As Integer, maximumRoll As Integer) As Integer
+        Dim roll = 0
+        While dice > 0
+            If RNG.FromRange(1, 6) = 6 Then
+                roll += 1
+            End If
+            dice -= 1
+        End While
+        Return Math.Min(roll, maximumRoll)
+    End Function
+
+    Private ReadOnly Property DefendDice As Integer
+        Get
+            Return Character.GetStatistic(StatisticType.BaseDefend)
+        End Get
+    End Property
+
+    Private ReadOnly Property AttackDice As Integer
+        Get
+            Return Character.GetStatistic(StatisticType.BaseAttack)
+        End Get
+    End Property
+
+    Public Function RollDefend() As Integer Implements ICharacterInstance.RollDefend
+        Return RollDice(DefendDice, MaximumDefend)
+    End Function
+
+    Public Function RollAttack() As Integer Implements ICharacterInstance.RollAttack
+        Return RollDice(AttackDice, MaximumAttack)
+    End Function
+
+    Public Sub SetStatistic(statisticType As StatisticType, value As Integer) Implements ICharacterInstance.SetStatistic
+        CharacterInstanceData.Statistics(statisticType) = value
+    End Sub
+
+    Public Sub Die() Implements ICharacterInstance.Die
+        MapCellData.Character = Nothing
     End Sub
 
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
@@ -146,11 +196,14 @@
         End Get
     End Property
 
-    Public ReadOnly Property Health As Integer Implements ICharacterInstance.Health
+    Public Property Health As Integer Implements ICharacterInstance.Health
         Get
             Dim maxHealth = MaximumHealth
             Return Math.Clamp(maxHealth - GetStatistic(StatisticType.Wounds), 0, maxHealth)
         End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.Wounds, MaximumHealth - Math.Clamp(value, 0, MaximumHealth))
+        End Set
     End Property
 
     Public ReadOnly Property MaximumHealth As Integer Implements ICharacterInstance.MaximumHealth
@@ -162,6 +215,18 @@
     Public ReadOnly Property IsDead As Boolean Implements ICharacterInstance.IsDead
         Get
             Return Health <= 0
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumDefend As Integer Implements ICharacterInstance.MaximumDefend
+        Get
+            Return Character.GetStatistic(StatisticType.MaximumDefend)
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumAttack As Integer Implements ICharacterInstance.MaximumAttack
+        Get
+            Return Character.GetStatistic(StatisticType.MaximumAttack)
         End Get
     End Property
 End Class

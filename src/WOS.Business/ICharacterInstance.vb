@@ -12,9 +12,15 @@
     Sub AddMessage(lines As IEnumerable(Of (Hue, String)))
     Sub NextMessage()
     ReadOnly Property Name As String
-    ReadOnly Property Health As Integer
+    Property Health As Integer
     ReadOnly Property MaximumHealth As Integer
     ReadOnly Property IsDead As Boolean
     Function GetStatistic(statisticType As StatisticType) As Integer
     Sub Attack(target As ICharacterInstance)
+    Function RollDefend() As Integer
+    Function RollAttack() As Integer
+    Sub SetStatistic(statisticType As StatisticType, value As Integer)
+    Sub Die()
+    ReadOnly Property MaximumDefend As Integer
+    ReadOnly Property MaximumAttack As Integer
 End Interface

@@ -34,7 +34,7 @@
         If Not mainCharacter.Target.IsDead Then
             mainCharacter.Target.Attack(mainCharacter)
         Else
-            'TODO: clean up corpse
+            mainCharacter.Target.Die()
             mainCharacter.Target = Nothing
         End If
     End Sub
