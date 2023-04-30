@@ -5,4 +5,5 @@
     MaximumDefend
     BaseAttack
     BaseDefend
+    Money
 End Enum

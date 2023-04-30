@@ -37,6 +37,11 @@
                 {StatisticType.MaximumAttack, 1},
                 {StatisticType.BaseDefend, 1},
                 {StatisticType.MaximumDefend, 1}
+            },
+            itemDrops:=New List(Of (String, Integer, Integer)) From
+            {
+                (CrownsItemName, 1, 1),
+                (JoolsItemName, 1, 1)
             })
     End Sub
 
@@ -46,7 +51,8 @@
                                    glyph As Char,
                                    hue As Hue,
                                    Optional statistics As IReadOnlyDictionary(Of StatisticType, Integer) = Nothing,
-                                   Optional isMessageSink As Boolean = False)
+                                   Optional isMessageSink As Boolean = False,
+                                   Optional itemDrops As IReadOnlyList(Of (String, Integer, Integer)) = Nothing)
         _data.Characters.Add(
             characterName,
             New CharacterData With
@@ -58,7 +64,16 @@
                 .Statistics = If(
                     statistics IsNot Nothing,
                     New Dictionary(Of StatisticType, Integer)(statistics),
-                    New Dictionary(Of StatisticType, Integer))
+                    New Dictionary(Of StatisticType, Integer)),
+                .ItemDrops = If(
+                    itemDrops IsNot Nothing,
+                    itemDrops.Select(Function(x) New CreatureItemDropData With
+                                         {
+                                            .ItemName = x.Item1,
+                                            .Quantity = x.Item2,
+                                            .Weight = x.Item3
+                                         }).ToList,
+                    New List(Of CreatureItemDropData))
             })
     End Sub
 

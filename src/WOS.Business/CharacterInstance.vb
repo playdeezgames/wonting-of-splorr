@@ -1,4 +1,6 @@
-﻿Friend Class CharacterInstance
+﻿Imports System.ComponentModel
+
+Friend Class CharacterInstance
     Implements ICharacterInstance
 
     Private ReadOnly _data As WorldData
@@ -131,7 +133,23 @@
     End Sub
 
     Public Sub Die() Implements ICharacterInstance.Die
+        DropItem()
         MapCellData.Character = Nothing
+    End Sub
+
+    Private Sub DropItem()
+        If MapCellData.Item IsNot Nothing Then
+            Return
+        End If
+        Dim itemDrop As (IItem, Integer) = Character.GenerateItemDrop()
+        If itemDrop.Item1 Is Nothing OrElse itemDrop.Item2 = 0 Then
+            Return
+        End If
+        MapCellData.Item = New ItemInstanceData With
+            {
+                .ItemName = itemDrop.Item1.Name,
+                .Quantity = itemDrop.Item2
+            }
     End Sub
 
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character

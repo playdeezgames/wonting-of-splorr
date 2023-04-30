@@ -77,4 +77,24 @@
             CreateCharacterInstance(value.Character.Name)
         End Set
     End Property
+
+    Public Property Item As IItemInstance Implements IMapCell.Item
+        Get
+            If MapCellData.Item Is Nothing Then
+                Return Nothing
+            End If
+            Return New ItemInstance(_data, _mapName, _column, _row)
+        End Get
+        Set(value As IItemInstance)
+            If value Is Nothing Then
+                MapCellData.Item = Nothing
+                Return
+            End If
+            MapCellData.Item = New ItemInstanceData With
+                {
+                    .ItemName = value.Item.Name,
+                    .Quantity = value.Quantity
+                }
+        End Set
+    End Property
 End Class

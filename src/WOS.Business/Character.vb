@@ -21,6 +21,18 @@
         Return CharacterData.Statistics(statisticType)
     End Function
 
+    Public Function GenerateItemDrop() As (IItem, Integer) Implements ICharacter.GenerateItemDrop
+        If Not CharacterData.ItemDrops.Any Then
+            Return (Nothing, 0)
+        End If
+        Dim table As New Dictionary(Of Integer, Integer)
+        For index = 0 To CharacterData.ItemDrops.Count - 1
+            table(index) = CharacterData.ItemDrops(index).Weight
+        Next
+        Dim chosen = CharacterData.ItemDrops(RNG.FromGenerator(table))
+        Return (New Item(_data, chosen.ItemName), chosen.Quantity)
+    End Function
+
     Public ReadOnly Property Name As String Implements ICharacter.Name
         Get
             Return _characterName

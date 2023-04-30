@@ -59,6 +59,7 @@
                 Dim cell = map.GetCell(column, row)
                 Dim terrain = cell.Terrain
                 terrain.Render(displayBuffer, x, y)
+                cell.Item?.Render(displayBuffer, x, y)
                 cell.Character?.Render(displayBuffer, x, y)
             Next
         Next

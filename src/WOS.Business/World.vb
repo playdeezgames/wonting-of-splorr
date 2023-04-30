@@ -7,6 +7,7 @@ Public Class World
     Public Sub Initialize() Implements IWorld.Initialize
         InitializeFonts(_data)
         InitializeTerrains(_data)
+        InitializeItems(_data)
         InitializeCharacters(_data)
         InitializeMaps(_data)
     End Sub
