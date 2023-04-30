@@ -33,6 +33,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property CanSpawn As Boolean Implements ITerrain.CanSpawn
+        Get
+            Return TerrainData.CanSpawn
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, terrainName As String)
         _data = data
         _terrainName = terrainName

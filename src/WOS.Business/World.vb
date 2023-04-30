@@ -23,6 +23,7 @@ Public Class World
     Const GrahamCharacterName = "graham"
     Const DanCharacterName = "dan"
     Const SamuliCharacterName = "samuli"
+    Const BlobCharacterName = "blob"
     Private Sub InitializeCharacters()
         _data.Characters.Clear()
         InitializeCharacter(N00bCharacterName, " "c, Hue.Brown, isMessageSink:=True)
@@ -30,6 +31,7 @@ Public Class World
         InitializeCharacter(GrahamCharacterName, "["c, Hue.Red)
         InitializeCharacter(DanCharacterName, "\"c, Hue.Cyan)
         InitializeCharacter(SamuliCharacterName, "Y"c, Hue.LightMagenta)
+        InitializeCharacter(BlobCharacterName, "="c, Hue.Cyan)
     End Sub
 
     Private Sub InitializeCharacter(
@@ -89,29 +91,27 @@ Public Class World
         Dim maze = New Maze(Of Direction)(ForestGridColumns, ForestGridRows, mazeDirections)
         maze.Generate()
         Dim map = CreateMap(mapName, mapColumns, mapRows, ForestTerrainName)
-        FillMap(map, 1, 1, mapColumns - 2, mapRows - 2, EmptyTerrainName)
         For mazeColumn = 0 To ForestGridColumns - 1
             Dim column = mazeColumn * (ForestGridSizeX + 1)
             For mazeRow = 0 To ForestGridRows - 1
                 Dim cell = maze.GetCell(mazeColumn, mazeRow)
                 Dim row = mazeRow * (ForestGridSizeY + 1)
-                FillMap(map, column, row, ForestGridSizeX + 1, ForestGridSizeY + 1, ForestTerrainName)
-                FillMap(map, column + 1, row + 1, ForestGridSizeX, ForestGridSizeY, EmptyTerrainName)
+                FillMap(map, column + 1, row + 1, ForestGridSizeX, ForestGridSizeY, EmptySpawnTerrainName)
                 Dim door = cell.GetDoor(Direction.North)
                 If door IsNot Nothing AndAlso door.Open Then
-                    FillMap(map, column + 1, row, ForestGridSizeX, 1, EmptyTerrainName)
+                    FillMap(map, column + 1, row, ForestGridSizeX, 1, EmptySpawnTerrainName)
                 End If
                 door = cell.GetDoor(Direction.South)
                 If door IsNot Nothing AndAlso door.Open Then
-                    FillMap(map, column + 1, row + ForestGridSizeY + 1, ForestGridSizeX, 1, EmptyTerrainName)
+                    FillMap(map, column + 1, row + ForestGridSizeY + 1, ForestGridSizeX, 1, EmptySpawnTerrainName)
                 End If
                 door = cell.GetDoor(Direction.West)
                 If door IsNot Nothing AndAlso door.Open Then
-                    FillMap(map, column, row + 1, 1, ForestGridSizeY, EmptyTerrainName)
+                    FillMap(map, column, row + 1, 1, ForestGridSizeY, EmptySpawnTerrainName)
                 End If
                 door = cell.GetDoor(Direction.East)
                 If door IsNot Nothing AndAlso door.Open Then
-                    FillMap(map, column + ForestGridSizeX + 1, row + 1, 1, ForestGridSizeY, EmptyTerrainName)
+                    FillMap(map, column + ForestGridSizeX + 1, row + 1, 1, ForestGridSizeY, EmptySpawnTerrainName)
                 End If
                 Dim shrubs = ForestCellShrubCount
                 While shrubs > 0
@@ -124,14 +124,47 @@ Public Class World
         Next
         FillMap(map, mapColumns \ 2 - 1, mapRows \ 2 - 1, 3, 3, EmptyTerrainName)
         FillMap(map, mapColumns \ 2, mapRows \ 2, 1, 1, TownTerrainName)
+        FillMap(map, 1, 1, 3, 3, EmptyTerrainName)
+        FillMap(map, mapColumns - 4, 1, 3, 3, EmptyTerrainName)
+        FillMap(map, 1, mapRows - 4, 3, 3, EmptyTerrainName)
+        FillMap(map, mapColumns - 4, mapRows - 4, 3, 3, EmptyTerrainName)
+        PopulateMap(map, forestSpawns)
         CreateTeleportTrigger(map, mapColumns \ 2, mapRows \ 2, TownMapName, TownColumns \ 2, TownRows - 2)
+    End Sub
+    Private ReadOnly forestSpawns As IReadOnlyDictionary(Of String, Integer) =
+        New Dictionary(Of String, Integer) From
+        {
+            {BlobCharacterName, 100}
+        }
+
+    Private Sub PopulateMap(map As IMap, spawnCounts As IReadOnlyDictionary(Of String, Integer))
+        For Each entry In spawnCounts
+            SpawnCharacters(map, entry.Key, entry.Value)
+        Next
+    End Sub
+
+    Private Sub SpawnCharacters(map As IMap, characterName As String, spawnCount As Integer)
+        While spawnCount > 0
+            SpawnCharacter(map, characterName)
+            spawnCount -= 1
+        End While
+    End Sub
+
+    Private Sub SpawnCharacter(map As IMap, characterName As String)
+        Dim x As Integer
+        Dim y As Integer
+        Do
+            x = RNG.FromRange(0, map.Columns - 1)
+            y = RNG.FromRange(0, map.Rows - 1)
+        Loop Until map.GetCell(x, y).Character Is Nothing AndAlso map.GetCell(x, y).Terrain.CanSpawn
+        map.GetCell(x, y).CreateCharacterInstance(characterName)
     End Sub
 
     Const TownMapName = "town"
     Const TownColumns = 25
     Const TownRows = 25
     Private Sub InitializeTown()
-        Dim map As IMap = CreateMap(TownMapName, TownColumns, TownRows, EmptyTerrainName)
+        Dim map As IMap = CreateMap(TownMapName, TownColumns, TownRows, EmptySpawnTerrainName)
         For column = 0 To map.Columns - 1
             map.GetCell(column, 0).Terrain = GetTerrain(FenceTerrainName)
             map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(FenceTerrainName)
@@ -196,7 +229,7 @@ Public Class World
     Const SmokeShoppeMapColumns = 7
     Const SmokeShoppeMapRows = 7
     Private Sub InitializeSmokeShoppe()
-        Dim map As IMap = CreateMap(SmokeShoppeMapName, SmokeShoppeMapColumns, SmokeShoppeMapRows, EmptyTerrainName)
+        Dim map As IMap = CreateMap(SmokeShoppeMapName, SmokeShoppeMapColumns, SmokeShoppeMapRows, EmptySpawnTerrainName)
         For column = 0 To map.Columns - 1
             map.GetCell(column, 0).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(WallTerrainName)
@@ -216,7 +249,7 @@ Public Class World
     Const ArmoryMapColumns = 7
     Const ArmoryMapRows = 7
     Private Sub InitializeArmory()
-        Dim map As IMap = CreateMap(ArmoryMapName, ArmoryMapColumns, ArmoryMapRows, EmptyTerrainName)
+        Dim map As IMap = CreateMap(ArmoryMapName, ArmoryMapColumns, ArmoryMapRows, EmptySpawnTerrainName)
         For column = 0 To map.Columns - 1
             map.GetCell(column, 0).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(WallTerrainName)
@@ -243,7 +276,7 @@ Public Class World
     Const InnMapColumns = 7
     Const InnMapRows = 7
     Private Sub InitializeInn()
-        Dim map As IMap = CreateMap(InnMapName, InnMapColumns, InnMapRows, EmptyTerrainName)
+        Dim map As IMap = CreateMap(InnMapName, InnMapColumns, InnMapRows, EmptySpawnTerrainName)
         For column = 0 To map.Columns - 1
             map.GetCell(column, 0).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(WallTerrainName)
@@ -263,7 +296,7 @@ Public Class World
     Const ExchangeMapColumns = 7
     Const ExchangeMapRows = 7
     Private Sub InitializeExchange()
-        Dim map As IMap = CreateMap(ExchangeMapName, ExchangeMapColumns, ExchangeMapRows, EmptyTerrainName)
+        Dim map As IMap = CreateMap(ExchangeMapName, ExchangeMapColumns, ExchangeMapRows, EmptySpawnTerrainName)
         For column = 0 To map.Columns - 1
             map.GetCell(column, 0).Terrain = GetTerrain(WallTerrainName)
             map.GetCell(column, map.Rows - 1).Terrain = GetTerrain(WallTerrainName)
@@ -307,6 +340,7 @@ Public Class World
         Return GetMap(mapName)
     End Function
 
+    Const EmptySpawnTerrainName = "empty-spawn"
     Const EmptyTerrainName = "empty"
     Const WallTerrainName = "wall"
     Const OpenDoorTerrainName = "open-door"
@@ -351,11 +385,12 @@ Public Class World
         End Get
     End Property
 
-    Private Sub InitializeTerrain(terrainName As String, glyph As Char, hue As Hue, tenantability As Boolean)
-        _data.Terrains.Add(terrainName, New TerrainData With {.FontName = TerrainFontName, .Glyph = glyph, .Hue = hue, .Tenantable = tenantability})
+    Private Sub InitializeTerrain(terrainName As String, glyph As Char, hue As Hue, tenantability As Boolean, Optional canSpawn As Boolean = False)
+        _data.Terrains.Add(terrainName, New TerrainData With {.FontName = TerrainFontName, .Glyph = glyph, .Hue = hue, .Tenantable = tenantability, .CanSpawn = canSpawn})
     End Sub
     Private Sub InitializeTerrains()
         _data.Terrains.Clear()
+        InitializeTerrain(EmptySpawnTerrainName, " "c, Hue.Black, True, canSpawn:=True)
         InitializeTerrain(EmptyTerrainName, " "c, Hue.Black, True)
         InitializeTerrain(WallTerrainName, "!"c, Hue.Red, False)
         InitializeTerrain(OpenDoorTerrainName, """"c, Hue.Brown, False)
