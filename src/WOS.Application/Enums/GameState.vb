@@ -10,4 +10,5 @@
     Navigation
     Message
     Combat
+    SelectMode
 End Enum

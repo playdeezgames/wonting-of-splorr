@@ -18,6 +18,22 @@ Public Class GameController
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
         SetState(GameState.Message, New MessageState(Me, AddressOf SetCurrentState))
         SetState(GameState.Combat, New CombatState(Me, AddressOf SetCurrentState))
+        SetState(GameState.SelectMode, New BaseMenuState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Mode:",
+                 New List(Of String) From {
+                    NavigationText
+                 },
+                 Sub(menuItem)
+                     Select Case menuItem
+                         Case NavigationText
+                             SetCurrentState(GameState.Neutral, False)
+                     End Select
+                 End Sub,
+                 Sub()
+                     SetCurrentState(GameState.Neutral, False)
+                 End Sub))
     End Sub
 
     Private Sub SetBoilerplateStates()

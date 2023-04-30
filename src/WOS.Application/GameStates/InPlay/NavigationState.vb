@@ -19,6 +19,8 @@
             Case Command.LeftReleased
                 World.Avatar.Move(Direction.West)
                 SetState(GameState.Neutral)
+            Case Command.FireReleased
+                SetState(GameState.SelectMode)
         End Select
     End Sub
 
