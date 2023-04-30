@@ -23,16 +23,36 @@ Public Class GameController
                  AddressOf SetCurrentState,
                  "Choose Mode:",
                  New List(Of String) From {
-                    NavigationText
+                    NavigationText,
+                    StatisticsText,
+                    GameMenuText
                  },
                  Sub(menuItem)
                      Select Case menuItem
                          Case NavigationText
                              SetCurrentState(GameState.Neutral, False)
+                         Case StatisticsText
+                             SetCurrentState(GameState.Statistics, False)
+                         Case GameMenuText
+                             SetCurrentState(GameState.GameMenu, False)
                      End Select
                  End Sub,
                  Sub()
                      SetCurrentState(GameState.Neutral, False)
+                 End Sub))
+        SetState(GameState.Statistics, New StatisticsState(Me, AddressOf SetCurrentState))
+        SetState(GameState.GameMenu, New BaseMenuState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Game Menu:",
+                 New List(Of String) From {
+                    AbandonGameText
+                 },
+                 Sub(menuItem)
+
+                 End Sub,
+                 Sub()
+                     SetCurrentState(GameState.SelectMode, False)
                  End Sub))
     End Sub
 

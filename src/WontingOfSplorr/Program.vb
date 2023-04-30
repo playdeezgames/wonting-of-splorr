@@ -74,10 +74,15 @@ Module Program
         New Dictionary(Of Keys, Command) From
         {
             {Keys.Up, Command.UpReleased},
+            {Keys.NumPad8, Command.UpReleased},
             {Keys.Right, Command.RightReleased},
+            {Keys.NumPad6, Command.RightReleased},
             {Keys.Left, Command.LeftReleased},
+            {Keys.NumPad4, Command.LeftReleased},
             {Keys.Down, Command.DownReleased},
-            {Keys.Space, Command.FireReleased}
+            {Keys.NumPad2, Command.DownReleased},
+            {Keys.Space, Command.FireReleased},
+            {Keys.Enter, Command.FireReleased}
         }
     Private Function CommandTransformerator(key As Keys) As Command?
         If keyTable.ContainsKey(key) Then

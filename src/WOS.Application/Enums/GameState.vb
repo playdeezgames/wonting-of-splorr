@@ -11,4 +11,6 @@
     Message
     Combat
     SelectMode
+    Statistics
+    GameMenu
 End Enum
