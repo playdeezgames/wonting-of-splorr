@@ -41,10 +41,7 @@
                 Dim cell = map.GetCell(column, row)
                 Dim terrain = cell.Terrain
                 terrain.Render(displayBuffer, x, y)
-                Dim character = cell.Character
-                If character IsNot Nothing Then
-                    character.Render(displayBuffer, x, y)
-                End If
+                cell.Character?.Render(displayBuffer, x, y)
             Next
         Next
     End Sub
