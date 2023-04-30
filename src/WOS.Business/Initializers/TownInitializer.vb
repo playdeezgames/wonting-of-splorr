@@ -36,7 +36,7 @@
         CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, ForestInitializer.MapName, ForestInitializer.MapColumns \ 2, ForestInitializer.MapRows \ 2)
         CreateTeleportTrigger(map, 6, 5, InnInitializer.MapName, InnInitializer.MapColumns \ 2, InnInitializer.MapRows - 2)
         CreateTeleportTrigger(map, 18, 5, ExchangeInitializer.MapName, ExchangeInitializer.MapColumns \ 2, ExchangeInitializer.MapRows - 2)
-        CreateTeleportTrigger(map, 19, 18, SmokeShoppeMapName, 1, SmokeShoppeMapRows \ 2)
+        CreateTeleportTrigger(map, 19, 18, SmokeShoppeInitializer.MapName, 1, SmokeShoppeInitializer.MapRows \ 2)
         CreateTeleportTrigger(map, 5, 18, ArmoryInitializer.MapName, ArmoryInitializer.MapColumns - 2, ArmoryInitializer.MapRows \ 2)
         CreateMessageTrigger(map, 7, 5, New List(Of (Hue, String)) From {
                                 (Hue.Gray, "The Dog's Face Inn"),
@@ -58,22 +58,5 @@
         InitializeExchange(_data)
         InitializeArmory(_data)
         InitializeSmokeShoppe(_data)
-    End Sub
-
-    Const SmokeShoppeMapName = "smoke-shoppe"
-    Const SmokeShoppeMapColumns = 7
-    Const SmokeShoppeMapRows = 7
-    Private Sub InitializeSmokeShoppe(_data As WorldData)
-        Dim map As IMap = CreateMap(_data, SmokeShoppeMapName, SmokeShoppeMapColumns, SmokeShoppeMapRows, EmptySpawnTerrainName)
-        FillMap(_data, map, 0, 0, map.Columns, 1, WallTerrainName)
-        FillMap(_data, map, 0, map.Rows - 1, map.Columns, 1, WallTerrainName)
-        FillMap(_data, map, 0, 1, 1, map.Rows - 2, WallTerrainName)
-        FillMap(_data, map, map.Columns - 1, 1, 1, map.Rows - 2, WallTerrainName)
-        FillMap(_data, map, 2, 2, 3, 1, CounterTerrainName)
-        FillMap(_data, map, 1, 2, 1, 1, LeftCounterTerrainName)
-        FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
-        FillMap(_data, map, 0, SmokeShoppeMapRows \ 2, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, 0, SmokeShoppeMapRows \ 2, MapName, 18, 18)
-        CreateCharacterInstance(_data, SmokeShoppeMapName, SmokeShoppeMapColumns \ 2, 1, MarcusCharacterName)
     End Sub
 End Module
