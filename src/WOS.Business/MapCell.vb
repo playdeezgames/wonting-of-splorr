@@ -20,7 +20,12 @@
     End Sub
 
     Public Function CreateCharacterInstance(characterName As String) As ICharacterInstance Implements IMapCell.CreateCharacterInstance
-        MapCellData.Character = New CharacterInstanceData With {.CharacterName = characterName}
+        MapCellData.Character = New CharacterInstanceData With {
+            .CharacterName = characterName,
+            .Statistics = New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.Wounds, 0}
+            }}
         Return Character
     End Function
 

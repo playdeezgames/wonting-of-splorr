@@ -121,9 +121,9 @@
                 Return
             End If
             CharacterInstanceData.Target = New CharacterInstanceTargetData With {
-                .MapName = _mapName,
-                .Column = _column,
-                .Row = _row}
+                .MapName = value.Map.Name,
+                .Column = value.Column,
+                .Row = value.Row}
         End Set
     End Property
 

@@ -56,7 +56,12 @@
         _data.Avatar = New AvatarData With {.MapName = mapName, .Column = column, .Row = row}
     End Sub
 
-    Friend Function CreateCharacterInstance(_data As WorldData, mapName As String, column As Integer, row As Integer, characterName As String) As ICharacterInstance
+    Friend Function CreateCharacterInstance(
+                                           _data As WorldData,
+                                           mapName As String,
+                                           column As Integer,
+                                           row As Integer,
+                                           characterName As String) As ICharacterInstance
         Return New Map(_data, mapName).GetCell(column, row).CreateCharacterInstance(characterName)
     End Function
 

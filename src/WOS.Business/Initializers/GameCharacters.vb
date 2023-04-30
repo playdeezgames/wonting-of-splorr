@@ -7,12 +7,29 @@
     Friend Const BlobCharacterName = "blob"
     Friend Sub InitializeCharacters(_data As WorldData)
         _data.Characters.Clear()
-        InitializeCharacter(_data, N00bCharacterName, " "c, Hue.Brown, isMessageSink:=True)
+        InitializeCharacter(
+            _data,
+            N00bCharacterName,
+            " "c,
+            Hue.Brown,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 3}
+            },
+            isMessageSink:=True)
         InitializeCharacter(_data, MarcusCharacterName, "Z"c, Hue.Magenta)
         InitializeCharacter(_data, GrahamCharacterName, "["c, Hue.Red)
         InitializeCharacter(_data, DanCharacterName, "\"c, Hue.Cyan)
         InitializeCharacter(_data, SamuliCharacterName, "Y"c, Hue.LightMagenta)
-        InitializeCharacter(_data, BlobCharacterName, "="c, Hue.Cyan)
+        InitializeCharacter(
+            _data,
+            BlobCharacterName,
+            "="c,
+            Hue.Cyan,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 1}
+            })
     End Sub
 
     Private Sub InitializeCharacter(
@@ -20,6 +37,7 @@
                                    characterName As String,
                                    glyph As Char,
                                    hue As Hue,
+                                   Optional statistics As IReadOnlyDictionary(Of StatisticType, Integer) = Nothing,
                                    Optional isMessageSink As Boolean = False)
         _data.Characters.Add(
             characterName,
@@ -28,7 +46,11 @@
                 .FontName = CharacterFontName,
                 .Glyph = glyph,
                 .Hue = hue,
-                .IsMessageSink = isMessageSink
+                .IsMessageSink = isMessageSink,
+                .Statistics = If(
+                    statistics IsNot Nothing,
+                    New Dictionary(Of StatisticType, Integer)(statistics),
+                    New Dictionary(Of StatisticType, Integer))
             })
     End Sub
 
