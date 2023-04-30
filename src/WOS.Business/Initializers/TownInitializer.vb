@@ -34,7 +34,7 @@
         FillMap(_data, map, 19, 18, 1, 1, HouseTerrainName)
         FillMap(_data, map, 19, 19, 1, 1, SignTerrainName)
         CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, ForestInitializer.MapName, ForestInitializer.MapColumns \ 2, ForestInitializer.MapRows \ 2)
-        CreateTeleportTrigger(map, 6, 5, InnMapName, InnMapColumns \ 2, InnMapRows - 2)
+        CreateTeleportTrigger(map, 6, 5, MapName, MapColumns \ 2, MapRows - 2)
         CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMapName, 1, SmokeShoppeMapRows \ 2)
         CreateTeleportTrigger(map, 5, 18, ArmoryMapName, ArmoryMapColumns - 2, ArmoryMapRows \ 2)
@@ -91,22 +91,6 @@
         FillMap(_data, map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, 1, 1, ClosedDoorTerrainName)
         CreateTeleportTrigger(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, MapName, 6, 18)
         CreateCharacterInstance(_data, ArmoryMapName, ArmoryMapColumns \ 2, 1, SamuliCharacterName)
-    End Sub
-    Const InnMapName = "inn"
-    Const InnMapColumns = 7
-    Const InnMapRows = 7
-    Private Sub InitializeInn(_data As WorldData)
-        Dim map As IMap = CreateMap(_data, InnMapName, InnMapColumns, InnMapRows, EmptySpawnTerrainName)
-        FillMap(_data, map, 0, 0, map.Columns, 1, WallTerrainName)
-        FillMap(_data, map, 0, map.Rows - 1, map.Columns, 1, WallTerrainName)
-        FillMap(_data, map, 0, 1, 1, map.Rows - 2, WallTerrainName)
-        FillMap(_data, map, map.Columns - 1, 1, 1, map.Rows - 2, WallTerrainName)
-        FillMap(_data, map, 2, 2, 3, 1, CounterTerrainName)
-        FillMap(_data, map, 1, 2, 1, 1, LeftCounterTerrainName)
-        FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
-        FillMap(_data, map, InnMapColumns \ 2, InnMapRows - 1, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, InnMapColumns \ 2, InnMapRows - 1, MapName, 6, 6)
-        CreateCharacterInstance(_data, InnMapName, InnMapColumns \ 2, 1, GrahamCharacterName)
     End Sub
     Const ExchangeMapName = "exchange"
     Const ExchangeMapColumns = 7
