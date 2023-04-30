@@ -1,5 +1,3 @@
-Imports System.Data.Common
-
 Public Class World
     Implements IWorld
     Private ReadOnly _data As WorldData
