@@ -1,4 +1,4 @@
-﻿Friend Module CharacterInitializer
+﻿Friend Module GameCharacters
     Friend Const N00bCharacterName = "n00b"
     Friend Const MarcusCharacterName = "marcus"
     Friend Const GrahamCharacterName = "graham"

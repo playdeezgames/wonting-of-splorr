@@ -1,4 +1,4 @@
-﻿Friend Module MapInitializer
+﻿Friend Module GameMaps
 
     Friend Sub InitializeMaps(_data As WorldData)
         _data.Maps.Clear()

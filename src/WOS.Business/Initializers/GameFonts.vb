@@ -1,4 +1,4 @@
-﻿Friend Module FontInitializer
+﻿Friend Module GameFonts
     Friend Const CharacterFontName = "characters"
     Friend Const TerrainFontName = "terrains"
     Friend Const ItemFontName = "items"

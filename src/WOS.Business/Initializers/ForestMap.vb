@@ -1,4 +1,4 @@
-﻿Friend Module ForestInitializer
+﻿Friend Module ForestMap
     Const GridColumns = 15
     Const GridRows = 15
     Const CellWidth = 3
@@ -16,9 +16,9 @@
             {Direction.West, New MazeDirection(Of Direction)(Direction.East, -1, 0)}
         }
     Friend Sub InitializeForest(_data As WorldData)
-        Const mapName = ForestInitializer.MapName
-        Const mapColumns = ForestInitializer.MapColumns
-        Const mapRows = ForestInitializer.MapRows
+        Const mapName = ForestMap.MapName
+        Const mapColumns = ForestMap.MapColumns
+        Const mapRows = ForestMap.MapRows
         Dim maze = New Maze(Of Direction)(GridColumns, GridRows, mazeDirections)
         maze.Generate()
         Dim map = CreateMap(_data, mapName, mapColumns, mapRows, ForestTerrainName)
@@ -60,7 +60,7 @@
         FillMap(_data, map, 1, mapRows - 4, 3, 3, EmptyTerrainName)
         FillMap(_data, map, mapColumns - 4, mapRows - 4, 3, 3, EmptyTerrainName)
         PopulateMap(map, forestSpawns)
-        CreateTeleportTrigger(map, mapColumns \ 2, mapRows \ 2, TownInitializer.MapName, TownInitializer.MapColumns \ 2, TownInitializer.MapRows - 2)
+        CreateTeleportTrigger(map, mapColumns \ 2, mapRows \ 2, TownMap.MapName, TownMap.MapColumns \ 2, TownMap.MapRows - 2)
     End Sub
     Private ReadOnly forestSpawns As IReadOnlyDictionary(Of String, Integer) =
         New Dictionary(Of String, Integer) From

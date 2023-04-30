@@ -1,4 +1,4 @@
-﻿Friend Module TerrainInitializer
+﻿Friend Module GameTerrains
     Friend Const EmptySpawnTerrainName = "empty-spawn"
     Friend Const EmptyTerrainName = "empty"
     Friend Const WallTerrainName = "wall"

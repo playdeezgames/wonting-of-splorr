@@ -1,4 +1,4 @@
-﻿Friend Module TownInitializer
+﻿Friend Module TownMap
     Friend Const MapName = "town"
     Friend Const MapColumns = 25
     Friend Const MapRows = 25
@@ -33,11 +33,11 @@
         FillMap(_data, map, 5, 17, 1, 1, SignTerrainName)
         FillMap(_data, map, 19, 18, 1, 1, HouseTerrainName)
         FillMap(_data, map, 19, 19, 1, 1, SignTerrainName)
-        CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, ForestInitializer.MapName, ForestInitializer.MapColumns \ 2, ForestInitializer.MapRows \ 2)
-        CreateTeleportTrigger(map, 6, 5, InnInitializer.MapName, InnInitializer.MapColumns \ 2, InnInitializer.MapRows - 2)
-        CreateTeleportTrigger(map, 18, 5, ExchangeInitializer.MapName, ExchangeInitializer.MapColumns \ 2, ExchangeInitializer.MapRows - 2)
-        CreateTeleportTrigger(map, 19, 18, SmokeShoppeInitializer.MapName, 1, SmokeShoppeInitializer.MapRows \ 2)
-        CreateTeleportTrigger(map, 5, 18, ArmoryInitializer.MapName, ArmoryInitializer.MapColumns - 2, ArmoryInitializer.MapRows \ 2)
+        CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, ForestMap.MapName, ForestMap.MapColumns \ 2, ForestMap.MapRows \ 2)
+        CreateTeleportTrigger(map, 6, 5, InnMap.MapName, InnMap.MapColumns \ 2, InnMap.MapRows - 2)
+        CreateTeleportTrigger(map, 18, 5, ExchangeMap.MapName, ExchangeMap.MapColumns \ 2, ExchangeMap.MapRows - 2)
+        CreateTeleportTrigger(map, 19, 18, SmokeShoppeMap.MapName, 1, SmokeShoppeMap.MapRows \ 2)
+        CreateTeleportTrigger(map, 5, 18, ArmoryMap.MapName, ArmoryMap.MapColumns - 2, ArmoryMap.MapRows \ 2)
         CreateMessageTrigger(map, 7, 5, New List(Of (Hue, String)) From {
                                 (Hue.Gray, "The Dog's Face Inn"),
                                 (Hue.Gray, "Proprietor:"),
