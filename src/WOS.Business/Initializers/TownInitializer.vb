@@ -33,7 +33,7 @@
         FillMap(_data, map, 5, 17, 1, 1, SignTerrainName)
         FillMap(_data, map, 19, 18, 1, 1, HouseTerrainName)
         FillMap(_data, map, 19, 19, 1, 1, SignTerrainName)
-        CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, ForestMapName, ForestMapColumns \ 2, ForestMapRows \ 2) 'TODO: go outside of town
+        CreateTeleportTrigger(map, TownColumns \ 2, TownRows - 1, ForestInitializer.MapName, ForestInitializer.MapColumns \ 2, ForestInitializer.MapRows \ 2)
         CreateTeleportTrigger(map, 6, 5, InnMapName, InnMapColumns \ 2, InnMapRows - 2)
         CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMapName, 1, SmokeShoppeMapRows \ 2)

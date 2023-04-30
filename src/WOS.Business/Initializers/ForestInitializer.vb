@@ -1,12 +1,12 @@
 ﻿Friend Module ForestInitializer
-    Const ForestGridColumns = 15
-    Const ForestGridRows = 15
-    Const ForestGridSizeX = 3
-    Const ForestGridSizeY = 3
-    Friend Const ForestMapName = "forest"
-    Friend Const ForestMapColumns = (ForestGridSizeX * ForestGridColumns) + ForestGridColumns + 1
-    Friend Const ForestMapRows = (ForestGridSizeY * ForestGridRows) + ForestGridRows + 1
-    Const ForestCellShrubCount = 2
+    Const GridColumns = 15
+    Const GridRows = 15
+    Const CellWidth = 3
+    Const CellHeight = 3
+    Friend Const MapName = "forest"
+    Friend Const MapColumns = (CellWidth * GridColumns) + GridColumns + 1
+    Friend Const MapRows = (CellHeight * GridRows) + GridRows + 1
+    Const ShrubCount = 2
     Private ReadOnly mazeDirections As IReadOnlyDictionary(Of Direction, MazeDirection(Of Direction)) =
         New Dictionary(Of Direction, MazeDirection(Of Direction)) From
         {
@@ -16,38 +16,38 @@
             {Direction.West, New MazeDirection(Of Direction)(Direction.East, -1, 0)}
         }
     Friend Sub InitializeForest(_data As WorldData)
-        Const mapName = ForestMapName
-        Const mapColumns = ForestMapColumns
-        Const mapRows = ForestMapRows
-        Dim maze = New Maze(Of Direction)(ForestGridColumns, ForestGridRows, mazeDirections)
+        Const mapName = ForestInitializer.MapName
+        Const mapColumns = ForestInitializer.MapColumns
+        Const mapRows = ForestInitializer.MapRows
+        Dim maze = New Maze(Of Direction)(GridColumns, GridRows, mazeDirections)
         maze.Generate()
         Dim map = CreateMap(_data, mapName, mapColumns, mapRows, ForestTerrainName)
-        For mazeColumn = 0 To ForestGridColumns - 1
-            Dim column = mazeColumn * (ForestGridSizeX + 1)
-            For mazeRow = 0 To ForestGridRows - 1
+        For mazeColumn = 0 To GridColumns - 1
+            Dim column = mazeColumn * (CellWidth + 1)
+            For mazeRow = 0 To GridRows - 1
                 Dim cell = maze.GetCell(mazeColumn, mazeRow)
-                Dim row = mazeRow * (ForestGridSizeY + 1)
-                FillMap(_data, map, column + 1, row + 1, ForestGridSizeX, ForestGridSizeY, EmptySpawnTerrainName)
+                Dim row = mazeRow * (CellHeight + 1)
+                FillMap(_data, map, column + 1, row + 1, CellWidth, CellHeight, EmptySpawnTerrainName)
                 Dim door = cell.GetDoor(Direction.North)
                 If door IsNot Nothing AndAlso door.Open Then
-                    FillMap(_data, map, column + 1, row, ForestGridSizeX, 1, EmptySpawnTerrainName)
+                    FillMap(_data, map, column + 1, row, CellWidth, 1, EmptySpawnTerrainName)
                 End If
                 door = cell.GetDoor(Direction.South)
                 If door IsNot Nothing AndAlso door.Open Then
-                    FillMap(_data, map, column + 1, row + ForestGridSizeY + 1, ForestGridSizeX, 1, EmptySpawnTerrainName)
+                    FillMap(_data, map, column + 1, row + CellHeight + 1, CellWidth, 1, EmptySpawnTerrainName)
                 End If
                 door = cell.GetDoor(Direction.West)
                 If door IsNot Nothing AndAlso door.Open Then
-                    FillMap(_data, map, column, row + 1, 1, ForestGridSizeY, EmptySpawnTerrainName)
+                    FillMap(_data, map, column, row + 1, 1, CellHeight, EmptySpawnTerrainName)
                 End If
                 door = cell.GetDoor(Direction.East)
                 If door IsNot Nothing AndAlso door.Open Then
-                    FillMap(_data, map, column + ForestGridSizeX + 1, row + 1, 1, ForestGridSizeY, EmptySpawnTerrainName)
+                    FillMap(_data, map, column + CellWidth + 1, row + 1, 1, CellHeight, EmptySpawnTerrainName)
                 End If
-                Dim shrubs = ForestCellShrubCount
+                Dim shrubs = ShrubCount
                 While shrubs > 0
-                    Dim x = RNG.FromRange(column + 1, column + ForestGridSizeX)
-                    Dim y = RNG.FromRange(row + 1, row + ForestGridSizeY)
+                    Dim x = RNG.FromRange(column + 1, column + CellWidth)
+                    Dim y = RNG.FromRange(row + 1, row + CellHeight)
                     FillMap(_data, map, x, y, 1, 1, ForestTerrainName)
                     shrubs -= 1
                 End While
