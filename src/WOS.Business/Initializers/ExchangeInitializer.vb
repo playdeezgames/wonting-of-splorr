@@ -1,8 +1,8 @@
-﻿Friend Module InnInitializer
-    Friend Const MapName = "inn"
+﻿Friend Module ExchangeInitializer
+    Friend Const MapName = "exchange"
     Friend Const MapColumns = 7
     Friend Const MapRows = 7
-    Friend Sub InitializeInn(_data As WorldData)
+    Friend Sub InitializeExchange(_data As WorldData)
         Dim map As IMap = CreateMap(_data, MapName, MapColumns, MapRows, EmptySpawnTerrainName)
         FillMap(_data, map, 0, 0, map.Columns, 1, WallTerrainName)
         FillMap(_data, map, 0, map.Rows - 1, map.Columns, 1, WallTerrainName)
@@ -12,7 +12,7 @@
         FillMap(_data, map, 1, 2, 1, 1, LeftCounterTerrainName)
         FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(_data, map, MapColumns \ 2, MapRows - 1, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, TownInitializer.MapName, 6, 6)
-        CreateCharacterInstance(_data, MapName, MapColumns \ 2, 1, GrahamCharacterName)
+        CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, TownInitializer.MapName, 18, 6)
+        CreateCharacterInstance(_data, MapName, MapColumns \ 2, 1, DanCharacterName)
     End Sub
 End Module

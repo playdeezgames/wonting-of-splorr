@@ -34,8 +34,8 @@
         FillMap(_data, map, 19, 18, 1, 1, HouseTerrainName)
         FillMap(_data, map, 19, 19, 1, 1, SignTerrainName)
         CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, ForestInitializer.MapName, ForestInitializer.MapColumns \ 2, ForestInitializer.MapRows \ 2)
-        CreateTeleportTrigger(map, 6, 5, MapName, MapColumns \ 2, MapRows - 2)
-        CreateTeleportTrigger(map, 18, 5, ExchangeMapName, ExchangeMapColumns \ 2, ExchangeMapRows - 2)
+        CreateTeleportTrigger(map, 6, 5, InnInitializer.MapName, InnInitializer.MapColumns \ 2, InnInitializer.MapRows - 2)
+        CreateTeleportTrigger(map, 18, 5, ExchangeInitializer.MapName, ExchangeInitializer.MapColumns \ 2, ExchangeInitializer.MapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMapName, 1, SmokeShoppeMapRows \ 2)
         CreateTeleportTrigger(map, 5, 18, ArmoryMapName, ArmoryMapColumns - 2, ArmoryMapRows \ 2)
         CreateMessageTrigger(map, 7, 5, New List(Of (Hue, String)) From {
@@ -92,21 +92,4 @@
         CreateTeleportTrigger(map, ArmoryMapColumns - 1, ArmoryMapRows \ 2, MapName, 6, 18)
         CreateCharacterInstance(_data, ArmoryMapName, ArmoryMapColumns \ 2, 1, SamuliCharacterName)
     End Sub
-    Const ExchangeMapName = "exchange"
-    Const ExchangeMapColumns = 7
-    Const ExchangeMapRows = 7
-    Private Sub InitializeExchange(_data As WorldData)
-        Dim map As IMap = CreateMap(_data, ExchangeMapName, ExchangeMapColumns, ExchangeMapRows, EmptySpawnTerrainName)
-        FillMap(_data, map, 0, 0, map.Columns, 1, WallTerrainName)
-        FillMap(_data, map, 0, map.Rows - 1, map.Columns, 1, WallTerrainName)
-        FillMap(_data, map, 0, 1, 1, map.Rows - 2, WallTerrainName)
-        FillMap(_data, map, map.Columns - 1, 1, 1, map.Rows - 2, WallTerrainName)
-        FillMap(_data, map, 2, 2, 3, 1, CounterTerrainName)
-        FillMap(_data, map, 1, 2, 1, 1, LeftCounterTerrainName)
-        FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
-        FillMap(_data, map, ExchangeMapColumns \ 2, ExchangeMapRows - 1, 1, 1, ClosedDoorTerrainName)
-        CreateTeleportTrigger(map, ExchangeMapColumns \ 2, ExchangeMapRows - 1, MapName, 18, 6)
-        CreateCharacterInstance(_data, ExchangeMapName, ExchangeMapColumns \ 2, 1, DanCharacterName)
-    End Sub
-
 End Module
