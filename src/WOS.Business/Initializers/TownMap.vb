@@ -10,6 +10,7 @@
         FillMap(_data, map, map.Columns - 1, 1, 1, map.Rows - 2, FenceTerrainName)
         FillMap(_data, map, MapColumns \ 2, MapRows - 1, 1, 1, GateTerrainName)
         FillMap(_data, map, 6, 7, 1, 5, Path5TerrainName)
+        FillMap(_data, map, 12, 7, 1, 5, Path5TerrainName)
         FillMap(_data, map, 18, 7, 1, 5, Path5TerrainName)
         FillMap(_data, map, 12, 13, 1, 5, Path5TerrainName)
         FillMap(_data, map, 12, 19, 1, 5, Path5TerrainName)
@@ -19,14 +20,17 @@
         FillMap(_data, map, 13, 18, 5, 1, PathATerrainName)
         FillMap(_data, map, 6, 12, 1, 1, Path3TerrainName)
         FillMap(_data, map, 18, 12, 1, 1, Path9TerrainName)
-        FillMap(_data, map, 12, 12, 1, 1, PathETerrainName)
+        FillMap(_data, map, 12, 12, 1, 1, PathFTerrainName)
         FillMap(_data, map, 12, 18, 1, 1, PathFTerrainName)
         FillMap(_data, map, 6, 6, 1, 1, Path4TerrainName)
+        FillMap(_data, map, 12, 6, 1, 1, Path4TerrainName)
         FillMap(_data, map, 18, 6, 1, 1, Path4TerrainName)
         FillMap(_data, map, 6, 18, 1, 1, Path2TerrainName)
         FillMap(_data, map, 18, 18, 1, 1, Path8TerrainName)
         FillMap(_data, map, 6, 5, 1, 1, HouseTerrainName)
         FillMap(_data, map, 7, 5, 1, 1, SignTerrainName)
+        FillMap(_data, map, 12, 5, 1, 1, HouseTerrainName)
+        FillMap(_data, map, 13, 5, 1, 1, SignTerrainName)
         FillMap(_data, map, 18, 5, 1, 1, HouseTerrainName)
         FillMap(_data, map, 19, 5, 1, 1, SignTerrainName)
         FillMap(_data, map, 5, 18, 1, 1, HouseTerrainName)
@@ -35,7 +39,7 @@
         FillMap(_data, map, 19, 19, 1, 1, SignTerrainName)
         CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, ForestMap.MapName, ForestMap.MapColumns \ 2, ForestMap.MapRows \ 2)
         CreateTeleportTrigger(map, 6, 5, InnMap.MapName, InnMap.MapColumns \ 2, InnMap.MapRows - 2)
-        CreateTeleportTrigger(map, 18, 5, ExchangeMap.MapName, ExchangeMap.MapColumns \ 2, ExchangeMap.MapRows - 2)
+        CreateTeleportTrigger(map, 12, 5, ExchangeMap.MapName, ExchangeMap.MapColumns \ 2, ExchangeMap.MapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMap.MapName, 1, SmokeShoppeMap.MapRows \ 2)
         CreateTeleportTrigger(map, 5, 18, ArmoryMap.MapName, ArmoryMap.MapColumns - 2, ArmoryMap.MapRows \ 2)
         CreateMessageTrigger(map, 7, 5, New List(Of (Hue, String)) From {
@@ -43,7 +47,7 @@
                                 (Hue.Gray, "Proprietor:"),
                                 (Hue.Gray, "Graham W.")
                              })
-        CreateMessageTrigger(map, 19, 5, New List(Of (Hue, String)) From {
+        CreateMessageTrigger(map, 13, 5, New List(Of (Hue, String)) From {
                                 (Hue.Gray, """Honest"" Dan's Currency Exchange")
                              })
         CreateMessageTrigger(map, 19, 19, New List(Of (Hue, String)) From {
