@@ -19,14 +19,14 @@
             ("coin has two sides - just like  ", Hue.Gray),
             ("every world with coins! Because ", Hue.Gray),
             ("that's how coins work!          ", Hue.Gray),
-            ("But in world of SPLORR!!, there ", Hue.Gray),
-            ("exist two TYPES of coin, CROWNS ", Hue.Gray),
-            ("and JOOLS, but for some arbi-   ", Hue.Gray),
-            ("trary reason, people can only   ", Hue.Gray),
-            ("have one type at a time!        ", Hue.Gray),
-            ("Some items are bought with JOOLS", Hue.Gray),
-            ("and some with CROWNS.", Hue.Gray),
-            ("Good luck playing.", Hue.Green)
+            ("But in the world of SPLORR!!,   ", Hue.Gray),
+            ("there are two TYPES of coin,    ", Hue.Gray),
+            ("CROWNS and JOOLS. Some items are", Hue.Gray),
+            ("bought with CROWNS, others with ", Hue.Gray),
+            ("JOOLS. You will have to exchange", Hue.Gray),
+            ("between them to buy all that you", Hue.Gray),
+            ("need in yer adventures.", Hue.Gray),
+            ("Good luck!!", Hue.Green)
         }
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
