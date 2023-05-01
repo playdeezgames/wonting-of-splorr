@@ -90,6 +90,7 @@ Public Class GameController
                  MainMenuCaptionText,
                  New List(Of String) From {
                     EmbarkText,
+                    LoadGameText,
                     OptionsText,
                     QuitText
                  },
@@ -102,11 +103,14 @@ Public Class GameController
                              SetCurrentState(GameState.OptionsMenu, False)
                          Case QuitText
                              SetCurrentState(GameState.ConfirmQuit, False)
+                         Case LoadGameText
+                             SetCurrentState(GameState.LoadGame, False)
                      End Select
                  End Sub,
                  Sub()
                      SetCurrentState(GameState.ConfirmQuit, False)
                  End Sub))
+        SetState(GameState.LoadGame, New LoadGameState(Me, AddressOf SetCurrentState))
         SetState(GameState.OptionsMenu, New BaseMenuState(
                  Me,
                  AddressOf SetCurrentState,

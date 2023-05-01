@@ -5,7 +5,7 @@
         MyBase.New(
             parent,
             setState,
-            "Save Slot:",
+            "Save to Slot:",
             New List(Of String) From {
                 Slot1Text,
                 Slot2Text,

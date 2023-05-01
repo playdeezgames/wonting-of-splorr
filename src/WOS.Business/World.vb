@@ -3,6 +3,9 @@ Public Class World
     Private ReadOnly _data As WorldData
     Sub New(data As WorldData)
         _data = data
+        For Each entry In _data.Fonts
+            SetCachedFont(entry.Key, New Font(entry.Value))
+        Next
     End Sub
     Public Sub Initialize() Implements IWorld.Initialize
         InitializeFonts(_data)

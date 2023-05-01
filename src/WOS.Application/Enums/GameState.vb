@@ -15,4 +15,5 @@
     GameMenu
     ConfirmAbandon
     SaveGame
+    LoadGame
 End Enum

@@ -44,4 +44,17 @@
     Friend Sub Save(slotName As String)
         World.Save(SaveSlotFilename(slotName))
     End Sub
+
+    Friend Function Load(slotName As String) As Boolean
+        If Not HasSaveSlot(slotName) Then
+            Return False
+        End If
+        Try
+            Dim worldData = JsonSerializer.Deserialize(Of WorldData)(File.ReadAllText(SaveSlotFilename(slotName)))
+            World = New World(worldData)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 End Module
