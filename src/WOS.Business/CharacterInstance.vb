@@ -156,11 +156,21 @@ Friend Class CharacterInstance
         If MapCellData.Item Is Nothing Then
             Return
         End If
+        Dim item As IItem = New Item(_data, MapCellData.Item.ItemName)
         Dim msg As New List(Of (Hue, String)) From
             {
                 (Hue.Green, $"{Name} takes {MapCellData.Item.Quantity} {MapCellData.Item.ItemName}")
             }
-        CharacterInstanceData.Items.Add(MapCellData.Item)
+        If item.Stacks Then
+            Dim itemInstance = CharacterInstanceData.Items.FirstOrDefault(Function(x) x.ItemName = MapCellData.Item.ItemName)
+            If itemInstance IsNot Nothing Then
+                itemInstance.Quantity += MapCellData.Item.Quantity
+            Else
+                CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = MapCellData.Item.ItemName, .Quantity = MapCellData.Item.Quantity})
+            End If
+        Else
+            CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = MapCellData.Item.ItemName, .Quantity = MapCellData.Item.Quantity})
+        End If
         MapCellData.Item = Nothing
         AddMessage(msg)
     End Sub
