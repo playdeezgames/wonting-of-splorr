@@ -41,17 +41,24 @@ Public Class GameController
                      SetCurrentState(GameState.Neutral, False)
                  End Sub))
         SetState(GameState.Statistics, New StatisticsState(Me, AddressOf SetCurrentState))
+        SetGameMenuStates()
+    End Sub
+
+    Private Sub SetGameMenuStates()
         SetState(GameState.GameMenu, New BaseMenuState(
                  Me,
                  AddressOf SetCurrentState,
                  "Game Menu:",
                  New List(Of String) From {
-                    AbandonGameText
+                    AbandonGameText,
+                    SaveGameText
                  },
                  Sub(menuItem)
                      Select Case menuItem
                          Case AbandonGameText
                              SetCurrentState(GameState.ConfirmAbandon, False)
+                         Case SaveGameText
+                             SetCurrentState(GameState.SaveGame, False)
                      End Select
                  End Sub,
                  Sub()
@@ -72,6 +79,7 @@ Public Class GameController
                  Sub()
                      SetCurrentState(GameState.GameMenu, False)
                  End Sub))
+        SetState(GameState.SaveGame, New SaveGameState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetBoilerplateStates()

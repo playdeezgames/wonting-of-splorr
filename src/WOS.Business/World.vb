@@ -28,4 +28,8 @@ Public Class World
     Public Function GetTerrain(terrainName As String) As ITerrain Implements IWorld.GetTerrain
         Return New Terrain(_data, terrainName)
     End Function
+
+    Public Sub Save(filename As String) Implements IWorld.Save
+        File.WriteAllText(filename, JsonSerializer.Serialize(_data))
+    End Sub
 End Class

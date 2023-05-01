@@ -14,4 +14,5 @@
     Statistics
     GameMenu
     ConfirmAbandon
+    SaveGame
 End Enum

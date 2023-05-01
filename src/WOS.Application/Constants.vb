@@ -4,6 +4,7 @@
     Friend Const EmbarkText = "Embark!"
     Friend Const FightText = "Fight!"
     Friend Const FleeText = "Flee!"
+    Friend Const GameMenuText = "Game Menu"
     Friend Const MainMenuCaptionText = "Main Menu:"
     Friend Const MapCellHeight = 12
     Friend Const MapCellWidth = 12
@@ -11,9 +12,13 @@
     Friend Const OptionsMenuCaptionText = "Options Menu:"
     Friend Const OptionsText = "Options..."
     Friend Const QuitText = "Quit"
+    Friend Const SaveGameText = "Save..."
     Friend Const SfxVolumeText = "Sfx Volume..."
-    Friend Const WindowSizeText = "Window Size..."
+    Friend Const Slot1Text = "Slot 1"
+    Friend Const Slot2Text = "Slot 2"
+    Friend Const Slot3Text = "Slot 3"
+    Friend Const Slot4Text = "Slot 4"
+    Friend Const Slot5Text = "Slot 5"
     Friend Const StatisticsText = "Statistics"
-    Friend Const GameMenuText = "Game Menu"
-
+    Friend Const WindowSizeText = "Window Size..."
 End Module

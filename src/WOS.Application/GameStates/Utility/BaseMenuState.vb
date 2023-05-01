@@ -5,7 +5,11 @@
     Private _currentItem As Integer = 0
     Private ReadOnly _onMenuItem As Action(Of String)
     Private ReadOnly _onCancel As Action
-
+    Protected ReadOnly Property CurrentItemText As String
+        Get
+            Return _menuItems(_currentItem)
+        End Get
+    End Property
     Sub New(
                      parent As IGameController(Of Hue, Command, Sfx),
                      setState As Action(Of GameState?, Boolean),

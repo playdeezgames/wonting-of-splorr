@@ -32,4 +32,16 @@
         Fonts.Add(GameFont.Font5x7, New Font(JsonSerializer.Deserialize(Of FontData)(File.ReadAllText("Content/CyFont5x7.json"))))
         Fonts.Add(GameFont.Font8x8, New Font(JsonSerializer.Deserialize(Of FontData)(File.ReadAllText("Content/CyFont8x8.json"))))
     End Sub
+
+    Friend Function HasSaveSlot(slotName As String) As Boolean
+        Return File.Exists(SaveSlotFilename(slotName))
+    End Function
+
+    Private Function SaveSlotFilename(slotName As String) As String
+        Return $"{slotName}.json"
+    End Function
+
+    Friend Sub Save(slotName As String)
+        World.Save(SaveSlotFilename(slotName))
+    End Sub
 End Module
