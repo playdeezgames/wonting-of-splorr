@@ -49,10 +49,28 @@ Public Class GameController
                     AbandonGameText
                  },
                  Sub(menuItem)
-
+                     Select Case menuItem
+                         Case AbandonGameText
+                             SetCurrentState(GameState.ConfirmAbandon, False)
+                     End Select
                  End Sub,
                  Sub()
                      SetCurrentState(GameState.SelectMode, False)
+                 End Sub))
+        SetState(GameState.ConfirmAbandon, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Confirm Abandon?",
+                 Hue.Red,
+                 Sub(confirm)
+                     If confirm Then
+                         SetCurrentState(GameState.MainMenu, False)
+                     Else
+                         SetCurrentState(GameState.GameMenu, False)
+                     End If
+                 End Sub,
+                 Sub()
+                     SetCurrentState(GameState.GameMenu, False)
                  End Sub))
     End Sub
 

@@ -13,4 +13,5 @@
     SelectMode
     Statistics
     GameMenu
+    ConfirmAbandon
 End Enum
