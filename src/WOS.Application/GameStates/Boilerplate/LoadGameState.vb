@@ -25,4 +25,12 @@
                 setState(GameState.MainMenu, False)
             End Sub)
     End Sub
+
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+        MyBase.Render(displayBuffer)
+        Dim font = Fonts(GameFont.Font5x7)
+        If GameContext.HasSaveSlot(CurrentItemText) Then
+            font.WriteText(displayBuffer, (0, ViewHeight - font.Height), "Exists!", Hue.Green)
+        End If
+    End Sub
 End Class
