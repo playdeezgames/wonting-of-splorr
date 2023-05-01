@@ -13,6 +13,7 @@
         FillMap(_data, map, 5, 2, 1, 1, RightCounterTerrainName)
         FillMap(_data, map, MapColumns \ 2, MapRows - 1, 1, 1, ClosedDoorTerrainName)
         CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, TownMap.MapName, TownMap.MapColumns \ 2, 6)
+        CreateShoppeTrigger(map, MapColumns \ 2, 2, ExchangeShoppeName)
         CreateCharacterInstance(_data, MapName, MapColumns \ 2, 1, DanCharacterName)
     End Sub
 End Module

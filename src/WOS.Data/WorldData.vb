@@ -5,4 +5,5 @@ Public Class WorldData
     Public Property Items As New Dictionary(Of String, ItemData)
     Public Property Maps As New Dictionary(Of String, MapData)
     Public Property Avatar As AvatarData
+    Public Property Shoppes As New Dictionary(Of String, ShoppeData)
 End Class

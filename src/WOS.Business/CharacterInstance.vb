@@ -278,4 +278,20 @@
             Return result
         End Get
     End Property
+
+    Public Property Shoppe As IShoppe Implements ICharacterInstance.Shoppe
+        Get
+            If CharacterInstanceData.ShoppeName Is Nothing Then
+                Return Nothing
+            End If
+            Return New Shoppe(_data, CharacterInstanceData.ShoppeName)
+        End Get
+        Set(value As IShoppe)
+            If value Is Nothing Then
+                CharacterInstanceData.ShoppeName = Nothing
+                Return
+            End If
+            CharacterInstanceData.ShoppeName = value.Name
+        End Set
+    End Property
 End Class

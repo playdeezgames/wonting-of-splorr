@@ -36,7 +36,11 @@
         mapCell.SetTrigger(TriggerKind.Bump, TriggerType.Message)
         mapCell.GetTrigger(TriggerKind.Bump).SetMessage(lines)
     End Sub
-
+    Friend Sub CreateShoppeTrigger(map As IMap, column As Integer, row As Integer, shoppeName As String)
+        Dim mapCell = map.GetCell(column, row)
+        mapCell.SetTrigger(TriggerKind.Bump, TriggerType.Shoppe)
+        mapCell.GetTrigger(TriggerKind.Bump).SetShoppe(shoppeName)
+    End Sub
 
     Friend Sub CreateTeleportTrigger(map As IMap, fromColumn As Integer, fromRow As Integer, toMapName As String, toColumn As Integer, toRow As Integer)
         Dim mapCell = map.GetCell(fromColumn, fromRow)

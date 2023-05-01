@@ -33,4 +33,8 @@
                 .Text = line.Item2
             }).ToList}
     End Sub
+
+    Public Sub SetShoppe(shoppeName As String) Implements ITrigger.SetShoppe
+        TriggerData.ShoppeName = shoppeName
+    End Sub
 End Class

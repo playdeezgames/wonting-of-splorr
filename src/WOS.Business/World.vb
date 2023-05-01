@@ -11,6 +11,7 @@ Public Class World
         InitializeFonts(_data)
         InitializeTerrains(_data)
         InitializeItems(_data)
+        InitializeShoppes(_data)
         InitializeCharacters(_data)
         InitializeMaps(_data)
     End Sub

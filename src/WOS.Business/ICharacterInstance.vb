@@ -25,4 +25,5 @@
     ReadOnly Property MaximumDefend As Integer
     ReadOnly Property MaximumAttack As Integer
     ReadOnly Property Items As IEnumerable(Of IItemInstance)
+    Property Shoppe As IShoppe
 End Interface

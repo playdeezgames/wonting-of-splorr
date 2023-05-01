@@ -40,8 +40,12 @@
         Select Case trigger.TriggerType
             Case TriggerType.Teleport
                 character.Teleport(trigger.Teleport.MapName, trigger.Teleport.Column, trigger.Teleport.Row)
-            Case Else
+            Case TriggerType.Message
                 character.AddMessage(trigger.Message.MessageLines.Select(Function(line) (line.Hue, line.Text)))
+            Case TriggerType.Shoppe
+                character.Shoppe = New Shoppe(_data, trigger.ShoppeName)
+            Case Else
+                Throw New NotImplementedException
         End Select
     End Sub
 
