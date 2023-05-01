@@ -14,6 +14,7 @@
     Public Overrides Sub Update(elapsedTime As TimeSpan)
         MyBase.Update(elapsedTime)
         Dim mainCharacter = World.Avatar.Character
+        mainCharacter.PickUpGroundItem()
         If mainCharacter.HasMessage Then
             SetState(GameState.Message)
             Return

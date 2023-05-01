@@ -21,6 +21,7 @@
     Function RollAttack() As Integer
     Sub SetStatistic(statisticType As StatisticType, value As Integer)
     Sub Die()
+    Sub PickUpGroundItem()
     ReadOnly Property MaximumDefend As Integer
     ReadOnly Property MaximumAttack As Integer
 End Interface

@@ -152,6 +152,19 @@ Friend Class CharacterInstance
             }
     End Sub
 
+    Public Sub PickUpGroundItem() Implements ICharacterInstance.PickUpGroundItem
+        If MapCellData.Item Is Nothing Then
+            Return
+        End If
+        Dim msg As New List(Of (Hue, String)) From
+            {
+                (Hue.Green, $"{Name} takes {MapCellData.Item.Quantity} {MapCellData.Item.ItemName}")
+            }
+        CharacterInstanceData.Items.Add(MapCellData.Item)
+        MapCellData.Item = Nothing
+        AddMessage(msg)
+    End Sub
+
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
         Get
             Return New Character(_data, CharacterInstanceData.CharacterName)
