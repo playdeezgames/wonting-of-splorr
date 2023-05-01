@@ -83,7 +83,7 @@
             If MapCellData.Item Is Nothing Then
                 Return Nothing
             End If
-            Return New ItemInstance(_data, _mapName, _column, _row)
+            Return New MapCellItemInstance(_data, _mapName, _column, _row)
         End Get
         Set(value As IItemInstance)
             If value Is Nothing Then

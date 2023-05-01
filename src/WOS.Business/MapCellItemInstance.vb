@@ -1,4 +1,4 @@
-﻿Friend Class ItemInstance
+﻿Friend Class MapCellItemInstance
     Implements IItemInstance
 
     Private ReadOnly _data As WorldData
