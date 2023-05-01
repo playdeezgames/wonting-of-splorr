@@ -25,6 +25,7 @@ Public Class GameController
                  New List(Of String) From {
                     NavigationText,
                     StatisticsText,
+                    InventoryText,
                     GameMenuText
                  },
                  Sub(menuItem)
@@ -35,12 +36,15 @@ Public Class GameController
                              SetCurrentState(GameState.Statistics, False)
                          Case GameMenuText
                              SetCurrentState(GameState.GameMenu, False)
+                         Case InventoryText
+                             SetCurrentState(GameState.Inventory, False)
                      End Select
                  End Sub,
                  Sub()
                      SetCurrentState(GameState.Neutral, False)
                  End Sub))
         SetState(GameState.Statistics, New StatisticsState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState))
         SetGameMenuStates()
     End Sub
 

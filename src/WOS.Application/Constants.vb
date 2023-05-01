@@ -5,6 +5,7 @@
     Friend Const FightText = "Fight!"
     Friend Const FleeText = "Flee!"
     Friend Const GameMenuText = "Game Menu"
+    Friend Const InventoryText = "Inventory"
     Friend Const LoadGameText = "Load..."
     Friend Const MainMenuCaptionText = "Main Menu:"
     Friend Const MapCellHeight = 12

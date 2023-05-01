@@ -1,6 +1,4 @@
-﻿Imports System.ComponentModel
-
-Friend Class CharacterInstance
+﻿Friend Class CharacterInstance
     Implements ICharacterInstance
 
     Private ReadOnly _data As WorldData
@@ -268,6 +266,16 @@ Friend Class CharacterInstance
     Public ReadOnly Property MaximumAttack As Integer Implements ICharacterInstance.MaximumAttack
         Get
             Return Character.GetStatistic(StatisticType.MaximumAttack)
+        End Get
+    End Property
+
+    Public ReadOnly Property Items As IEnumerable(Of IItemInstance) Implements ICharacterInstance.Items
+        Get
+            Dim result As New List(Of IItemInstance)
+            For index = 0 To CharacterInstanceData.Items.Count - 1
+                result.Add(New CharacterItemInstance(_data, _mapName, _column, _row, index))
+            Next
+            Return result
         End Get
     End Property
 End Class

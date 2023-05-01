@@ -24,4 +24,5 @@
     Sub PickUpGroundItem()
     ReadOnly Property MaximumDefend As Integer
     ReadOnly Property MaximumAttack As Integer
+    ReadOnly Property Items As IEnumerable(Of IItemInstance)
 End Interface

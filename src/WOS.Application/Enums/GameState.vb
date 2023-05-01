@@ -16,4 +16,5 @@
     ConfirmAbandon
     SaveGame
     LoadGame
+    Inventory
 End Enum
