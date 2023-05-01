@@ -7,7 +7,7 @@
             setState,
             "Inventory",
             Sub(index)
-
+                GameContext.InventoryIndex = index
             End Sub,
             Sub(itemName)
 
