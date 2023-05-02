@@ -18,4 +18,5 @@
     LoadGame
     Inventory
     GameOver
+    Shoppe
 End Enum

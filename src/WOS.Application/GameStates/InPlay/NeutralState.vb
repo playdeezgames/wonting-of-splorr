@@ -31,6 +31,10 @@
             SetState(GameState.Combat)
             Return
         End If
+        If mainCharacter.Shoppe IsNot Nothing Then
+            SetState(GameState.Shoppe)
+            Return
+        End If
         SetState(GameState.Navigation)
     End Sub
 End Class
