@@ -17,6 +17,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property CanUse As Boolean Implements IItemInstance.CanUse
+        Get
+            Return Item.CanUse
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, mapName As String, column As Integer, row As Integer, index As Integer)
         _data = data
         _mapName = mapName

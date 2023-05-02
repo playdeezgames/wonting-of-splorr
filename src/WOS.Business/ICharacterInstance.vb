@@ -30,4 +30,5 @@
     Property Shoppe As IShoppe
     ReadOnly Property DeathSfx As Sfx?
     ReadOnly Property HitSfx As Sfx?
+    ReadOnly Property CanUseItem As Boolean
 End Interface

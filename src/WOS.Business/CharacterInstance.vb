@@ -365,4 +365,10 @@
             Return Character.HitSfx
         End Get
     End Property
+
+    Public ReadOnly Property CanUseItem As Boolean Implements ICharacterInstance.CanUseItem
+        Get
+            Return Items.Any(Function(x) x.CanUse)
+        End Get
+    End Property
 End Class

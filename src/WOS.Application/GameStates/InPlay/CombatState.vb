@@ -8,7 +8,8 @@
             "Combat!",
             New List(Of String) From {
                 FightText,
-                FleeText},
+                FleeText,
+                UseText},
             Sub(menuItem)
                 Select Case menuItem
                     Case FightText
@@ -17,11 +18,25 @@
                     Case FleeText
                         HandleFlee()
                         setState(GameState.Neutral, False)
+                    Case UseText
+                        HandleUse(setState)
                 End Select
             End Sub,
             Sub()
                 'no cancel!
             End Sub)
+    End Sub
+
+    Private Shared Sub HandleUse(setState As Action(Of GameState?, Boolean))
+        Dim character = World.Avatar.Character
+        If Not character.CanUseItem Then
+            character.AddMessage(Nothing, New List(Of (Hue, String)) From
+                                 {
+                                    (Hue.Red, "Nothing to use!")
+                                 })
+            setState(GameState.Neutral, False)
+            Return
+        End If
     End Sub
 
     Private Shared Sub HandleFlee()

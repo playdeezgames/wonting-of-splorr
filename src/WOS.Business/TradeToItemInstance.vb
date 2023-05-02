@@ -25,6 +25,12 @@
         End Set
     End Property
 
+    Public ReadOnly Property CanUse As Boolean Implements IItemInstance.CanUse
+        Get
+            Return Item.CanUse
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, shoppeName As String, index As Integer)
         _data = data
         _shoppeName = shoppeName

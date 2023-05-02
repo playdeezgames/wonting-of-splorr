@@ -16,6 +16,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property CanUse As Boolean Implements IItemInstance.CanUse
+        Get
+            Return Item.CanUse
+        End Get
+    End Property
+
     Public Property Quantity As Integer Implements IItemInstance.Quantity
         Get
             Return ItemInstanceData.Quantity
