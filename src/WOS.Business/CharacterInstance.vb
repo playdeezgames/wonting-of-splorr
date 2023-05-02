@@ -187,7 +187,10 @@
                 CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = item.Name, .Quantity = quantity})
             End If
         Else
-            CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = item.Name, .Quantity = quantity})
+            While quantity > 0
+                CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = item.Name, .Quantity = 1})
+                quantity -= 1
+            End While
         End If
     End Sub
 
