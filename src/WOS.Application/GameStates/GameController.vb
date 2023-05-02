@@ -45,6 +45,7 @@ Public Class GameController
                  End Sub))
         SetState(GameState.Statistics, New StatisticsState(Me, AddressOf SetCurrentState))
         SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState))
+        SetState(GameState.GameOver, New GameOverState(Me, AddressOf SetCurrentState))
         SetGameMenuStates()
     End Sub
 

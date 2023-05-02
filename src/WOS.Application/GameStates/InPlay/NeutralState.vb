@@ -17,10 +17,14 @@
         mainCharacter.PickUpGroundItem()
         If mainCharacter.HasMessage Then
             Dim msgSfx = mainCharacter.Message.Sfx
-            If msgSfx.hasValue Then
+            If msgSfx.HasValue Then
                 PlaySfx(msgSfx.Value)
             End If
             SetState(GameState.Message)
+            Return
+        End If
+        If mainCharacter.IsDead Then
+            SetState(GameState.GameOver)
             Return
         End If
         If mainCharacter.Target IsNot Nothing Then

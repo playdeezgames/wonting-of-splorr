@@ -17,4 +17,5 @@
     SaveGame
     LoadGame
     Inventory
+    GameOver
 End Enum
