@@ -20,7 +20,9 @@
                 {StatisticType.BaseDefend, 4},
                 {StatisticType.MaximumDefend, 2}
             },
-            isMessageSink:=True)
+            isMessageSink:=True,
+            deathSfx:=Sfx.PlayerDeath,
+            hitSfx:=Sfx.PlayerHit)
         InitializeCharacter(_data, MarcusCharacterName, "Z"c, Hue.Magenta)
         InitializeCharacter(_data, GrahamCharacterName, "["c, Hue.Red)
         InitializeCharacter(_data, DanCharacterName, "\"c, Hue.Cyan)
@@ -42,7 +44,9 @@
             {
                 (CrownsItemName, 1, 1),
                 (JoolsItemName, 1, 1)
-            })
+            },
+            deathSfx:=Sfx.EnemyDeath,
+            hitSfx:=Sfx.EnemyHit)
     End Sub
 
     Private Sub InitializeCharacter(
@@ -52,7 +56,9 @@
                                    hue As Hue,
                                    Optional statistics As IReadOnlyDictionary(Of StatisticType, Integer) = Nothing,
                                    Optional isMessageSink As Boolean = False,
-                                   Optional itemDrops As IReadOnlyList(Of (String, Integer, Integer)) = Nothing)
+                                   Optional itemDrops As IReadOnlyList(Of (String, Integer, Integer)) = Nothing,
+                                   Optional deathSfx As Sfx? = Nothing,
+                                   Optional hitSfx As Sfx? = Nothing)
         _data.Characters.Add(
             characterName,
             New CharacterData With
@@ -61,6 +67,8 @@
                 .Glyph = glyph,
                 .Hue = hue,
                 .IsMessageSink = isMessageSink,
+                .DeathSfx = deathSfx,
+                .HitSfx = hitSfx,
                 .Statistics = If(
                     statistics IsNot Nothing,
                     New Dictionary(Of StatisticType, Integer)(statistics),

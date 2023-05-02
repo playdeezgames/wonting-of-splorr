@@ -79,6 +79,7 @@
     End Function
 
     Public Sub Attack(target As ICharacterInstance) Implements ICharacterInstance.Attack
+        Dim msgSfx As Sfx? = Nothing
         Dim defend As Integer = target.RollDefend()
         Dim attack As Integer = RollAttack()
         Dim msg As New List(Of (Hue, String)) From {
@@ -92,14 +93,17 @@
             target.Health -= damage
             If target.IsDead Then
                 msg.Add((Hue.Gray, $"{Name} kills {target.Name}!"))
+                msgSfx = target.DeathSfx
             Else
                 msg.Add((Hue.Gray, $"{target.Name} has {target.Health} health"))
+                msgSfx = target.HitSfx
             End If
         Else
+            msgSfx = Sfx.Miss
             msg.Add((Hue.Gray, $"{Name} misses!"))
         End If
-        AddMessage(Nothing, msg)
-        target.AddMessage(Nothing, msg)
+        AddMessage(msgSfx, msg)
+        target.AddMessage(msgSfx, msg)
     End Sub
 
     Private Function RollDice(dice As Integer, maximumRoll As Integer) As Integer
@@ -303,5 +307,16 @@
             End If
             CharacterInstanceData.ShoppeName = value.Name
         End Set
+    End Property
+    Public ReadOnly Property DeathSfx As Sfx? Implements ICharacterInstance.DeathSfx
+        Get
+            Return Character.DeathSfx
+        End Get
+    End Property
+
+    Public ReadOnly Property HitSfx As Sfx? Implements ICharacterInstance.HitSfx
+        Get
+            Return Character.HitSfx
+        End Get
     End Property
 End Class

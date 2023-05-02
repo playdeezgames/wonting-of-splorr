@@ -40,4 +40,10 @@
             Return result
         End Get
     End Property
+
+    Public ReadOnly Property Sfx As Sfx? Implements IMessage.Sfx
+        Get
+            Return MessageData.Sfx
+        End Get
+    End Property
 End Class

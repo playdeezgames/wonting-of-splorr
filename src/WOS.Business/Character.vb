@@ -50,4 +50,16 @@
             Return CharacterData.IsMessageSink
         End Get
     End Property
+
+    Public ReadOnly Property DeathSfx As Sfx? Implements ICharacter.DeathSfx
+        Get
+            Return CharacterData.DeathSfx
+        End Get
+    End Property
+
+    Public ReadOnly Property HitSfx As Sfx? Implements ICharacter.HitSfx
+        Get
+            Return CharacterData.HitSfx
+        End Get
+    End Property
 End Class

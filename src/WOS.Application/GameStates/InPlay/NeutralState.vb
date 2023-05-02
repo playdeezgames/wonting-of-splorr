@@ -16,6 +16,10 @@
         Dim mainCharacter = World.Avatar.Character
         mainCharacter.PickUpGroundItem()
         If mainCharacter.HasMessage Then
+            Dim msgSfx = mainCharacter.Message.Sfx
+            If msgSfx.hasValue Then
+                PlaySfx(msgSfx.Value)
+            End If
             SetState(GameState.Message)
             Return
         End If

@@ -26,4 +26,6 @@
     ReadOnly Property MaximumAttack As Integer
     ReadOnly Property Items As IEnumerable(Of IItemInstance)
     Property Shoppe As IShoppe
+    ReadOnly Property DeathSfx As Sfx?
+    ReadOnly Property HitSfx As Sfx?
 End Interface
