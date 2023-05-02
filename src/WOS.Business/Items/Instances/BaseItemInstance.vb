@@ -1,6 +1,6 @@
 ﻿Friend MustInherit Class BaseItemInstance
     Implements IItemInstance
-    Private ReadOnly _data As WorldData
+    Protected ReadOnly _data As WorldData
     Sub New(data As WorldData)
         _data = data
     End Sub
