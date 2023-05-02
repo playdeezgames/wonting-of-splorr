@@ -196,10 +196,27 @@
         If Not CanTrade(trade) Then
             AddMessage(Nothing, New List(Of (Hue, String)) From
                        {
-                        (Hue.Gray, "Cannot make trade!")
+                        (Hue.Red, "Cannot make trade!")
                        })
             Return
         End If
+        Dim quantity = trade.FromItem.Quantity
+        For Each item In Items
+            If quantity = 0 Then
+                Exit For
+            ElseIf quantity > item.Quantity Then
+                quantity -= item.Quantity
+                item.Quantity = 0
+            Else
+                item.Quantity -= quantity
+                quantity = 0
+            End If
+        Next
+        CharacterInstanceData.Items = CharacterInstanceData.Items.Where(Function(x) x.Quantity > 0).ToList
+        AddMessage(Nothing, New List(Of (Hue, String)) From
+                       {
+                        (Hue.Green, "Its a deal!")
+                       })
     End Sub
 
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character

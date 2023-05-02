@@ -31,10 +31,13 @@
         End Get
     End Property
 
-    Public ReadOnly Property Quantity As Integer Implements IItemInstance.Quantity
+    Public Property Quantity As Integer Implements IItemInstance.Quantity
         Get
             Return ItemInstanceData.Quantity
         End Get
+        Set(value As Integer)
+            ItemInstanceData.Quantity = Math.Max(value, 0)
+        End Set
     End Property
 
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItemInstance.Render
