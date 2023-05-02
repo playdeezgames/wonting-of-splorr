@@ -22,11 +22,11 @@
     End Sub
 
     Private Shared Sub ShowMessage(displayBuffer As IPixelSink(Of Hue))
-        Dim message As IEnumerable(Of (Hue, String)) = World.Avatar.Character.Message
+        Dim message As IMessage = World.Avatar.Character.Message
         Dim font = Fonts(GameFont.Font5x7)
         Dim y = 0
-        For Each line In message
-            font.WriteText(displayBuffer, (0, y), line.Item2, line.Item1)
+        For Each line In message.Lines
+            font.WriteText(displayBuffer, (0, y), line.Text, line.Hue)
             y += font.Height
         Next
     End Sub

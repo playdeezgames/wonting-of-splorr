@@ -57,9 +57,16 @@
         MapCellData.Character = instanceData
     End Sub
 
-    Public Sub AddMessage(lines As IEnumerable(Of (Hue, String))) Implements ICharacterInstance.AddMessage
+    Public Sub AddMessage(sfx As Sfx?, lines As IEnumerable(Of (Hue, String))) Implements ICharacterInstance.AddMessage
         If Character.IsMessageSink Then
-            CharacterInstanceData.Messages.Add(lines)
+            CharacterInstanceData.Messages.Add(New MessageData With
+                                               {
+                                                    .Sfx = sfx,
+                                                    .MessageLines = lines.Select(Function(x) New MessageLineData With
+                                               {
+                                                    .Hue = x.Item1,
+                                                    .Text = x.Item2
+                                               }).ToList})
         End If
     End Sub
 
@@ -91,8 +98,8 @@
         Else
             msg.Add((Hue.Gray, $"{Name} misses!"))
         End If
-        AddMessage(msg)
-        target.AddMessage(msg)
+        AddMessage(Nothing, msg)
+        target.AddMessage(Nothing, msg)
     End Sub
 
     Private Function RollDice(dice As Integer, maximumRoll As Integer) As Integer
@@ -170,7 +177,7 @@
             CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = MapCellData.Item.ItemName, .Quantity = MapCellData.Item.Quantity})
         End If
         MapCellData.Item = Nothing
-        AddMessage(msg)
+        AddMessage(Nothing, msg)
     End Sub
 
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
@@ -203,9 +210,12 @@
         End Get
     End Property
 
-    Public ReadOnly Property Message As IEnumerable(Of (Hue, String)) Implements ICharacterInstance.Message
+    Public ReadOnly Property Message As IMessage Implements ICharacterInstance.Message
         Get
-            Return CharacterInstanceData.Messages.FirstOrDefault
+            If Not CharacterInstanceData.Messages.Any Then
+                Return Nothing
+            End If
+            Return New Message(_data, _mapName, _column, _row, 0)
         End Get
     End Property
 

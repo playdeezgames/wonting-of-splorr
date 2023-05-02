@@ -4,12 +4,12 @@
     ReadOnly Property Row As Integer
     ReadOnly Property Map As IMap
     ReadOnly Property HasMessage As Boolean
-    ReadOnly Property Message As IEnumerable(Of (Hue, String))
+    ReadOnly Property Message As IMessage
     Property Target As ICharacterInstance
     Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer)
     Sub Move(direction As Direction)
     Sub Teleport(mapName As String, column As Integer, row As Integer)
-    Sub AddMessage(lines As IEnumerable(Of (Hue, String)))
+    Sub AddMessage(sfx As Sfx?, lines As IEnumerable(Of (Hue, String)))
     Sub NextMessage()
     ReadOnly Property Name As String
     Property Health As Integer

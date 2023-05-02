@@ -41,7 +41,7 @@
             Case TriggerType.Teleport
                 character.Teleport(trigger.Teleport.MapName, trigger.Teleport.Column, trigger.Teleport.Row)
             Case TriggerType.Message
-                character.AddMessage(trigger.Message.MessageLines.Select(Function(line) (line.Hue, line.Text)))
+                character.AddMessage(Nothing, trigger.Message.MessageLines.Select(Function(line) (line.Hue, line.Text)))
             Case TriggerType.Shoppe
                 character.Shoppe = New Shoppe(_data, trigger.ShoppeName)
             Case Else
