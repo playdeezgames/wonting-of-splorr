@@ -2,4 +2,5 @@
     Teleport
     Message
     Shoppe
+    Healing
 End Enum

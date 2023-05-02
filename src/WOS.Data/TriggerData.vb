@@ -3,4 +3,5 @@
     Public Property Teleport As TeleportData
     Public Property Message As MessageData
     Public Property ShoppeName As String
+    Public Property Healing As Integer
 End Class
