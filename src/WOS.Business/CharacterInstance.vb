@@ -165,23 +165,30 @@
         If MapCellData.Item Is Nothing Then
             Return
         End If
-        Dim item As IItem = New Item(_data, MapCellData.Item.ItemName)
+        Dim itemName = MapCellData.Item.ItemName
+        Dim quantity = MapCellData.Item.Quantity
         Dim msg As New List(Of (Hue, String)) From
             {
-                (Hue.Green, $"{Name} takes {MapCellData.Item.Quantity} {MapCellData.Item.ItemName}")
+                (Hue.Green, $"{Name} takes {MapCellData.Item.Quantity} {itemName}")
             }
+        Dim item As IItem = New Item(_data, itemName)
+
+        AddItemsToInventory(item, quantity)
+        MapCellData.Item = Nothing
+        AddMessage(Nothing, msg)
+    End Sub
+
+    Private Sub AddItemsToInventory(item As IItem, quantity As Integer)
         If item.Stacks Then
-            Dim itemInstance = CharacterInstanceData.Items.FirstOrDefault(Function(x) x.ItemName = MapCellData.Item.ItemName)
+            Dim itemInstance = CharacterInstanceData.Items.FirstOrDefault(Function(x) x.ItemName = item.Name)
             If itemInstance IsNot Nothing Then
                 itemInstance.Quantity += MapCellData.Item.Quantity
             Else
-                CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = MapCellData.Item.ItemName, .Quantity = MapCellData.Item.Quantity})
+                CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = item.Name, .Quantity = quantity})
             End If
         Else
-            CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = MapCellData.Item.ItemName, .Quantity = MapCellData.Item.Quantity})
+            CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = item.Name, .Quantity = quantity})
         End If
-        MapCellData.Item = Nothing
-        AddMessage(Nothing, msg)
     End Sub
 
     Public Function CanTrade(trade As ITrade) As Boolean Implements ICharacterInstance.CanTrade
@@ -201,7 +208,7 @@
             Return
         End If
         Dim quantity = trade.FromItem.Quantity
-        For Each item In Items
+        For Each item In Items.Where(Function(x) x.Item.Name = trade.FromItem.Item.Name)
             If quantity = 0 Then
                 Exit For
             ElseIf quantity > item.Quantity Then
@@ -212,6 +219,7 @@
                 quantity = 0
             End If
         Next
+        AddItemsToInventory(trade.ToItem.Item, trade.ToItem.Quantity)
         CharacterInstanceData.Items = CharacterInstanceData.Items.Where(Function(x) x.Quantity > 0).ToList
         AddMessage(Nothing, New List(Of (Hue, String)) From
                        {
