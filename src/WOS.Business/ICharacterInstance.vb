@@ -23,6 +23,7 @@
     Sub Die()
     Sub PickUpGroundItem()
     Function CanTrade(trade As ITrade) As Boolean
+    Sub MakeTrade(trade As ITrade)
     ReadOnly Property MaximumDefend As Integer
     ReadOnly Property MaximumAttack As Integer
     ReadOnly Property Items As IEnumerable(Of IItemInstance)

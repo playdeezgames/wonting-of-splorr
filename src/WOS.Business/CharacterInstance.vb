@@ -192,6 +192,16 @@
         Return CharacterInstanceData.Items.Where(Function(x) x.ItemName = item.Name).Sum(Function(x) x.Quantity)
     End Function
 
+    Public Sub MakeTrade(trade As ITrade) Implements ICharacterInstance.MakeTrade
+        If Not CanTrade(trade) Then
+            AddMessage(Nothing, New List(Of (Hue, String)) From
+                       {
+                        (Hue.Gray, "Cannot make trade!")
+                       })
+            Return
+        End If
+    End Sub
+
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
         Get
             Return New Character(_data, CharacterInstanceData.CharacterName)

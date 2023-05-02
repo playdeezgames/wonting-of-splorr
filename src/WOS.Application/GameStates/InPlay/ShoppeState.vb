@@ -18,7 +18,8 @@
             Case Command.UpReleased
                 _tradeIndex = (_tradeIndex + shoppe.TradeCount - 1) Mod shoppe.TradeCount
             Case Command.FireReleased
-                'TODO: make trade, or not
+                character.MakeTrade(shoppe.Trades(_tradeIndex))
+                SetState(GameState.Neutral)
         End Select
     End Sub
 
