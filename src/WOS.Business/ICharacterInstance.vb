@@ -22,6 +22,7 @@
     Sub SetStatistic(statisticType As StatisticType, value As Integer)
     Sub Die()
     Sub PickUpGroundItem()
+    Function CanTrade(trade As ITrade) As Boolean
     ReadOnly Property MaximumDefend As Integer
     ReadOnly Property MaximumAttack As Integer
     ReadOnly Property Items As IEnumerable(Of IItemInstance)

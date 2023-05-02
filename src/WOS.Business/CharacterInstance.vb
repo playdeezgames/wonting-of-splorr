@@ -184,6 +184,14 @@
         AddMessage(Nothing, msg)
     End Sub
 
+    Public Function CanTrade(trade As ITrade) As Boolean Implements ICharacterInstance.CanTrade
+        Return GetItemCount(trade.FromItem.Item) >= trade.FromItem.Quantity
+    End Function
+
+    Private Function GetItemCount(item As IItem) As Integer
+        Return CharacterInstanceData.Items.Where(Function(x) x.ItemName = item.Name).Sum(Function(x) x.Quantity)
+    End Function
+
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
         Get
             Return New Character(_data, CharacterInstanceData.CharacterName)
