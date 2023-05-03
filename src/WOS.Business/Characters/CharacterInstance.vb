@@ -248,7 +248,7 @@
                 Health += trigger.Healing
                 AddMessage(Nothing, New List(Of (Hue, String)) From
                        {
-                        (Hue.Red, $"{Name} now has {Health}/{MaximumHealth} health.")
+                        (Hue.Green, $"{Name} now has {Health}/{MaximumHealth} health.")
                        })
         End Select
         itemInstance.Quantity -= 1
