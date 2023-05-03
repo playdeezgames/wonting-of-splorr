@@ -22,6 +22,8 @@
     Friend Const Slot4Text = "Slot 4"
     Friend Const Slot5Text = "Slot 5"
     Friend Const StatisticsText = "Statistics"
-    Friend Const UseText = "Use..."
+    Friend Const CombatUseText = "Use..."
+    Friend Const UseText = "Use"
+    Friend Const EquipText = "Equip"
     Friend Const WindowSizeText = "Window Size..."
 End Module

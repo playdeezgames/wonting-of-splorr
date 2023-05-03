@@ -1,6 +1,5 @@
 ﻿Friend Class InventoryState
     Inherits BasePickState
-
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
@@ -10,7 +9,7 @@
                 GameContext.InventoryIndex = index
             End Sub,
             Sub(itemName)
-
+                setState(GameState.InventoryDetails, False)
             End Sub,
             Sub()
                 setState(GameState.SelectMode, False)

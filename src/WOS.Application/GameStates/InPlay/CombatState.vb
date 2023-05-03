@@ -9,7 +9,7 @@
             New List(Of String) From {
                 FightText,
                 FleeText,
-                UseText},
+                CombatUseText},
             Sub(menuItem)
                 Select Case menuItem
                     Case FightText
@@ -18,7 +18,7 @@
                     Case FleeText
                         HandleFlee()
                         setState(GameState.Neutral, False)
-                    Case UseText
+                    Case CombatUseText
                         HandleUse(setState)
                 End Select
             End Sub,

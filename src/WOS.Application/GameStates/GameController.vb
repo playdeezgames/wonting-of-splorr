@@ -45,6 +45,7 @@ Public Class GameController
                  End Sub))
         SetState(GameState.Statistics, New StatisticsState(Me, AddressOf SetCurrentState))
         SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState))
+        SetState(GameState.InventoryDetails, New InventoryDetailsState(Me, AddressOf SetCurrentState))
         SetState(GameState.GameOver, New GameOverState(Me, AddressOf SetCurrentState))
         SetState(GameState.Shoppe, New ShoppeState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickCombatUseItem, New PickCombatItemState(Me, AddressOf SetCurrentState))
