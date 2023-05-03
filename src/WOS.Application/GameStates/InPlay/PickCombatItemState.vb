@@ -23,4 +23,9 @@
     Private Shared Function GetCombatItems() As IEnumerable(Of String)
         Return World.Avatar.Character.UsableItems.Select(Function(x) $"{x.Item.Name}(x{x.Quantity})")
     End Function
+
+    Public Overrides Sub OnStart()
+        MyBase.OnStart()
+        InventoryIndex = 0
+    End Sub
 End Class

@@ -15,11 +15,11 @@
                                     .FromItem = New ItemInstanceData With
                                     {
                                         .ItemName = CrownsItemName,
-                                        .Quantity = 20
+                                        .Quantity = 5
                                     },
                                     .ToItem = New ItemInstanceData With
                                     {
-                                        .ItemName = SwordItemName,
+                                        .ItemName = ClubItemName,
                                         .Quantity = 1
                                     }
                                 }

@@ -182,7 +182,7 @@
         If item.Stacks Then
             Dim itemInstance = CharacterInstanceData.Items.FirstOrDefault(Function(x) x.ItemName = item.Name)
             If itemInstance IsNot Nothing Then
-                itemInstance.Quantity += MapCellData.Item.Quantity
+                itemInstance.Quantity += quantity
             Else
                 CharacterInstanceData.Items.Add(New ItemInstanceData With {.ItemName = item.Name, .Quantity = quantity})
             End If

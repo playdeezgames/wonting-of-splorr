@@ -62,4 +62,9 @@ Friend Class BasePickState
         MyBase.Update(elapsedTime)
         _index = _indexSource(_index)
     End Sub
+
+    Public Overrides Sub OnStart()
+        MyBase.OnStart()
+        _index = 0
+    End Sub
 End Class
