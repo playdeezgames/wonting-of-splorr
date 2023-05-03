@@ -2,8 +2,29 @@
     Friend Const ExchangeShoppeName = "exchange"
     Friend Const InnShoppeName = "inn"
     Friend Const SmokeShoppeName = "smokeshoppe"
+    Friend Const ArmoryShoppeName = "armory"
     Friend Sub InitializeShoppes(data As WorldData)
         data.Shoppes.Clear()
+        data.Shoppes.Add(ArmoryShoppeName, New ShoppeData With
+                         {
+                            .DisplayName = "Armory",
+                            .Trades = New List(Of TradeData) From
+                            {
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = CrownsItemName,
+                                        .Quantity = 20
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = SwordItemName,
+                                        .Quantity = 1
+                                    }
+                                }
+                            }
+                         })
         data.Shoppes.Add(SmokeShoppeName, New ShoppeData With
                          {
                             .DisplayName = "Smoke Shoppe",

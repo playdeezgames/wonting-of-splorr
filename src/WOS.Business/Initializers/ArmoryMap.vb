@@ -14,5 +14,6 @@
         FillMap(_data, map, MapColumns - 1, MapRows \ 2, 1, 1, ClosedDoorTerrainName)
         CreateTeleportTrigger(map, MapColumns - 1, MapRows \ 2, TownMap.MapName, 6, 18)
         CreateCharacterInstance(_data, MapName, MapColumns \ 2, 1, SamuliCharacterName)
+        CreateShoppeTrigger(map, MapColumns \ 2, 2, ArmoryShoppeName)
     End Sub
 End Module
