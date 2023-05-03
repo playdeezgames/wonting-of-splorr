@@ -34,4 +34,10 @@
             Return result
         End Get
     End Property
+
+    Public ReadOnly Property DisplayName As String Implements IShoppe.DisplayName
+        Get
+            Return ShoppeData.DisplayName
+        End Get
+    End Property
 End Class

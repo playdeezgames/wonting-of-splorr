@@ -47,5 +47,6 @@
             y += font.Height
             index += 1
         Next
+        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(shoppe.DisplayName) \ 2, 0), shoppe.DisplayName, Hue.White)
     End Sub
 End Class
