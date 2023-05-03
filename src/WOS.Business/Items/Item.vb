@@ -37,6 +37,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property UseTrigger As ITrigger Implements IItem.UseTrigger
+        Get
+            Return New ItemUseTrigger(_data, _itemName)
+        End Get
+    End Property
+
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItem.Render
         Font.WriteText(displayBuffer, (x, y), $"{ItemData.Glyph}", ItemData.Hue)
     End Sub

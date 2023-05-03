@@ -47,6 +47,7 @@ Public Class GameController
         SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState))
         SetState(GameState.GameOver, New GameOverState(Me, AddressOf SetCurrentState))
         SetState(GameState.Shoppe, New ShoppeState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickCombatUseItem, New PickCombatItemState(Me, AddressOf SetCurrentState))
         SetGameMenuStates()
     End Sub
 

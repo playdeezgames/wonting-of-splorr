@@ -19,4 +19,5 @@
     Inventory
     GameOver
     Shoppe
+    PickCombatUseItem
 End Enum

@@ -28,6 +28,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property UseTrigger As ITrigger Implements IItemInstance.UseTrigger
+        Get
+            Return Item.UseTrigger
+        End Get
+    End Property
+
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItemInstance.Render
         Item.Render(displayBuffer, x, y)
     End Sub

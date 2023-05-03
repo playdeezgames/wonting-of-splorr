@@ -37,7 +37,7 @@
             setState(GameState.Neutral, False)
             Return
         End If
-        'TODO: combat use item
+        setState(GameState.PickCombatUseItem, False)
     End Sub
 
     Private Shared Sub HandleFlee()

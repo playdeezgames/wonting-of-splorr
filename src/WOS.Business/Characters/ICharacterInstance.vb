@@ -24,6 +24,7 @@
     Sub PickUpGroundItem()
     Function CanTrade(trade As ITrade) As Boolean
     Sub MakeTrade(trade As ITrade)
+    Sub Use(itemInstance As IItemInstance)
     ReadOnly Property MaximumDefend As Integer
     ReadOnly Property MaximumAttack As Integer
     ReadOnly Property Items As IEnumerable(Of IItemInstance)
@@ -31,4 +32,5 @@
     ReadOnly Property DeathSfx As Sfx?
     ReadOnly Property HitSfx As Sfx?
     ReadOnly Property CanUseItem As Boolean
+    ReadOnly Property UsableItems As IEnumerable(Of IItemInstance)
 End Interface

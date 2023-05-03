@@ -223,11 +223,36 @@
             End If
         Next
         AddItemsToInventory(trade.ToItem.Item, trade.ToItem.Quantity)
-        CharacterInstanceData.Items = CharacterInstanceData.Items.Where(Function(x) x.Quantity > 0).ToList
+        CleanUpInventory()
         AddMessage(Nothing, New List(Of (Hue, String)) From
+                               {
+                                (Hue.Green, "Its a deal!")
+                               })
+    End Sub
+
+    Private Sub CleanUpInventory()
+        CharacterInstanceData.Items = CharacterInstanceData.Items.Where(Function(x) x.Quantity > 0).ToList
+    End Sub
+
+    Public Sub Use(itemInstance As IItemInstance) Implements ICharacterInstance.Use
+        If Not itemInstance.CanUse Then
+            AddMessage(Nothing, New List(Of (Hue, String)) From
                        {
-                        (Hue.Green, "Its a deal!")
+                        (Hue.Red, $"{Name} cannot use {itemInstance.Item.Name}.")
                        })
+            Return
+        End If
+        Dim trigger = itemInstance.UseTrigger
+        Select Case trigger.TriggerType
+            Case TriggerType.Healing
+                Health += trigger.Healing
+                AddMessage(Nothing, New List(Of (Hue, String)) From
+                       {
+                        (Hue.Red, $"{Name} now has {Health}/{MaximumHealth} health.")
+                       })
+        End Select
+        itemInstance.Quantity -= 1
+        CleanUpInventory()
     End Sub
 
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
@@ -369,6 +394,12 @@
     Public ReadOnly Property CanUseItem As Boolean Implements ICharacterInstance.CanUseItem
         Get
             Return Items.Any(Function(x) x.CanUse)
+        End Get
+    End Property
+
+    Public ReadOnly Property UsableItems As IEnumerable(Of IItemInstance) Implements ICharacterInstance.UsableItems
+        Get
+            Return Items.Where(Function(x) x.CanUse)
         End Get
     End Property
 End Class
