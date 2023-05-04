@@ -34,4 +34,7 @@
     ReadOnly Property HitSfx As Sfx?
     ReadOnly Property CanUseItem As Boolean
     ReadOnly Property UsableItems As IEnumerable(Of IItemInstance)
+    Function HasEquipment(equipSlot As EquipSlot) As Boolean
+    Sub Unequip(equipSlot As EquipSlot)
+    ReadOnly Property HasItems As Boolean
 End Interface

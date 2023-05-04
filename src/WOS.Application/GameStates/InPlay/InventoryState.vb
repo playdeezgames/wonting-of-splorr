@@ -17,4 +17,13 @@
             Function(x) x,
             Function() World.Avatar.Character.Items.Select(Function(x) $"{x.Item.DisplayName}(x{x.Quantity})"))
     End Sub
+    Public Overrides Sub OnStart()
+        Dim character = World.Avatar.Character
+        If Not character.HasItems Then
+            character.AddMessage(Nothing, New List(Of (Hue, String)) From {
+                (Hue.Red, $"{character.Name} has no inventory.")
+                                              })
+            SetState(GameState.Neutral)
+        End If
+    End Sub
 End Class

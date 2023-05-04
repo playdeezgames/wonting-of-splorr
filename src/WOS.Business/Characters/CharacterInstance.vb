@@ -268,6 +268,34 @@
                        })
             Return
         End If
+        Dim equipSlot = item.Item.EquipSlot.Value
+        If HasEquipment(equipSlot) Then
+            Unequip(equipSlot)
+        End If
+        Dim sfx As Sfx? = Nothing
+        Dim messageLines As New List(Of (Hue, String)) From {
+            (Hue.Green, $"{Name} equips {item.Item.DisplayName} to {item.Item.EquipSlot}")
+        }
+        AddMessage(sfx, messageLines)
+        CharacterInstanceData.Equipment(equipSlot) = New ItemInstanceData With
+            {
+                .ItemName = item.Item.Name,
+                .Quantity = item.Quantity
+            }
+        item.Quantity = 0
+        CleanUpInventory()
+    End Sub
+
+    Public Function HasEquipment(equipSlot As EquipSlot) As Boolean Implements ICharacterInstance.HasEquipment
+        Return CharacterInstanceData.Equipment.ContainsKey(equipSlot)
+    End Function
+
+    Public Sub Unequip(equipSlot As EquipSlot) Implements ICharacterInstance.Unequip
+        If HasEquipment(equipSlot) Then
+            Dim item = CharacterInstanceData.Equipment(equipSlot)
+            CharacterInstanceData.Equipment.Remove(equipSlot)
+            CharacterInstanceData.Items.Add(item)
+        End If
     End Sub
 
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
@@ -415,6 +443,12 @@
     Public ReadOnly Property UsableItems As IEnumerable(Of IItemInstance) Implements ICharacterInstance.UsableItems
         Get
             Return Items.Where(Function(x) x.CanUse)
+        End Get
+    End Property
+
+    Public ReadOnly Property HasItems As Boolean Implements ICharacterInstance.HasItems
+        Get
+            Return CharacterInstanceData.Items.Any
         End Get
     End Property
 End Class
