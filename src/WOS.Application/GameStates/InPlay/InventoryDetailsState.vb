@@ -34,6 +34,16 @@
         Dim character = World.Avatar.Character
         Dim item = character.Items.ToList()(InventoryIndex)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"{item.Item.DisplayName}(x{item.Quantity})", Hue.Gray)
+        Dim y = ViewHeight - font.Height
+        If item.CanUse Then
+            y -= font.Height
+        End If
+        font.WriteText(displayBuffer, (0, y), $"{item.Item.DisplayName}(x{item.Quantity})", Hue.Gray)
+        y += font.Height
+        If item.CanUse Then
+
+            font.WriteText(displayBuffer, (0, y), $"Usage: {item.Item.UseTrigger.TriggerType}", Hue.Gray)
+            y += font.Height
+        End If
     End Sub
 End Class

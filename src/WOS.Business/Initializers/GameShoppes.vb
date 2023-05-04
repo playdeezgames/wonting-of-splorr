@@ -2,14 +2,27 @@
     Friend Const ExchangeShoppeName = "exchange"
     Friend Const InnShoppeName = "inn"
     Friend Const SmokeShoppeName = "smokeshoppe"
-    Friend Const ArmoryShoppeName = "armory"
+    Friend Const BlacksmithShoppeName = "blacksmith"
     Friend Sub InitializeShoppes(data As WorldData)
         data.Shoppes.Clear()
-        data.Shoppes.Add(ArmoryShoppeName, New ShoppeData With
+        data.Shoppes.Add(BlacksmithShoppeName, New ShoppeData With
                          {
-                            .DisplayName = "Armory",
+                            .DisplayName = "Blacksmith's Shoppe",
                             .Trades = New List(Of TradeData) From
                             {
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = CrownsItemName,
+                                        .Quantity = 1
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = ClubItemName,
+                                        .Quantity = 1
+                                    }
+                                },
                                 New TradeData With
                                 {
                                     .FromItem = New ItemInstanceData With
@@ -19,7 +32,46 @@
                                     },
                                     .ToItem = New ItemInstanceData With
                                     {
-                                        .ItemName = ClubItemName,
+                                        .ItemName = SpearItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = CrownsItemName,
+                                        .Quantity = 10
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = DaggerItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = CrownsItemName,
+                                        .Quantity = 25
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = SwordItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = CrownsItemName,
+                                        .Quantity = 50
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = AxeItemName,
                                         .Quantity = 1
                                     }
                                 }

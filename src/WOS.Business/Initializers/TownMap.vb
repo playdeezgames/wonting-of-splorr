@@ -41,7 +41,7 @@
         CreateTeleportTrigger(map, 6, 5, InnMap.MapName, InnMap.MapColumns \ 2, InnMap.MapRows - 2)
         CreateTeleportTrigger(map, 12, 5, ExchangeMap.MapName, ExchangeMap.MapColumns \ 2, ExchangeMap.MapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMap.MapName, 1, SmokeShoppeMap.MapRows \ 2)
-        CreateTeleportTrigger(map, 5, 18, ArmoryMap.MapName, ArmoryMap.MapColumns - 2, ArmoryMap.MapRows \ 2)
+        CreateTeleportTrigger(map, 5, 18, BlacksmithMap.MapName, BlacksmithMap.MapColumns - 2, BlacksmithMap.MapRows \ 2)
         CreateMessageTrigger(map, 7, 5, New List(Of (Hue, String)) From {
                                 (Hue.Gray, "The Dog's Face Inn"),
                                 (Hue.Gray, "Proprietor:"),
@@ -54,13 +54,13 @@
                                 (Hue.Gray, "Marcus's Magick and Smoke Shoppe")
                              })
         CreateMessageTrigger(map, 5, 17, New List(Of (Hue, String)) From {
-                                (Hue.Gray, "Samuli's Armory")
+                                (Hue.Gray, "Samuli's Blacksmith Shoppe")
                              })
         CreateCharacterInstance(_data, MapName, MapColumns \ 2, MapRows \ 2, N00bCharacterName)
         CreateAvatar(_data, MapName, MapColumns \ 2, MapRows \ 2)
         InitializeInn(_data)
         InitializeExchange(_data)
-        InitializeArmory(_data)
+        InitializeBlacksmith(_data)
         InitializeSmokeShoppe(_data)
     End Sub
 End Module
