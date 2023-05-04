@@ -61,6 +61,34 @@
         End Get
     End Property
 
+    Public ReadOnly Property MaximumDefend As Integer Implements IItem.MaximumDefend
+        Get
+            Return If(HasStatistic(StatisticType.MaximumDefend), GetStatistic(StatisticType.MaximumDefend), 0)
+        End Get
+    End Property
+
+    Private Function HasStatistic(statisticType As StatisticType) As Boolean
+        Return ItemData.Statistics.ContainsKey(statisticType)
+    End Function
+
+    Public ReadOnly Property MaximumAttack As Integer Implements IItem.MaximumAttack
+        Get
+            Return If(HasStatistic(StatisticType.MaximumAttack), GetStatistic(StatisticType.MaximumAttack), 0)
+        End Get
+    End Property
+
+    Public ReadOnly Property AttackDice As Integer Implements IItem.AttackDice
+        Get
+            Return If(HasStatistic(StatisticType.BaseAttack), GetStatistic(StatisticType.BaseAttack), 0)
+        End Get
+    End Property
+
+    Public ReadOnly Property DefendDice As Integer Implements IItem.DefendDice
+        Get
+            Return If(HasStatistic(StatisticType.BaseDefend), GetStatistic(StatisticType.BaseDefend), 0)
+        End Get
+    End Property
+
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItem.Render
         Font.WriteText(displayBuffer, (x, y), $"{ItemData.Glyph}", ItemData.Hue)
     End Sub

@@ -40,6 +40,30 @@
         End Get
     End Property
 
+    Public ReadOnly Property MaximumDefend As Integer Implements IItemInstance.MaximumDefend
+        Get
+            Return Item.MaximumDefend
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumAttack As Integer Implements IItemInstance.MaximumAttack
+        Get
+            Return Item.MaximumAttack
+        End Get
+    End Property
+
+    Public ReadOnly Property DefendDice As Integer Implements IItemInstance.DefendDice
+        Get
+            Return Item.DefendDice
+        End Get
+    End Property
+
+    Public ReadOnly Property AttackDice As Integer Implements IItemInstance.AttackDice
+        Get
+            Return Item.AttackDice
+        End Get
+    End Property
+
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItemInstance.Render
         Item.Render(displayBuffer, x, y)
     End Sub

@@ -25,5 +25,6 @@
                                               })
             SetState(GameState.Neutral)
         End If
+        InventoryIndex = 0
     End Sub
 End Class

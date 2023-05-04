@@ -119,13 +119,13 @@
 
     Private ReadOnly Property DefendDice As Integer
         Get
-            Return Character.GetStatistic(StatisticType.BaseDefend)
+            Return Character.GetStatistic(StatisticType.BaseDefend) + Equipment.Sum(Function(x) x.Value.DefendDice)
         End Get
     End Property
 
     Private ReadOnly Property AttackDice As Integer
         Get
-            Return Character.GetStatistic(StatisticType.BaseAttack)
+            Return Character.GetStatistic(StatisticType.BaseAttack) + Equipment.Sum(Function(x) x.Value.AttackDice)
         End Get
     End Property
 
@@ -387,13 +387,13 @@
 
     Public ReadOnly Property MaximumDefend As Integer Implements ICharacterInstance.MaximumDefend
         Get
-            Return Character.GetStatistic(StatisticType.MaximumDefend)
+            Return Character.GetStatistic(StatisticType.MaximumDefend) + Equipment.Sum(Function(x) x.Value.MaximumDefend)
         End Get
     End Property
 
     Public ReadOnly Property MaximumAttack As Integer Implements ICharacterInstance.MaximumAttack
         Get
-            Return Character.GetStatistic(StatisticType.MaximumAttack)
+            Return Character.GetStatistic(StatisticType.MaximumAttack) + Equipment.Sum(Function(x) x.Value.MaximumAttack)
         End Get
     End Property
 

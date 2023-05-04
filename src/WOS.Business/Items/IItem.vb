@@ -7,5 +7,9 @@
     ReadOnly Property CanEquip As Boolean
     ReadOnly Property UseTrigger As ITrigger
     ReadOnly Property EquipSlot As EquipSlot?
+    ReadOnly Property MaximumDefend As Integer
+    ReadOnly Property MaximumAttack As Integer
+    ReadOnly Property AttackDice As Integer
     Function GetStatistic(statisticType As StatisticType) As Integer
+    ReadOnly Property DefendDice As Integer
 End Interface

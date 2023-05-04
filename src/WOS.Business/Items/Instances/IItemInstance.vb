@@ -5,6 +5,10 @@
     Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer)
     ReadOnly Property UseTrigger As ITrigger
     ReadOnly Property CanEquip As Boolean
+    ReadOnly Property MaximumDefend As Integer
+    ReadOnly Property MaximumAttack As Integer
+    ReadOnly Property DefendDice As Integer
+    ReadOnly Property AttackDice As Integer
     Function GetStatistic(statisticType As StatisticType) As Integer
     Sub SetStatistic(statisticType As StatisticType, value As Integer)
 End Interface
