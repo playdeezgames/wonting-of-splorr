@@ -5,6 +5,7 @@
     Friend Const DanCharacterName = "dan"
     Friend Const SamuliCharacterName = "samuli"
     Friend Const BlobCharacterName = "blob"
+    Friend Const DavidCharacterName = "david"
     Friend Sub InitializeCharacters(_data As WorldData)
         _data.Characters.Clear()
         InitializeCharacter(
@@ -27,6 +28,7 @@
         InitializeCharacter(_data, GrahamCharacterName, "["c, Hue.Red)
         InitializeCharacter(_data, DanCharacterName, "\"c, Hue.Cyan)
         InitializeCharacter(_data, SamuliCharacterName, "Y"c, Hue.LightMagenta)
+        InitializeCharacter(_data, DavidCharacterName, "]"c, Hue.Yellow)
         InitializeCharacter(
             _data,
             BlobCharacterName,

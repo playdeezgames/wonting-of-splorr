@@ -3,8 +3,94 @@
     Friend Const InnShoppeName = "inn"
     Friend Const SmokeShoppeName = "smokeshoppe"
     Friend Const BlacksmithShoppeName = "blacksmith"
+    Friend Const ArmoryShoppeName = "armory"
     Friend Sub InitializeShoppes(data As WorldData)
         data.Shoppes.Clear()
+        data.Shoppes.Add(ArmoryShoppeName, New ShoppeData With
+                         {
+                            .DisplayName = "Armory",
+                            .Trades = New List(Of TradeData) From
+                            {
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = JoolsItemName,
+                                        .Quantity = 2
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = WoodenShieldItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = JoolsItemName,
+                                        .Quantity = 5
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = HelmetItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = JoolsItemName,
+                                        .Quantity = 10
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = ShieldItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = JoolsItemName,
+                                        .Quantity = 25
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = LeatherArmorItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = ChainMailItemName,
+                                        .Quantity = 50
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = ShieldItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = JoolsItemName,
+                                        .Quantity = 100
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = PlateMailItemName,
+                                        .Quantity = 1
+                                    }
+                                }
+                            }
+                         })
         data.Shoppes.Add(BlacksmithShoppeName, New ShoppeData With
                          {
                             .DisplayName = "Blacksmith's Shoppe",
