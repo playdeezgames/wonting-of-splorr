@@ -226,7 +226,11 @@
         CleanUpInventory()
         AddMessage(Nothing, New List(Of (Hue, String)) From
                                {
-                                (Hue.Green, "Its a deal!")
+                                (Hue.Green, "Its a deal!"),
+                                (Hue.Red, $"{-trade.FromItem.Quantity} {trade.FromItem.Item.DisplayName}"),
+                                (Hue.Gray, $"({GetItemCount(trade.FromItem.Item)} {trade.FromItem.Item.DisplayName} remaining)"),
+                                (Hue.Green, $"+{trade.ToItem.Quantity} {trade.ToItem.Item.DisplayName}"),
+                                (Hue.Gray, $"{Name} has {GetItemCount(trade.ToItem.Item)} {trade.ToItem.Item.DisplayName}")
                                })
     End Sub
 
