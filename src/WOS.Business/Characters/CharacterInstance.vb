@@ -451,4 +451,12 @@
             Return CharacterInstanceData.Items.Any
         End Get
     End Property
+
+    Public ReadOnly Property Equipment As IReadOnlyDictionary(Of EquipSlot, IItemInstance) Implements ICharacterInstance.Equipment
+        Get
+            Return CharacterInstanceData.Equipment.ToDictionary(Of EquipSlot, IItemInstance)(
+                Function(x) x.Key,
+                Function(x) New CharacterEquipmentItemInstance(_data, _mapName, _column, _row, x.Key))
+        End Get
+    End Property
 End Class

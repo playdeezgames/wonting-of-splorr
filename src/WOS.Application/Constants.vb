@@ -2,6 +2,7 @@
     Friend Const AbandonGameText = "Abandon Game"
     Friend Const ConfirmQuitPromptText = "Confirm quit?"
     Friend Const EmbarkText = "Embark!"
+    Friend Const EquipmentText = "Equipment"
     Friend Const FightText = "Fight!"
     Friend Const FleeText = "Flee!"
     Friend Const GameMenuText = "Game Menu"

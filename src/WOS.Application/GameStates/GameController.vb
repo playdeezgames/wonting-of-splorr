@@ -26,6 +26,7 @@ Public Class GameController
                     NavigationText,
                     StatisticsText,
                     InventoryText,
+                    EquipmentText,
                     GameMenuText
                  },
                  Sub(menuItem)
@@ -38,6 +39,8 @@ Public Class GameController
                              SetCurrentState(GameState.GameMenu, False)
                          Case InventoryText
                              SetCurrentState(GameState.Inventory, False)
+                         Case EquipmentText
+                             SetCurrentState(GameState.Equipment, False)
                      End Select
                  End Sub,
                  Sub()
@@ -46,6 +49,7 @@ Public Class GameController
         SetState(GameState.Statistics, New StatisticsState(Me, AddressOf SetCurrentState))
         SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState))
         SetState(GameState.InventoryDetails, New InventoryDetailsState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Equipment, New EquipmentState(Me, AddressOf SetCurrentState))
         SetState(GameState.GameOver, New GameOverState(Me, AddressOf SetCurrentState))
         SetState(GameState.Shoppe, New ShoppeState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickCombatUseItem, New PickCombatItemState(Me, AddressOf SetCurrentState))

@@ -21,4 +21,5 @@
     Shoppe
     PickCombatUseItem
     InventoryDetails
+    Equipment
 End Enum
