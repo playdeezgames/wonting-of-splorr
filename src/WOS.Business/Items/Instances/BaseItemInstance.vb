@@ -43,4 +43,12 @@
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItemInstance.Render
         Item.Render(displayBuffer, x, y)
     End Sub
+
+    Public Function GetStatistic(statisticType As StatisticType) As Integer Implements IItemInstance.GetStatistic
+        Return ItemInstanceData.Statistics(statisticType)
+    End Function
+
+    Public Sub SetStatistic(statisticType As StatisticType, value As Integer) Implements IItemInstance.SetStatistic
+        ItemInstanceData.Statistics(statisticType) = value
+    End Sub
 End Class

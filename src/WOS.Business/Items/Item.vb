@@ -64,4 +64,8 @@
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItem.Render
         Font.WriteText(displayBuffer, (x, y), $"{ItemData.Glyph}", ItemData.Hue)
     End Sub
+
+    Public Function GetStatistic(statisticType As StatisticType) As Integer Implements IItem.GetStatistic
+        Return ItemData.Statistics(statisticType)
+    End Function
 End Class

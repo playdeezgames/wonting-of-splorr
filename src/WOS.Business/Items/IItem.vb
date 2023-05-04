@@ -7,4 +7,5 @@
     ReadOnly Property CanEquip As Boolean
     ReadOnly Property UseTrigger As ITrigger
     ReadOnly Property EquipSlot As EquipSlot?
+    Function GetStatistic(statisticType As StatisticType) As Integer
 End Interface

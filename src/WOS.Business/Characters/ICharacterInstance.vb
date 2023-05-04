@@ -15,10 +15,10 @@
     Property Health As Integer
     ReadOnly Property MaximumHealth As Integer
     ReadOnly Property IsDead As Boolean
-    Function GetStatistic(statisticType As StatisticType) As Integer
     Sub Attack(target As ICharacterInstance)
     Function RollDefend() As Integer
     Function RollAttack() As Integer
+    Function GetStatistic(statisticType As StatisticType) As Integer
     Sub SetStatistic(statisticType As StatisticType, value As Integer)
     Sub Die()
     Sub PickUpGroundItem()
