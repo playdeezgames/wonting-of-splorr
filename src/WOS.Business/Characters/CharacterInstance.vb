@@ -167,13 +167,13 @@
         End If
         Dim itemName = MapCellData.Item.ItemName
         Dim quantity = MapCellData.Item.Quantity
+        Dim item As IItem = New Item(_data, itemName)
+        AddItemsToInventory(item, quantity)
         Dim msg As New List(Of (Hue, String)) From
             {
-                (Hue.Green, $"{Name} takes {MapCellData.Item.Quantity} {itemName}")
+                (Hue.Green, $"{Name} takes {MapCellData.Item.Quantity} {itemName}"),
+                (Hue.Gray, $"{Name} has {GetItemCount(item)} {itemName}")
             }
-        Dim item As IItem = New Item(_data, itemName)
-
-        AddItemsToInventory(item, quantity)
         MapCellData.Item = Nothing
         AddMessage(Nothing, msg)
     End Sub

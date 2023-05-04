@@ -34,6 +34,6 @@
         Dim character = World.Avatar.Character
         Dim item = character.Items.ToList()(InventoryIndex)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"{item.Item.Name}(x{item.Quantity})", Hue.Gray)
+        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"{item.Item.DisplayName}(x{item.Quantity})", Hue.Gray)
     End Sub
 End Class

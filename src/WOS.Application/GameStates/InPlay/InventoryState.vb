@@ -15,6 +15,6 @@
                 setState(GameState.SelectMode, False)
             End Sub,
             Function(x) x,
-            Function() World.Avatar.Character.Items.Select(Function(x) $"{x.Item.Name}(x{x.Quantity})"))
+            Function() World.Avatar.Character.Items.Select(Function(x) $"{x.Item.DisplayName}(x{x.Quantity})"))
     End Sub
 End Class

@@ -43,6 +43,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property DisplayName As String Implements IItem.DisplayName
+        Get
+            Return ItemData.DisplayName
+        End Get
+    End Property
+
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItem.Render
         Font.WriteText(displayBuffer, (x, y), $"{ItemData.Glyph}", ItemData.Hue)
     End Sub

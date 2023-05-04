@@ -21,7 +21,7 @@
             Function() GetCombatItems())
     End Sub
     Private Shared Function GetCombatItems() As IEnumerable(Of String)
-        Return World.Avatar.Character.UsableItems.Select(Function(x) $"{x.Item.Name}(x{x.Quantity})")
+        Return World.Avatar.Character.UsableItems.Select(Function(x) $"{x.Item.DisplayName}(x{x.Quantity})")
     End Function
 
     Public Overrides Sub OnStart()

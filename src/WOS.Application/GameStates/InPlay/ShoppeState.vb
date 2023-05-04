@@ -38,7 +38,7 @@
             Dim toItem = trade.ToItem
             Dim fromQuantity = If(fromItem.Quantity > 1, $"{fromItem.Quantity} ", "")
             Dim toQuantity = If(toItem.Quantity > 1, $"{toItem.Quantity} ", "")
-            Dim text = $"{fromQuantity}{fromItem.Item.Name} -> {toQuantity}{toItem.Item.Name}"
+            Dim text = $"{fromQuantity}{fromItem.Item.DisplayName} -> {toQuantity}{toItem.Item.DisplayName}"
             Dim h = If(_tradeIndex = index, Hue.LightRed, Hue.Red)
             If character.CanTrade(trade) Then
                 h = If(_tradeIndex = index, Hue.LightGreen, Hue.Green)
