@@ -77,13 +77,13 @@
                     New Dictionary(Of StatisticType, Integer)),
                 .ItemDrops = If(
                     itemDrops IsNot Nothing,
-                    itemDrops.Select(Function(x) New CreatureItemDropData With
+                    itemDrops.Select(Function(x) New CharacterItemDropData With
                                          {
                                             .ItemName = x.Item1,
                                             .Quantity = x.Item2,
                                             .Weight = x.Item3
                                          }).ToList,
-                    New List(Of CreatureItemDropData))
+                    New List(Of CharacterItemDropData))
             })
     End Sub
 
