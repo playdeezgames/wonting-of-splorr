@@ -260,6 +260,16 @@
         CleanUpInventory()
     End Sub
 
+    Public Sub Equip(item As IItemInstance) Implements ICharacterInstance.Equip
+        If Not item.CanEquip Then
+            AddMessage(Nothing, New List(Of (Hue, String)) From
+                       {
+                        (Hue.Red, $"{Name} cannot equip {item.Item.Name}.")
+                       })
+            Return
+        End If
+    End Sub
+
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character
         Get
             Return New Character(_data, CharacterInstanceData.CharacterName)

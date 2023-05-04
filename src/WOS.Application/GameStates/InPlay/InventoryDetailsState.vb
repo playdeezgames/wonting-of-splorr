@@ -16,11 +16,20 @@
                     Case UseText
                         HandleUse()
                         setState(GameState.Neutral, False)
+                    Case EquipText
+                        HandleEquip()
+                        setState(GameState.Neutral, False)
                 End Select
             End Sub,
             Sub()
                 setState(GameState.Inventory, False)
             End Sub)
+    End Sub
+
+    Private Shared Sub HandleEquip()
+        Dim character = World.Avatar.Character
+        Dim item = character.Items.ToList()(InventoryIndex)
+        character.Equip(item)
     End Sub
 
     Private Shared Sub HandleUse()
