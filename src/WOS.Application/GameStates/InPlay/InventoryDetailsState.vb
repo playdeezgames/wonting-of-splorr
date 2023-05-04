@@ -38,11 +38,17 @@
         If item.CanUse Then
             y -= font.Height
         End If
+        If item.CanEquip Then
+            y -= font.Height
+        End If
         font.WriteText(displayBuffer, (0, y), $"{item.Item.DisplayName}(x{item.Quantity})", Hue.Gray)
         y += font.Height
         If item.CanUse Then
-
             font.WriteText(displayBuffer, (0, y), $"Usage: {item.Item.UseTrigger.TriggerType}", Hue.Gray)
+            y += font.Height
+        End If
+        If item.CanEquip Then
+            font.WriteText(displayBuffer, (0, y), $"Equips: {item.Item.EquipSlot.Value}", Hue.Gray)
             y += font.Height
         End If
     End Sub

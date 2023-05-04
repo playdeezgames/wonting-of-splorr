@@ -5,4 +5,5 @@
     Public Property Statistics As New Dictionary(Of StatisticType, Integer)
     Public Property Items As New List(Of ItemInstanceData)
     Public Property ShoppeName As String
+    Public Property Equipment As New Dictionary(Of EquipSlot, ItemInstanceData)
 End Class

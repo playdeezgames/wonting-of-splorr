@@ -15,21 +15,24 @@
     Friend Const PlateMailItemName = "platemail"
     Friend Const LeatherArmorItemName = "leatherarmor"
     Friend Sub InitializeItems(data As WorldData)
-        InitializeHealingItem(data, PotionItemName, "Potion", " "c, Hue.Red, 5, stacks:=True)
-        InitializeItem(data, SwordItemName, "Sword", "!"c, Hue.DarkGray)
         InitializeItem(data, CrownsItemName, "Crowns", """"c, Hue.Yellow, stacks:=True)
         InitializeItem(data, JoolsItemName, "Jools", "#"c, Hue.LightCyan, stacks:=True)
-        InitializeItem(data, ClubItemName, "Club", "$"c, Hue.Brown, stacks:=True)
-        InitializeItem(data, DaggerItemName, "Dagger", "%"c, Hue.DarkGray, stacks:=True)
-        InitializeItem(data, SpearItemName, "Spear", "&"c, Hue.Brown, stacks:=True)
-        InitializeItem(data, AxeItemName, "Axe", "'"c, Hue.DarkGray, stacks:=True)
-        InitializeItem(data, WoodenShieldItemName, "Wooden Shield", "("c, Hue.Brown, stacks:=True)
-        InitializeItem(data, HelmetItemName, "Helmet", ")"c, Hue.DarkGray, stacks:=True)
-        InitializeItem(data, LeatherArmorItemName, "Leather Armor", "*"c, Hue.Brown, stacks:=True)
-        InitializeItem(data, ShieldItemName, "Shield", "+"c, Hue.DarkGray, stacks:=True)
-        InitializeItem(data, ChainMailItemName, "Chain Mail", ","c, Hue.DarkGray, stacks:=True)
-        InitializeItem(data, PlateMailItemName, "Plate Mail", "-"c, Hue.Gray, stacks:=True)
+
         InitializeHealingItem(data, FoodItemName, "Chikkin", "."c, Hue.Brown, 1, stacks:=True)
+        InitializeHealingItem(data, PotionItemName, "Potion", " "c, Hue.Red, 5, stacks:=True)
+
+        InitializeItem(data, SwordItemName, "Sword", "!"c, Hue.DarkGray, equipSlot:=EquipSlot.Weapon)
+        InitializeItem(data, ClubItemName, "Club", "$"c, Hue.Brown, equipSlot:=EquipSlot.Weapon)
+        InitializeItem(data, DaggerItemName, "Dagger", "%"c, Hue.DarkGray, equipSlot:=EquipSlot.Weapon)
+        InitializeItem(data, SpearItemName, "Spear", "&"c, Hue.Brown, equipSlot:=EquipSlot.Weapon)
+        InitializeItem(data, AxeItemName, "Axe", "'"c, Hue.DarkGray, equipSlot:=EquipSlot.Weapon)
+
+        InitializeItem(data, WoodenShieldItemName, "Wooden Shield", "("c, Hue.Brown, equipSlot:=EquipSlot.Shield)
+        InitializeItem(data, HelmetItemName, "Helmet", ")"c, Hue.DarkGray, equipSlot:=EquipSlot.Head)
+        InitializeItem(data, LeatherArmorItemName, "Leather Armor", "*"c, Hue.Brown, equipSlot:=EquipSlot.Torso)
+        InitializeItem(data, ShieldItemName, "Shield", "+"c, Hue.DarkGray, equipSlot:=EquipSlot.Shield)
+        InitializeItem(data, ChainMailItemName, "Chain Mail", ","c, Hue.DarkGray, equipSlot:=EquipSlot.Torso)
+        InitializeItem(data, PlateMailItemName, "Plate Mail", "-"c, Hue.Gray, equipSlot:=EquipSlot.Torso)
     End Sub
 
     Private Sub InitializeHealingItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, healing As Integer, Optional stacks As Boolean = False)
@@ -41,13 +44,14 @@
             }
     End Sub
 
-    Private Sub InitializeItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, Optional stacks As Boolean = False)
+    Private Sub InitializeItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, Optional stacks As Boolean = False, Optional equipSlot As EquipSlot? = Nothing)
         data.Items(itemName) = New ItemData With {
             .DisplayName = displayName,
             .FontName = ItemFontName,
             .Glyph = glyph,
             .Hue = hue,
-            .Stacks = stacks
+            .Stacks = stacks,
+            .EquipSlot = equipSlot
             }
     End Sub
 End Module

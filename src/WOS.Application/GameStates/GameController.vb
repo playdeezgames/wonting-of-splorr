@@ -58,8 +58,8 @@ Public Class GameController
                  AddressOf SetCurrentState,
                  "Game Menu:",
                  New List(Of String) From {
-                    AbandonGameText,
-                    SaveGameText
+                    SaveGameText,
+                    AbandonGameText
                  },
                  Sub(menuItem)
                      Select Case menuItem
