@@ -243,15 +243,16 @@
             Return
         End If
         Dim trigger = itemInstance.UseTrigger
+        Dim lines = New List(Of (Hue, String))
+        Dim sfx As Sfx? = Nothing
         Select Case trigger.TriggerType
             Case TriggerType.Healing
                 Health += trigger.Healing
-                AddMessage(Nothing, New List(Of (Hue, String)) From
-                       {
-                        (Hue.Green, $"{Name} now has {Health}/{MaximumHealth} health.")
-                       })
+                lines.Add((Hue.Green, $"{Name} now has {Health}/{MaximumHealth} health."))
         End Select
         itemInstance.Quantity -= 1
+        lines.Add((Hue.Gray, $"{Name} has {GetItemCount(itemInstance.Item)} {itemInstance.Item.DisplayName} remaining."))
+        AddMessage(sfx, lines)
         CleanUpInventory()
     End Sub
 
