@@ -6,4 +6,5 @@
     BaseAttack
     BaseDefend
     Money
+    Durability
 End Enum

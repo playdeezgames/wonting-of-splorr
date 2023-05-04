@@ -21,18 +21,18 @@
         InitializeHealingItem(data, FoodItemName, "Chikkin", "."c, Hue.Brown, 1, stacks:=True)
         InitializeHealingItem(data, PotionItemName, "Potion", " "c, Hue.Red, 5, stacks:=True)
 
-        InitializeItem(data, SwordItemName, "Sword", "!"c, Hue.DarkGray, equipSlot:=EquipSlot.Weapon)
-        InitializeItem(data, ClubItemName, "Club", "$"c, Hue.Brown, equipSlot:=EquipSlot.Weapon)
-        InitializeItem(data, DaggerItemName, "Dagger", "%"c, Hue.DarkGray, equipSlot:=EquipSlot.Weapon)
-        InitializeItem(data, SpearItemName, "Spear", "&"c, Hue.Brown, equipSlot:=EquipSlot.Weapon)
-        InitializeItem(data, AxeItemName, "Axe", "'"c, Hue.DarkGray, equipSlot:=EquipSlot.Weapon)
+        InitializeWeaponItem(data, SwordItemName, "Sword", "!"c, Hue.DarkGray, 6, 2, 100, equipSlot:=EquipSlot.Weapon)
+        InitializeWeaponItem(data, ClubItemName, "Club", "$"c, Hue.Brown, 3, 1, 250, equipSlot:=EquipSlot.Weapon)
+        InitializeWeaponItem(data, DaggerItemName, "Dagger", "%"c, Hue.DarkGray, 3, 1, 150, equipSlot:=EquipSlot.Weapon)
+        InitializeWeaponItem(data, SpearItemName, "Spear", "&"c, Hue.Brown, 3, 2, 50, equipSlot:=EquipSlot.Weapon)
+        InitializeWeaponItem(data, AxeItemName, "Axe", "'"c, Hue.DarkGray, 9, 3, 75, equipSlot:=EquipSlot.Weapon)
 
-        InitializeItem(data, WoodenShieldItemName, "Wooden Shield", "("c, Hue.Brown, equipSlot:=EquipSlot.Shield)
-        InitializeItem(data, HelmetItemName, "Helmet", ")"c, Hue.DarkGray, equipSlot:=EquipSlot.Head)
-        InitializeItem(data, LeatherArmorItemName, "Leather Armor", "*"c, Hue.Brown, equipSlot:=EquipSlot.Torso)
-        InitializeItem(data, ShieldItemName, "Shield", "+"c, Hue.DarkGray, equipSlot:=EquipSlot.Shield)
-        InitializeItem(data, ChainMailItemName, "Chain Mail", ","c, Hue.DarkGray, equipSlot:=EquipSlot.Torso)
-        InitializeItem(data, PlateMailItemName, "Plate Mail", "-"c, Hue.Gray, equipSlot:=EquipSlot.Torso)
+        InitializeArmorItem(data, WoodenShieldItemName, "Wooden Shield", "("c, Hue.Brown, 2, 1, 25, equipSlot:=EquipSlot.Shield)
+        InitializeArmorItem(data, HelmetItemName, "Helmet", ")"c, Hue.DarkGray, 2, 0, 50, equipSlot:=EquipSlot.Head)
+        InitializeArmorItem(data, LeatherArmorItemName, "Leather Armor", "*"c, Hue.Brown, 2, 1, 25, equipSlot:=EquipSlot.Torso)
+        InitializeArmorItem(data, ShieldItemName, "Shield", "+"c, Hue.DarkGray, 2, 1, 75, equipSlot:=EquipSlot.Shield)
+        InitializeArmorItem(data, ChainMailItemName, "Chain Mail", ","c, Hue.DarkGray, 2, 1, 50, equipSlot:=EquipSlot.Torso)
+        InitializeArmorItem(data, PlateMailItemName, "Plate Mail", "-"c, Hue.Gray, 4, 2, 100, equipSlot:=EquipSlot.Torso)
     End Sub
 
     Private Sub InitializeHealingItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, healing As Integer, Optional stacks As Boolean = False)
@@ -43,7 +43,18 @@
                 .Healing = healing
             }
     End Sub
-
+    Private Sub InitializeWeaponItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, attack As Integer, maximumAttack As Integer, durability As Integer, Optional stacks As Boolean = False, Optional equipSlot As EquipSlot? = Nothing)
+        InitializeItem(data, itemName, displayName, glyph, hue, stacks, equipSlot)
+        data.Items(itemName).Statistics(StatisticType.BaseAttack) = attack
+        data.Items(itemName).Statistics(StatisticType.MaximumAttack) = maximumAttack
+        data.Items(itemName).Statistics(StatisticType.Durability) = durability
+    End Sub
+    Private Sub InitializeArmorItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, defend As Integer, maximumDefend As Integer, durability As Integer, Optional stacks As Boolean = False, Optional equipSlot As EquipSlot? = Nothing)
+        InitializeItem(data, itemName, displayName, glyph, hue, stacks, equipSlot)
+        data.Items(itemName).Statistics(StatisticType.BaseDefend) = defend
+        data.Items(itemName).Statistics(StatisticType.MaximumDefend) = maximumDefend
+        data.Items(itemName).Statistics(StatisticType.Durability) = durability
+    End Sub
     Private Sub InitializeItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, Optional stacks As Boolean = False, Optional equipSlot As EquipSlot? = Nothing)
         data.Items(itemName) = New ItemData With {
             .DisplayName = displayName,
