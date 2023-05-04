@@ -40,6 +40,7 @@
         CreateTeleportTrigger(map, MapColumns \ 2, MapRows - 1, ForestMap.MapName, ForestMap.MapColumns \ 2, ForestMap.MapRows \ 2)
         CreateTeleportTrigger(map, 6, 5, InnMap.MapName, InnMap.MapColumns \ 2, InnMap.MapRows - 2)
         CreateTeleportTrigger(map, 12, 5, ExchangeMap.MapName, ExchangeMap.MapColumns \ 2, ExchangeMap.MapRows - 2)
+        CreateTeleportTrigger(map, 18, 5, ArmoryMap.MapName, ArmoryMap.MapColumns \ 2, ArmoryMap.MapRows - 2)
         CreateTeleportTrigger(map, 19, 18, SmokeShoppeMap.MapName, 1, SmokeShoppeMap.MapRows \ 2)
         CreateTeleportTrigger(map, 5, 18, BlacksmithMap.MapName, BlacksmithMap.MapColumns - 2, BlacksmithMap.MapRows \ 2)
         CreateMessageTrigger(map, 7, 5, New List(Of (Hue, String)) From {
@@ -49,6 +50,9 @@
                              })
         CreateMessageTrigger(map, 13, 5, New List(Of (Hue, String)) From {
                                 (Hue.Gray, """Honest"" Dan's Currency Exchange")
+                             })
+        CreateMessageTrigger(map, 19, 5, New List(Of (Hue, String)) From {
+                                (Hue.Gray, "David's Armory")
                              })
         CreateMessageTrigger(map, 19, 19, New List(Of (Hue, String)) From {
                                 (Hue.Gray, "Marcus's Magick and Smoke Shoppe")
@@ -62,5 +66,6 @@
         InitializeExchange(_data)
         InitializeBlacksmith(_data)
         InitializeSmokeShoppe(_data)
+        InitializeArmory(_data)
     End Sub
 End Module
