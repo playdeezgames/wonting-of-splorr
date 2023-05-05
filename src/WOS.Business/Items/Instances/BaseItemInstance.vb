@@ -67,7 +67,7 @@
     Public Property WeaponDurability As Integer Implements IItemInstance.WeaponDurability
         Get
             Dim statistics = ItemInstanceData.Statistics
-            Return If(statistics.ContainsKey(StatisticType.WeaponDurability), MaximumWeaponDurability - statistics(StatisticType.WeaponDurability), 0)
+            Return If(statistics.ContainsKey(StatisticType.WeaponWear), MaximumWeaponDurability - statistics(StatisticType.WeaponWear), MaximumWeaponDurability)
         End Get
         Set(value As Integer)
             SetStatistic(StatisticType.WeaponWear, Math.Clamp(MaximumWeaponDurability - value, 0, MaximumWeaponDurability))
@@ -77,7 +77,7 @@
     Public Property ArmorDurability As Integer Implements IItemInstance.ArmorDurability
         Get
             Dim statistics = ItemInstanceData.Statistics
-            Return If(statistics.ContainsKey(StatisticType.ArmorDurability), MaximumArmorDurability - statistics(StatisticType.ArmorDurability), 0)
+            Return If(statistics.ContainsKey(StatisticType.ArmorWear), MaximumArmorDurability - statistics(StatisticType.ArmorWear), MaximumArmorDurability)
         End Get
         Set(value As Integer)
             SetStatistic(StatisticType.ArmorWear, Math.Clamp(MaximumArmorDurability - value, 0, MaximumArmorDurability))

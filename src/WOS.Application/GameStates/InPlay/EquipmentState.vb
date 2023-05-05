@@ -23,4 +23,15 @@
     End Sub
 
 
+    Public Overrides Sub OnStart()
+        MyBase.OnStart()
+        Dim character = World.Avatar.Character
+        If Not character.HasAnyEquipment Then
+            character.AddMessage(Nothing, New List(Of (Hue, String)) From {
+                    (Hue.Red, $"{character.Name} has no equipment.")
+                })
+            SetState(GameState.Neutral)
+        End If
+    End Sub
+
 End Class

@@ -40,4 +40,5 @@
     ReadOnly Property Equipment As IReadOnlyDictionary(Of EquipSlot, IItemInstance)
     Sub WearWeapon(wear As Integer)
     Sub WearArmor(wear As Integer)
+    ReadOnly Property HasAnyEquipment As Boolean
 End Interface

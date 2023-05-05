@@ -81,6 +81,7 @@
     Public Sub Attack(target As ICharacterInstance) Implements ICharacterInstance.Attack
         Dim defend As Integer = target.RollDefend()
         Dim attack As Integer = RollAttack()
+        WearWeapon(attack)
         Dim msg As New List(Of (Hue, String)) From {
             (Hue.Gray, $"{Name} attacks {target.Name}!"),
             (Hue.Gray, $"{Name} rolls attack of {attack}!"),
@@ -89,7 +90,6 @@
         Dim msgSfx As Sfx?
         If attack > defend Then
             Dim damage = attack - defend
-            WearWeapon(defend)
             target.WearArmor(damage)
             msg.Add((Hue.Gray, $"{target.Name} takes {damage} damage!"))
             target.Health -= damage
@@ -514,6 +514,12 @@
             Return CharacterInstanceData.Equipment.ToDictionary(Of EquipSlot, IItemInstance)(
                 Function(x) x.Key,
                 Function(x) New CharacterEquipmentItemInstance(_data, _mapName, _column, _row, x.Key))
+        End Get
+    End Property
+
+    Public ReadOnly Property HasAnyEquipment As Boolean Implements ICharacterInstance.HasAnyEquipment
+        Get
+            Return CharacterInstanceData.Equipment.Any
         End Get
     End Property
 End Class
