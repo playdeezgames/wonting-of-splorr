@@ -19,7 +19,8 @@
                 {StatisticType.BaseAttack, 3},
                 {StatisticType.MaximumAttack, 1},
                 {StatisticType.BaseDefend, 4},
-                {StatisticType.MaximumDefend, 2}
+                {StatisticType.MaximumDefend, 2},
+                {StatisticType.Intelligence, 10}
             },
             isMessageSink:=True,
             deathSfx:=Sfx.PlayerDeath,

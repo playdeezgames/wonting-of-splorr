@@ -20,5 +20,6 @@
         font.WriteText(displayBuffer, (0, 1 * font.Height), $"Health: {character.Health}/{character.MaximumHealth}", Hue.Gray)
         font.WriteText(displayBuffer, (0, 2 * font.Height), $"Attack: {character.MaximumAttack}", Hue.Gray)
         font.WriteText(displayBuffer, (0, 3 * font.Height), $"Defend: {character.MaximumDefend}", Hue.Gray)
+        font.WriteText(displayBuffer, (0, 4 * font.Height), $"Intelligence: {character.Intelligence}", Hue.Gray)
     End Sub
 End Class

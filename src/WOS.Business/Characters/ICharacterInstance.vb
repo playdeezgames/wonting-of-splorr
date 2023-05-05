@@ -26,6 +26,7 @@
     Sub MakeTrade(trade As ITrade)
     Sub Use(itemInstance As IItemInstance)
     Sub Equip(item As IItemInstance)
+    ReadOnly Property Intelligence As Integer
     ReadOnly Property MaximumDefend As Integer
     ReadOnly Property MaximumAttack As Integer
     ReadOnly Property Items As IEnumerable(Of IItemInstance)

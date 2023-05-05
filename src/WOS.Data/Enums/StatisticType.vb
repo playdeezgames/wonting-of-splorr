@@ -10,4 +10,5 @@
     ArmorDurability
     WeaponWear
     ArmorWear
+    Intelligence
 End Enum

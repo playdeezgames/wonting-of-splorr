@@ -522,4 +522,17 @@
             Return CharacterInstanceData.Equipment.Any
         End Get
     End Property
+
+    Public ReadOnly Property Intelligence As Integer Implements ICharacterInstance.Intelligence
+        Get
+            Return If(
+                HasStatistic(StatisticType.Intelligence),
+                GetStatistic(StatisticType.Intelligence),
+                Character.GetStatistic(StatisticType.Intelligence))
+        End Get
+    End Property
+
+    Private Function HasStatistic(statisticType As StatisticType) As Boolean
+        Return CharacterInstanceData.Statistics.ContainsKey(statisticType)
+    End Function
 End Class
