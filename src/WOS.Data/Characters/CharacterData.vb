@@ -5,4 +5,5 @@
     Public Property ItemDrops As New List(Of CharacterItemDropData)
     Public Property DeathSfx As Sfx?
     Public Property HitSfx As Sfx?
+    Public Property DisplayName As String
 End Class

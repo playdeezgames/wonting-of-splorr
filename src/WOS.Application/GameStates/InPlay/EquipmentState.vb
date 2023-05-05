@@ -28,7 +28,7 @@
         Dim character = World.Avatar.Character
         If Not character.HasAnyEquipment Then
             character.AddMessage(Nothing, New List(Of (Hue, String)) From {
-                    (Hue.Red, $"{character.Name} has no equipment.")
+                    (Hue.Red, $"{character.DisplayName} has no equipment.")
                 })
             SetState(GameState.Neutral)
         End If

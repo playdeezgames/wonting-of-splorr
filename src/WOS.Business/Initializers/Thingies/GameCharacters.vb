@@ -11,6 +11,7 @@
         InitializeCharacter(
             _data,
             N00bCharacterName,
+            "N00b",
             " "c,
             Hue.Brown,
             statistics:=New Dictionary(Of StatisticType, Integer) From
@@ -25,14 +26,15 @@
             isMessageSink:=True,
             deathSfx:=Sfx.PlayerDeath,
             hitSfx:=Sfx.PlayerHit)
-        InitializeCharacter(_data, MarcusCharacterName, "Z"c, Hue.Magenta)
-        InitializeCharacter(_data, GrahamCharacterName, "["c, Hue.Red)
-        InitializeCharacter(_data, DanCharacterName, "\"c, Hue.Cyan)
-        InitializeCharacter(_data, SamuliCharacterName, "Y"c, Hue.LightMagenta)
-        InitializeCharacter(_data, DavidCharacterName, "]"c, Hue.Yellow)
+        InitializeCharacter(_data, MarcusCharacterName, "Blackmage", "Z"c, Hue.Magenta)
+        InitializeCharacter(_data, GrahamCharacterName, "Gorachan", "["c, Hue.Red)
+        InitializeCharacter(_data, DanCharacterName, "Dan", "\"c, Hue.Cyan)
+        InitializeCharacter(_data, SamuliCharacterName, "Sam", "Y"c, Hue.LightMagenta)
+        InitializeCharacter(_data, DavidCharacterName, "Dave", "]"c, Hue.Yellow)
         InitializeCharacter(
             _data,
             BlobCharacterName,
+            "Blob",
             "="c,
             Hue.Cyan,
             statistics:=New Dictionary(Of StatisticType, Integer) From
@@ -55,6 +57,7 @@
     Private Sub InitializeCharacter(
                                    _data As WorldData,
                                    characterName As String,
+                                   displayName As String,
                                    glyph As Char,
                                    hue As Hue,
                                    Optional statistics As IReadOnlyDictionary(Of StatisticType, Integer) = Nothing,
@@ -66,6 +69,7 @@
             characterName,
             New CharacterData With
             {
+                .DisplayName = displayName,
                 .FontName = CharacterFontName,
                 .Glyph = glyph,
                 .Hue = hue,

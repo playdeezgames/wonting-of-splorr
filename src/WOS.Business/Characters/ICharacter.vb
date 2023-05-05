@@ -6,4 +6,5 @@
     Function GetStatistic(statisticType As StatisticType) As Integer
     Function GenerateItemDrop() As (IItem, Integer)
     ReadOnly Property HitSfx As Sfx?
+    ReadOnly Property DisplayName As String
 End Interface

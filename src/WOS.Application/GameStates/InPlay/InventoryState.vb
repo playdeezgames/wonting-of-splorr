@@ -22,7 +22,7 @@
         Dim character = World.Avatar.Character
         If Not character.HasItems Then
             character.AddMessage(Nothing, New List(Of (Hue, String)) From {
-                    (Hue.Red, $"{character.Name} has no inventory.")
+                    (Hue.Red, $"{character.DisplayName} has no inventory.")
                 })
             SetState(GameState.Neutral)
         End If

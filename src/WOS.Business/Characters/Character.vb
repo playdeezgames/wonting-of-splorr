@@ -62,4 +62,10 @@
             Return CharacterData.HitSfx
         End Get
     End Property
+
+    Public ReadOnly Property DisplayName As String Implements ICharacter.DisplayName
+        Get
+            Return CharacterData.DisplayName
+        End Get
+    End Property
 End Class

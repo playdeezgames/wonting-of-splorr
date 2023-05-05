@@ -11,7 +11,7 @@
     Sub Teleport(mapName As String, column As Integer, row As Integer)
     Sub AddMessage(sfx As Sfx?, lines As IEnumerable(Of (Hue, String)))
     Sub NextMessage()
-    ReadOnly Property Name As String
+    ReadOnly Property DisplayName As String
     Property Health As Integer
     ReadOnly Property MaximumHealth As Integer
     ReadOnly Property IsDead As Boolean

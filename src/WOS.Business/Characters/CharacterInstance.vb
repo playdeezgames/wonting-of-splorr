@@ -83,26 +83,26 @@
         Dim attack As Integer = RollAttack()
         WearWeapon(attack)
         Dim msg As New List(Of (Hue, String)) From {
-            (Hue.Gray, $"{Name} attacks {target.Name}!"),
-            (Hue.Gray, $"{Name} rolls attack of {attack}!"),
-            (Hue.Gray, $"{target.Name} rolls defend of {defend}!")
+            (Hue.Gray, $"{DisplayName} attacks {target.DisplayName}!"),
+            (Hue.Gray, $"{DisplayName} rolls attack of {attack}!"),
+            (Hue.Gray, $"{target.DisplayName} rolls defend of {defend}!")
         }
         Dim msgSfx As Sfx?
         If attack > defend Then
             Dim damage = attack - defend
             target.WearArmor(damage)
-            msg.Add((Hue.Gray, $"{target.Name} takes {damage} damage!"))
+            msg.Add((Hue.Gray, $"{target.DisplayName} takes {damage} damage!"))
             target.Health -= damage
             If target.IsDead Then
-                msg.Add((Hue.Gray, $"{Name} kills {target.Name}!"))
+                msg.Add((Hue.Gray, $"{DisplayName} kills {target.DisplayName}!"))
                 msgSfx = target.DeathSfx
             Else
-                msg.Add((Hue.Gray, $"{target.Name} has {target.Health} health"))
+                msg.Add((Hue.Gray, $"{target.DisplayName} has {target.Health} health"))
                 msgSfx = target.HitSfx
             End If
         Else
             msgSfx = Sfx.Miss
-            msg.Add((Hue.Gray, $"{Name} misses!"))
+            msg.Add((Hue.Gray, $"{DisplayName} misses!"))
         End If
         AddMessage(msgSfx, msg)
         target.AddMessage(msgSfx, msg)
@@ -175,8 +175,8 @@
         AddItemsToInventory(item, quantity)
         Dim msg As New List(Of (Hue, String)) From
             {
-                (Hue.Green, $"{Name} takes {MapCellData.Item.Quantity} {itemName}"),
-                (Hue.Gray, $"{Name} has {GetItemCount(item)} {itemName}")
+                (Hue.Green, $"{DisplayName} takes {MapCellData.Item.Quantity} {itemName}"),
+                (Hue.Gray, $"{DisplayName} has {GetItemCount(item)} {itemName}")
             }
         MapCellData.Item = Nothing
         AddMessage(Nothing, msg)
@@ -234,7 +234,7 @@
                                 (Hue.Red, $"{-trade.FromItem.Quantity} {trade.FromItem.Item.DisplayName}"),
                                 (Hue.Gray, $"({GetItemCount(trade.FromItem.Item)} {trade.FromItem.Item.DisplayName} remaining)"),
                                 (Hue.Green, $"+{trade.ToItem.Quantity} {trade.ToItem.Item.DisplayName}"),
-                                (Hue.Gray, $"{Name} has {GetItemCount(trade.ToItem.Item)} {trade.ToItem.Item.DisplayName}")
+                                (Hue.Gray, $"{DisplayName} has {GetItemCount(trade.ToItem.Item)} {trade.ToItem.Item.DisplayName}")
                                })
     End Sub
 
@@ -246,7 +246,7 @@
         If Not itemInstance.CanUse Then
             AddMessage(Nothing, New List(Of (Hue, String)) From
                        {
-                        (Hue.Red, $"{Name} cannot use {itemInstance.Item.Name}.")
+                        (Hue.Red, $"{DisplayName} cannot use {itemInstance.Item.Name}.")
                        })
             Return
         End If
@@ -256,10 +256,10 @@
         Select Case trigger.TriggerType
             Case TriggerType.Healing
                 Health += trigger.Healing
-                lines.Add((Hue.Green, $"{Name} now has {Health}/{MaximumHealth} health."))
+                lines.Add((Hue.Green, $"{DisplayName} now has {Health}/{MaximumHealth} health."))
         End Select
         itemInstance.Quantity -= 1
-        lines.Add((Hue.Gray, $"{Name} has {GetItemCount(itemInstance.Item)} {itemInstance.Item.DisplayName} remaining."))
+        lines.Add((Hue.Gray, $"{DisplayName} has {GetItemCount(itemInstance.Item)} {itemInstance.Item.DisplayName} remaining."))
         AddMessage(sfx, lines)
         CleanUpInventory()
     End Sub
@@ -268,7 +268,7 @@
         If Not item.CanEquip Then
             AddMessage(Nothing, New List(Of (Hue, String)) From
                        {
-                        (Hue.Red, $"{Name} cannot equip {item.Item.Name}.")
+                        (Hue.Red, $"{DisplayName} cannot equip {item.Item.Name}.")
                        })
             Return
         End If
@@ -278,7 +278,7 @@
         End If
         Dim sfx As Sfx? = Nothing
         Dim messageLines As New List(Of (Hue, String)) From {
-            (Hue.Green, $"{Name} equips {item.Item.DisplayName} to {item.Item.EquipSlot}")
+            (Hue.Green, $"{DisplayName} equips {item.Item.DisplayName} to {item.Item.EquipSlot}")
         }
         AddMessage(sfx, messageLines)
         CharacterInstanceData.Equipment(equipSlot) = New ItemInstanceData With
@@ -323,7 +323,7 @@
             If weapon.WeaponDurability <= 0 Then
                 'it broke!
                 AddMessage(Nothing, New List(Of (Hue, String)) From {
-                        (Hue.Red, $"{Name}'s {weapon.Item.DisplayName} broke!")
+                        (Hue.Red, $"{DisplayName}'s {weapon.Item.DisplayName} broke!")
                            })
                 weapons = EquippedWeapons
             End If
@@ -347,7 +347,7 @@
             If armor.ArmorDurability <= 0 Then
                 'it broke!
                 AddMessage(Nothing, New List(Of (Hue, String)) From {
-                        (Hue.Red, $"{Name}'s {armor.Item.DisplayName} broke!")
+                        (Hue.Red, $"{DisplayName}'s {armor.Item.DisplayName} broke!")
                            })
                 armors = EquippedArmor
             End If
@@ -414,9 +414,9 @@
         End Set
     End Property
 
-    Public ReadOnly Property Name As String Implements ICharacterInstance.Name
+    Public ReadOnly Property DisplayName As String Implements ICharacterInstance.DisplayName
         Get
-            Return Character.Name
+            Return Character.DisplayName
         End Get
     End Property
 
