@@ -47,13 +47,13 @@
         InitializeItem(data, itemName, displayName, glyph, hue, stacks, equipSlot)
         data.Items(itemName).Statistics(StatisticType.BaseAttack) = attack
         data.Items(itemName).Statistics(StatisticType.MaximumAttack) = maximumAttack
-        data.Items(itemName).Statistics(StatisticType.Durability) = durability
+        data.Items(itemName).Statistics(StatisticType.WeaponDurability) = durability
     End Sub
     Private Sub InitializeArmorItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, defend As Integer, maximumDefend As Integer, durability As Integer, Optional stacks As Boolean = False, Optional equipSlot As EquipSlot? = Nothing)
         InitializeItem(data, itemName, displayName, glyph, hue, stacks, equipSlot)
         data.Items(itemName).Statistics(StatisticType.BaseDefend) = defend
         data.Items(itemName).Statistics(StatisticType.MaximumDefend) = maximumDefend
-        data.Items(itemName).Statistics(StatisticType.Durability) = durability
+        data.Items(itemName).Statistics(StatisticType.ArmorDurability) = durability
     End Sub
     Private Sub InitializeItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, Optional stacks As Boolean = False, Optional equipSlot As EquipSlot? = Nothing)
         data.Items(itemName) = New ItemData With {

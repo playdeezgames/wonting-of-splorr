@@ -38,4 +38,6 @@
     Sub Unequip(equipSlot As EquipSlot)
     ReadOnly Property HasItems As Boolean
     ReadOnly Property Equipment As IReadOnlyDictionary(Of EquipSlot, IItemInstance)
+    Sub WearWeapon(wear As Integer)
+    Sub WearArmor(wear As Integer)
 End Interface

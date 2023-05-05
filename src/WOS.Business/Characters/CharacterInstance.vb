@@ -79,7 +79,6 @@
     End Function
 
     Public Sub Attack(target As ICharacterInstance) Implements ICharacterInstance.Attack
-        Dim msgSfx As Sfx? = Nothing
         Dim defend As Integer = target.RollDefend()
         Dim attack As Integer = RollAttack()
         Dim msg As New List(Of (Hue, String)) From {
@@ -87,8 +86,11 @@
             (Hue.Gray, $"{Name} rolls attack of {attack}!"),
             (Hue.Gray, $"{target.Name} rolls defend of {defend}!")
         }
+        Dim msgSfx As Sfx?
         If attack > defend Then
             Dim damage = attack - defend
+            WearWeapon(defend)
+            target.WearArmor(damage)
             msg.Add((Hue.Gray, $"{target.Name} takes {damage} damage!"))
             target.Health -= damage
             If target.IsDead Then
@@ -130,11 +132,13 @@
     End Property
 
     Public Function RollDefend() As Integer Implements ICharacterInstance.RollDefend
-        Return RollDice(DefendDice, MaximumDefend)
+        Dim defendRoll = RollDice(DefendDice, MaximumDefend)
+        Return defendRoll
     End Function
 
     Public Function RollAttack() As Integer Implements ICharacterInstance.RollAttack
-        Return RollDice(AttackDice, MaximumAttack)
+        Dim attackRoll = RollDice(AttackDice, MaximumAttack)
+        Return attackRoll
     End Function
 
     Public Sub SetStatistic(statisticType As StatisticType, value As Integer) Implements ICharacterInstance.SetStatistic
@@ -296,6 +300,59 @@
             CharacterInstanceData.Equipment.Remove(equipSlot)
             CharacterInstanceData.Items.Add(item)
         End If
+    End Sub
+
+    ReadOnly Property EquippedWeapons As IEnumerable(Of IItemInstance)
+        Get
+            Return Equipment.Values.Where(Function(x) x.IsWeapon AndAlso x.WeaponDurability > 0)
+        End Get
+    End Property
+
+    ReadOnly Property EquippedArmor As IEnumerable(Of IItemInstance)
+        Get
+            Return Equipment.Values.Where(Function(x) x.IsArmor AndAlso x.ArmorDurability > 0)
+        End Get
+    End Property
+
+    Public Sub WearWeapon(wear As Integer) Implements ICharacterInstance.WearWeapon
+        Dim weapons = EquippedWeapons
+        While (wear > 0 AndAlso weapons.Any)
+            Dim weapon = RNG.FromEnumerable(weapons)
+            wear -= 1
+            weapon.WeaponDurability -= 1
+            If weapon.WeaponDurability <= 0 Then
+                'it broke!
+                AddMessage(Nothing, New List(Of (Hue, String)) From {
+                        (Hue.Red, $"{Name}'s {weapon.Item.DisplayName} broke!")
+                           })
+                weapons = EquippedWeapons
+            End If
+        End While
+        CleanUpEquipment()
+    End Sub
+
+    Private Sub CleanUpEquipment()
+        Dim brokenSlots = Equipment.Where(Function(x) (x.Value.IsWeapon AndAlso x.Value.WeaponDurability = 0) OrElse (x.Value.IsArmor AndAlso x.Value.ArmorDurability = 0)).Select(Function(x) x.Key)
+        For Each brokenSlot In brokenSlots
+            Unequip(brokenSlot)
+        Next
+    End Sub
+
+    Public Sub WearArmor(wear As Integer) Implements ICharacterInstance.WearArmor
+        Dim armors = EquippedArmor
+        While (wear > 0 AndAlso armors.Any)
+            Dim armor = RNG.FromEnumerable(armors)
+            wear -= 1
+            armor.ArmorDurability -= 1
+            If armor.ArmorDurability <= 0 Then
+                'it broke!
+                AddMessage(Nothing, New List(Of (Hue, String)) From {
+                        (Hue.Red, $"{Name}'s {armor.Item.DisplayName} broke!")
+                           })
+                armors = EquippedArmor
+            End If
+        End While
+        CleanUpEquipment()
     End Sub
 
     Public ReadOnly Property Character As ICharacter Implements ICharacterInstance.Character

@@ -64,6 +64,50 @@
         End Get
     End Property
 
+    Public Property WeaponDurability As Integer Implements IItemInstance.WeaponDurability
+        Get
+            Dim statistics = ItemInstanceData.Statistics
+            Return If(statistics.ContainsKey(StatisticType.WeaponDurability), MaximumWeaponDurability - statistics(StatisticType.WeaponDurability), 0)
+        End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.WeaponWear, Math.Clamp(MaximumWeaponDurability - value, 0, MaximumWeaponDurability))
+        End Set
+    End Property
+
+    Public Property ArmorDurability As Integer Implements IItemInstance.ArmorDurability
+        Get
+            Dim statistics = ItemInstanceData.Statistics
+            Return If(statistics.ContainsKey(StatisticType.ArmorDurability), MaximumArmorDurability - statistics(StatisticType.ArmorDurability), 0)
+        End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.ArmorWear, Math.Clamp(MaximumArmorDurability - value, 0, MaximumArmorDurability))
+        End Set
+    End Property
+
+    Public ReadOnly Property MaximumWeaponDurability As Integer Implements IItemInstance.MaximumWeaponDurability
+        Get
+            Return Item.MaximumWeaponDurability
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumArmorDurability As Integer Implements IItemInstance.MaximumArmorDurability
+        Get
+            Return Item.MaximumArmorDurability
+        End Get
+    End Property
+
+    Public ReadOnly Property IsWeapon As Boolean Implements IItemInstance.IsWeapon
+        Get
+            Return Item.IsWeapon
+        End Get
+    End Property
+
+    Public ReadOnly Property IsArmor As Boolean Implements IItemInstance.IsArmor
+        Get
+            Return Item.IsArmor
+        End Get
+    End Property
+
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItemInstance.Render
         Item.Render(displayBuffer, x, y)
     End Sub

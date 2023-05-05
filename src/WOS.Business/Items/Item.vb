@@ -89,6 +89,30 @@
         End Get
     End Property
 
+    Public ReadOnly Property IsArmor As Boolean Implements IItem.IsArmor
+        Get
+            Return HasStatistic(StatisticType.BaseDefend)
+        End Get
+    End Property
+
+    Public ReadOnly Property IsWeapon As Boolean Implements IItem.IsWeapon
+        Get
+            Return HasStatistic(StatisticType.BaseAttack)
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumArmorDurability As Integer Implements IItem.MaximumArmorDurability
+        Get
+            Return If(HasStatistic(StatisticType.ArmorDurability), GetStatistic(StatisticType.ArmorDurability), 0)
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumWeaponDurability As Integer Implements IItem.MaximumWeaponDurability
+        Get
+            Return If(HasStatistic(StatisticType.WeaponDurability), GetStatistic(StatisticType.WeaponDurability), 0)
+        End Get
+    End Property
+
     Public Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer) Implements IItem.Render
         Font.WriteText(displayBuffer, (x, y), $"{ItemData.Glyph}", ItemData.Hue)
     End Sub

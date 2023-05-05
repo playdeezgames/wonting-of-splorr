@@ -11,4 +11,10 @@
     ReadOnly Property AttackDice As Integer
     Function GetStatistic(statisticType As StatisticType) As Integer
     Sub SetStatistic(statisticType As StatisticType, value As Integer)
+    Property WeaponDurability As Integer
+    Property ArmorDurability As Integer
+    ReadOnly Property MaximumWeaponDurability As Integer
+    ReadOnly Property MaximumArmorDurability As Integer
+    ReadOnly Property IsWeapon As Boolean
+    ReadOnly Property IsArmor As Boolean
 End Interface

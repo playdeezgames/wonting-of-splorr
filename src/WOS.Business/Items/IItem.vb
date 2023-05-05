@@ -12,4 +12,8 @@
     ReadOnly Property AttackDice As Integer
     Function GetStatistic(statisticType As StatisticType) As Integer
     ReadOnly Property DefendDice As Integer
+    ReadOnly Property IsArmor As Boolean
+    ReadOnly Property IsWeapon As Boolean
+    ReadOnly Property MaximumArmorDurability As Integer
+    ReadOnly Property MaximumWeaponDurability As Integer
 End Interface

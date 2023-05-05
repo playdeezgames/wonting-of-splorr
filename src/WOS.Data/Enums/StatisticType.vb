@@ -6,5 +6,8 @@
     BaseAttack
     BaseDefend
     Money
-    Durability
+    WeaponDurability
+    ArmorDurability
+    WeaponWear
+    ArmorWear
 End Enum
