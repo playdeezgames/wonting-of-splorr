@@ -50,6 +50,12 @@
         If item.CanEquip Then
             y -= font.Height
         End If
+        If item.IsWeapon Then
+            y -= font.Height
+        End If
+        If item.IsArmor Then
+            y -= font.Height
+        End If
         font.WriteText(displayBuffer, (0, y), $"{item.Item.DisplayName}(x{item.Quantity})", Hue.Gray)
         y += font.Height
         If item.CanUse Then
@@ -58,6 +64,14 @@
         End If
         If item.CanEquip Then
             font.WriteText(displayBuffer, (0, y), $"Equips: {item.Item.EquipSlot.Value}", Hue.Gray)
+            y += font.Height
+        End If
+        If item.IsWeapon Then
+            font.WriteText(displayBuffer, (0, y), $"Durability: {item.WeaponDurability}/{item.MaximumWeaponDurability}", Hue.Gray)
+            y += font.Height
+        End If
+        If item.IsArmor Then
+            font.WriteText(displayBuffer, (0, y), $"Durability: {item.ArmorDurability}/{item.MaximumArmorDurability}", Hue.Gray)
             y += font.Height
         End If
     End Sub
