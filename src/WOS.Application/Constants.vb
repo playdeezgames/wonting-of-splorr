@@ -27,4 +27,5 @@
     Friend Const UseText = "Use"
     Friend Const EquipText = "Equip"
     Friend Const WindowSizeText = "Window Size..."
+    Friend Const UnequipText = "Unequip"
 End Module

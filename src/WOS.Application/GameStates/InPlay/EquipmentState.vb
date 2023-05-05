@@ -7,10 +7,10 @@
             setState,
             "Equipment",
             Sub(index)
-
+                InventoryIndex = index
             End Sub,
             Sub(menuItem)
-
+                setState(GameState.EquipmentDetails, False)
             End Sub,
             Sub()
                 setState(GameState.SelectMode, False)
@@ -32,6 +32,7 @@
                 })
             SetState(GameState.Neutral)
         End If
+        InventoryIndex = 0
     End Sub
 
 End Class

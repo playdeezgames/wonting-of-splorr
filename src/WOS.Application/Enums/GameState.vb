@@ -22,4 +22,5 @@
     PickCombatUseItem
     InventoryDetails
     Equipment
+    EquipmentDetails
 End Enum
