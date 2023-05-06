@@ -1,8 +1,10 @@
 ﻿Friend Module Constants
     Friend Const AbandonGameText = "Abandon Game"
+    Friend Const AdvancementText = "Advancement"
     Friend Const ConfirmQuitPromptText = "Confirm quit?"
     Friend Const EmbarkText = "Embark!"
     Friend Const EquipmentText = "Equipment"
+    Friend Const EquipText = "Equip"
     Friend Const FightText = "Fight!"
     Friend Const FleeText = "Flee!"
     Friend Const GameMenuText = "Game Menu"
@@ -24,8 +26,7 @@
     Friend Const Slot5Text = "Slot 5"
     Friend Const StatisticsText = "Statistics"
     Friend Const CombatUseText = "Use..."
-    Friend Const UseText = "Use"
-    Friend Const EquipText = "Equip"
-    Friend Const WindowSizeText = "Window Size..."
     Friend Const UnequipText = "Unequip"
+    Friend Const UseText = "Use"
+    Friend Const WindowSizeText = "Window Size..."
 End Module

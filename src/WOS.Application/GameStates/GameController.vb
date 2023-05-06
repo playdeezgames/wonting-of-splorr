@@ -27,6 +27,7 @@ Public Class GameController
                     StatisticsText,
                     InventoryText,
                     EquipmentText,
+                    AdvancementText,
                     GameMenuText
                  },
                  Sub(menuItem)
