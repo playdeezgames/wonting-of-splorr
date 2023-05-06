@@ -13,7 +13,7 @@
     Sub NextMessage()
     ReadOnly Property DisplayName As String
     Property Health As Integer
-    ReadOnly Property MaximumHealth As Integer
+    Property MaximumHealth As Integer
     ReadOnly Property IsDead As Boolean
     Sub Attack(target As ICharacterInstance)
     Function RollDefend() As Integer
@@ -26,7 +26,7 @@
     Sub MakeTrade(trade As ITrade)
     Sub Use(itemInstance As IItemInstance)
     Sub Equip(item As IItemInstance)
-    ReadOnly Property Intelligence As Integer
+    Property Intelligence As Integer
     ReadOnly Property MaximumDefend As Integer
     ReadOnly Property MaximumAttack As Integer
     ReadOnly Property Items As IEnumerable(Of IItemInstance)

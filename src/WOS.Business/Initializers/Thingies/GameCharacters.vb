@@ -23,7 +23,7 @@
                 {StatisticType.MaximumDefend, 2},
                 {StatisticType.Intelligence, 10},
                 {StatisticType.IntelligenceIncreaseMultiplier, 1},
-                {StatisticType.HealthIncreaseMultiplier, 10}
+                {StatisticType.HealthIncreaseMultiplier, 5}
             },
             isMessageSink:=True,
             deathSfx:=Sfx.PlayerDeath,

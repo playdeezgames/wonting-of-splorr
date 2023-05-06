@@ -22,17 +22,35 @@
             End Sub)
     End Sub
     Private Shared Sub HandleMaximumHealthIncrease()
+        Dim character = World.Avatar.Character
+        Dim cost = character.MaximumHealth * character.GetStatistic(StatisticType.HealthIncreaseMultiplier)
+        If cost <= character.XP Then
+            character.XP -= cost
+            character.MaximumHealth += 1
+        End If
     End Sub
     Private Shared Sub HandleIntelligenceIncrease()
+        Dim character = World.Avatar.Character
+        Dim cost = character.Intelligence * character.GetStatistic(StatisticType.IntelligenceIncreaseMultiplier)
+        If cost <= character.XP Then
+            character.XP -= cost
+            character.Intelligence += 1
+        End If
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim character = World.Avatar.Character
         Dim font = Fonts(GameFont.Font5x7)
-        Dim y = ViewHeight - font.Height * 3
-        font.WriteText(displayBuffer, (0, y), $"Intelligence Cost: {character.Intelligence * character.GetStatistic(StatisticType.IntelligenceIncreaseMultiplier)}", Hue.Gray)
+        Dim y = ViewHeight - font.Height * 5
+        font.WriteText(displayBuffer, (0, y), $"Current Intelligence: {character.Intelligence}", Hue.Gray)
         y += font.Height
-        font.WriteText(displayBuffer, (0, y), $"Health Cost: {character.MaximumHealth * character.GetStatistic(StatisticType.HealthIncreaseMultiplier)}", Hue.Gray)
+        Dim cost = character.Intelligence * character.GetStatistic(StatisticType.IntelligenceIncreaseMultiplier)
+        font.WriteText(displayBuffer, (0, y), $"Intelligence Cost: {cost}", If(cost > character.XP, Hue.Red, Hue.Green))
+        y += font.Height
+        font.WriteText(displayBuffer, (0, y), $"Current Health: {character.MaximumHealth}", Hue.Gray)
+        y += font.Height
+        cost = character.MaximumHealth * character.GetStatistic(StatisticType.HealthIncreaseMultiplier)
+        font.WriteText(displayBuffer, (0, y), $"Health Cost: {cost}", If(cost > character.XP, Hue.Red, Hue.Green))
         y += font.Height
         font.WriteText(displayBuffer, (0, y), $"Current XP: {character.XP}", Hue.Gray)
     End Sub

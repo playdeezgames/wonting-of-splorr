@@ -433,10 +433,13 @@
         End Set
     End Property
 
-    Public ReadOnly Property MaximumHealth As Integer Implements ICharacterInstance.MaximumHealth
+    Public Property MaximumHealth As Integer Implements ICharacterInstance.MaximumHealth
         Get
             Return If(HasStatistic(StatisticType.MaximumHealth), GetStatistic(StatisticType.MaximumHealth), Character.GetStatistic(StatisticType.MaximumHealth))
         End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.MaximumHealth, value)
+        End Set
     End Property
 
     Public ReadOnly Property IsDead As Boolean Implements ICharacterInstance.IsDead
@@ -526,13 +529,16 @@
         End Get
     End Property
 
-    Public ReadOnly Property Intelligence As Integer Implements ICharacterInstance.Intelligence
+    Public Property Intelligence As Integer Implements ICharacterInstance.Intelligence
         Get
             Return If(
                 HasStatistic(StatisticType.Intelligence),
                 GetStatistic(StatisticType.Intelligence),
                 Character.GetStatistic(StatisticType.Intelligence))
         End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.Intelligence, value)
+        End Set
     End Property
 
     Public ReadOnly Property XPValue As Integer Implements ICharacterInstance.XPValue
