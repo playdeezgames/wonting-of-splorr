@@ -4,6 +4,7 @@
     Friend Const GrahamCharacterName = "graham"
     Friend Const DanCharacterName = "dan"
     Friend Const SamuliCharacterName = "samuli"
+    Friend Const ChickenCharacterName = "chicken"
     Friend Const BlobCharacterName = "blob"
     Friend Const DavidCharacterName = "david"
     Friend Sub InitializeCharacters(_data As WorldData)
@@ -52,6 +53,28 @@
             {
                 (CrownsItemName, 1, 1),
                 (JoolsItemName, 1, 1)
+            },
+            deathSfx:=Sfx.EnemyDeath,
+            hitSfx:=Sfx.EnemyHit)
+        InitializeCharacter(
+            _data,
+            ChickenCharacterName,
+            "Chicken",
+            "V"c,
+            Hue.Yellow,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 1},
+                {StatisticType.BaseAttack, 4},
+                {StatisticType.MaximumAttack, 2},
+                {StatisticType.BaseDefend, 1},
+                {StatisticType.MaximumDefend, 1},
+                {StatisticType.XPValue, 0}
+            },
+            itemDrops:=New List(Of (String, Integer, Integer)) From
+            {
+                (FoodItemName, 1, 1),
+                (FoodItemName, 0, 1)
             },
             deathSfx:=Sfx.EnemyDeath,
             hitSfx:=Sfx.EnemyHit)

@@ -94,10 +94,12 @@
             msg.Add((Hue.Gray, $"{target.DisplayName} takes {damage} damage!"))
             target.Health -= damage
             If target.IsDead Then
-                XP += target.XPValue
                 msg.Add((Hue.Gray, $"{DisplayName} kills {target.DisplayName}!"))
-                msg.Add((Hue.Gray, $"{DisplayName} gains {target.XPValue} XP!"))
-                msg.Add((Hue.Gray, $"{DisplayName} has {XP} XP!"))
+                If target.XPValue > 0 Then
+                    XP += target.XPValue
+                    msg.Add((Hue.Gray, $"{DisplayName} gains {target.XPValue} XP!"))
+                    msg.Add((Hue.Gray, $"{DisplayName} has {XP} XP!"))
+                End If
                 msgSfx = target.DeathSfx
             Else
                 msg.Add((Hue.Gray, $"{target.DisplayName} has {target.Health} health"))

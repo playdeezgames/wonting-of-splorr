@@ -67,5 +67,11 @@
         InitializeBlacksmith(_data)
         InitializeSmokeShoppe(_data)
         InitializeArmory(_data)
+        PopulateMap(map, townSpawns)
     End Sub
+    Private ReadOnly townSpawns As IReadOnlyDictionary(Of String, Integer) =
+        New Dictionary(Of String, Integer) From
+        {
+            {ChickenCharacterName, 10}
+        }
 End Module
