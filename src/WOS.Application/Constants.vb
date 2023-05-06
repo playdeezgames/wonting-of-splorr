@@ -8,6 +8,8 @@
     Friend Const FightText = "Fight!"
     Friend Const FleeText = "Flee!"
     Friend Const GameMenuText = "Game Menu"
+    Friend Const IncreaseIntelligenceText = "Increase Intelligence"
+    Friend Const IncreaseMaximumHealthText = "Increase Maximum Health"
     Friend Const InventoryText = "Inventory"
     Friend Const LoadGameText = "Load..."
     Friend Const MainMenuCaptionText = "Main Menu:"

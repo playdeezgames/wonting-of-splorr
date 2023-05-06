@@ -13,4 +13,6 @@
     Intelligence
     XPValue
     XP
+    IntelligenceIncreaseMultiplier
+    HealthIncreaseMultiplier
 End Enum

@@ -23,4 +23,5 @@
     InventoryDetails
     Equipment
     EquipmentDetails
+    Advancement
 End Enum

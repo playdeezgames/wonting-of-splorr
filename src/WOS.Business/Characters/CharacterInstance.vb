@@ -75,7 +75,7 @@
     End Sub
 
     Public Function GetStatistic(statisticType As StatisticType) As Integer Implements ICharacterInstance.GetStatistic
-        Return CharacterInstanceData.Statistics(statisticType)
+        Return If(HasStatistic(statisticType), CharacterInstanceData.Statistics(statisticType), Character.GetStatistic(statisticType))
     End Function
 
     Public Sub Attack(target As ICharacterInstance) Implements ICharacterInstance.Attack

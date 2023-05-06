@@ -42,6 +42,8 @@ Public Class GameController
                              SetCurrentState(GameState.Inventory, False)
                          Case EquipmentText
                              SetCurrentState(GameState.Equipment, False)
+                         Case AdvancementText
+                             SetCurrentState(GameState.Advancement, False)
                      End Select
                  End Sub,
                  Sub()
@@ -55,6 +57,7 @@ Public Class GameController
         SetState(GameState.GameOver, New GameOverState(Me, AddressOf SetCurrentState))
         SetState(GameState.Shoppe, New ShoppeState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickCombatUseItem, New PickCombatItemState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Advancement, New AdvancementState(Me, AddressOf SetCurrentState))
         SetGameMenuStates()
     End Sub
 
