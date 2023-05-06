@@ -435,7 +435,7 @@
 
     Public ReadOnly Property MaximumHealth As Integer Implements ICharacterInstance.MaximumHealth
         Get
-            Return Character.GetStatistic(StatisticType.MaximumHealth)
+            Return If(HasStatistic(StatisticType.MaximumHealth), GetStatistic(StatisticType.MaximumHealth), Character.GetStatistic(StatisticType.MaximumHealth))
         End Get
     End Property
 
