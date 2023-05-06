@@ -11,4 +11,6 @@
     WeaponWear
     ArmorWear
     Intelligence
+    XPValue
+    XP
 End Enum

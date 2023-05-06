@@ -3,6 +3,7 @@
     ReadOnly Property IsMessageSink As Boolean
     ReadOnly Property DeathSfx As Sfx?
     Sub Render(displayBuffer As IPixelSink(Of Hue), x As Integer, y As Integer)
+    Function HasStatistic(statisticType As StatisticType) As Boolean
     Function GetStatistic(statisticType As StatisticType) As Integer
     Function GenerateItemDrop() As (IItem, Integer)
     ReadOnly Property HitSfx As Sfx?

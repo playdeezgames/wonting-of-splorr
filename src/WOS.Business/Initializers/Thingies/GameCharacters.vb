@@ -43,7 +43,8 @@
                 {StatisticType.BaseAttack, 2},
                 {StatisticType.MaximumAttack, 1},
                 {StatisticType.BaseDefend, 1},
-                {StatisticType.MaximumDefend, 1}
+                {StatisticType.MaximumDefend, 1},
+                {StatisticType.XPValue, 1}
             },
             itemDrops:=New List(Of (String, Integer, Integer)) From
             {

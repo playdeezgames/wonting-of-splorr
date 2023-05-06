@@ -94,7 +94,10 @@
             msg.Add((Hue.Gray, $"{target.DisplayName} takes {damage} damage!"))
             target.Health -= damage
             If target.IsDead Then
+                XP += target.XPValue
                 msg.Add((Hue.Gray, $"{DisplayName} kills {target.DisplayName}!"))
+                msg.Add((Hue.Gray, $"{DisplayName} gains {target.XPValue} XP!"))
+                msg.Add((Hue.Gray, $"{DisplayName} has {XP} XP!"))
                 msgSfx = target.DeathSfx
             Else
                 msg.Add((Hue.Gray, $"{target.DisplayName} has {target.Health} health"))
@@ -530,6 +533,21 @@
                 GetStatistic(StatisticType.Intelligence),
                 Character.GetStatistic(StatisticType.Intelligence))
         End Get
+    End Property
+
+    Public ReadOnly Property XPValue As Integer Implements ICharacterInstance.XPValue
+        Get
+            Return If(Character.HasStatistic(StatisticType.XPValue), Character.GetStatistic(StatisticType.XPValue), 0)
+        End Get
+    End Property
+
+    Public Property XP As Integer Implements ICharacterInstance.XP
+        Get
+            Return If(HasStatistic(StatisticType.XP), GetStatistic(StatisticType.XP), 0)
+        End Get
+        Set(value As Integer)
+            SetStatistic(StatisticType.XP, Math.Max(value, 0))
+        End Set
     End Property
 
     Private Function HasStatistic(statisticType As StatisticType) As Boolean

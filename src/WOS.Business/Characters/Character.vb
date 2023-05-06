@@ -33,6 +33,10 @@
         Return (New Item(_data, chosen.ItemName), chosen.Quantity)
     End Function
 
+    Public Function HasStatistic(statisticType As StatisticType) As Boolean Implements ICharacter.HasStatistic
+        Return CharacterData.Statistics.ContainsKey(statisticType)
+    End Function
+
     Public ReadOnly Property Name As String Implements ICharacter.Name
         Get
             Return _characterName

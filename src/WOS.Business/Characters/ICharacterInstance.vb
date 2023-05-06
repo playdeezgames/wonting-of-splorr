@@ -42,4 +42,6 @@
     Sub WearWeapon(wear As Integer)
     Sub WearArmor(wear As Integer)
     ReadOnly Property HasAnyEquipment As Boolean
+    ReadOnly Property XPValue As Integer
+    Property XP As Integer
 End Interface
