@@ -33,6 +33,13 @@
     Friend Const PathETerrainName = "PathE"
     Friend Const PathFTerrainName = "PathF"
     Friend Const SignTerrainName = "Sign"
+    Friend Const TowerTerrainName = "Tower"
+    Friend Const CastleTerrainName = "Castle"
+    Friend Const UfoTerrainName = "Ufo"
+    Friend Const CobbleStoneTerrainName = "Cobblestone"
+    Friend Const StoneTerrainName = "Stone"
+    Friend Const SteelWallTerrainName = "SteelWall"
+    Friend Const TombstoneTerrainName = "Tombstone"
 
     Private Sub InitializeTerrain(_data As WorldData, terrainName As String, glyph As Char, hue As Hue, tenantability As Boolean, Optional canSpawn As Boolean = False)
         _data.Terrains.Add(terrainName, New TerrainData With {.FontName = TerrainFontName, .Glyph = glyph, .Hue = hue, .Tenantable = tenantability, .CanSpawn = canSpawn})
@@ -73,5 +80,12 @@
         InitializeTerrain(_data, PathETerrainName, ">"c, Hue.DarkGray, True)
         InitializeTerrain(_data, PathFTerrainName, "?"c, Hue.DarkGray, True)
         InitializeTerrain(_data, SignTerrainName, "@"c, Hue.Brown, False)
+        InitializeTerrain(_data, TowerTerrainName, "A"c, Hue.Gray, False)
+        InitializeTerrain(_data, CastleTerrainName, "B"c, Hue.Gray, False)
+        InitializeTerrain(_data, UfoTerrainName, "C"c, Hue.Green, False)
+        InitializeTerrain(_data, CobbleStoneTerrainName, "D"c, Hue.Gray, False)
+        InitializeTerrain(_data, StoneTerrainName, "E"c, Hue.Gray, False)
+        InitializeTerrain(_data, SteelWallTerrainName, "F"c, Hue.DarkGray, False)
+        InitializeTerrain(_data, TombstoneTerrainName, "G"c, Hue.Gray, False)
     End Sub
 End Module
