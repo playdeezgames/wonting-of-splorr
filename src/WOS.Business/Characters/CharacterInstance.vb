@@ -286,11 +286,19 @@
             (Hue.Green, $"{DisplayName} equips {item.Item.DisplayName} to {item.Item.EquipSlot}")
         }
         AddMessage(sfx, messageLines)
-        CharacterInstanceData.Equipment(equipSlot) = New ItemInstanceData With
+        Dim instanceData = New ItemInstanceData With
             {
                 .ItemName = item.Item.Name,
                 .Quantity = item.Quantity
             }
+        CharacterInstanceData.Equipment(equipSlot) = instanceData
+        Dim equippedItem = New CharacterEquipmentItemInstance(_data, _mapName, _column, _row, equipSlot)
+        If item.IsWeapon Then
+            equippedItem.WeaponDurability = item.WeaponDurability
+        End If
+        If item.IsArmor Then
+            equippedItem.ArmorDurability = item.ArmorDurability
+        End If
         item.Quantity = 0
         CleanUpInventory()
     End Sub
@@ -339,8 +347,10 @@
     Private Sub CleanUpEquipment()
         Dim brokenSlots = Equipment.Where(Function(x) (x.Value.IsWeapon AndAlso x.Value.WeaponDurability = 0) OrElse (x.Value.IsArmor AndAlso x.Value.ArmorDurability = 0)).Select(Function(x) x.Key)
         For Each brokenSlot In brokenSlots
+            Equipment(brokenSlot).Quantity = 0
             Unequip(brokenSlot)
         Next
+        CleanUpInventory()
     End Sub
 
     Public Sub WearArmor(wear As Integer) Implements ICharacterInstance.WearArmor
