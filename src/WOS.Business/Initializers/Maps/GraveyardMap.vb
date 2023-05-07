@@ -23,8 +23,8 @@
     Private ReadOnly graveyardSpawns As IReadOnlyDictionary(Of String, Integer) =
         New Dictionary(Of String, Integer) From
         {
-            {RatCharacterName, 100},
-            {SnakeCharacterName, 100},
-            {BatCharacterName, 100}
+            {RatCharacterName, 250},
+            {SnakeCharacterName, 250},
+            {BatCharacterName, 255}
         }
 End Module

@@ -98,7 +98,8 @@
             },
             itemDrops:=New List(Of (String, Integer, Integer)) From
             {
-                (FoodItemName, 0, 1)
+                (FoodItemName, 0, 4),
+                (CrownsItemName, 1, 1)
             },
             deathSfx:=Sfx.EnemyDeath,
             hitSfx:=Sfx.EnemyHit)
@@ -119,7 +120,8 @@
             },
             itemDrops:=New List(Of (String, Integer, Integer)) From
             {
-                (FoodItemName, 0, 1)
+                (FoodItemName, 0, 4),
+                (FoodItemName, 1, 1)
             },
             deathSfx:=Sfx.EnemyDeath,
             hitSfx:=Sfx.EnemyHit)
@@ -140,7 +142,8 @@
             },
             itemDrops:=New List(Of (String, Integer, Integer)) From
             {
-                (FoodItemName, 0, 1)
+                (FoodItemName, 0, 4),
+                (JoolsItemName, 1, 1)
             },
             deathSfx:=Sfx.EnemyDeath,
             hitSfx:=Sfx.EnemyHit)
