@@ -14,9 +14,16 @@
     Friend Const ChainMailItemName = "chainmail"
     Friend Const PlateMailItemName = "platemail"
     Friend Const LeatherArmorItemName = "leatherarmor"
+    Friend Const RatTailItemName = "rattail"
+    Friend Const BatWingItemName = "batwing"
+    Friend Const SnakeFangItemName = "snakefang"
     Friend Sub InitializeItems(data As WorldData)
         InitializeItem(data, CrownsItemName, "Crowns", """"c, Hue.Yellow, stacks:=True)
         InitializeItem(data, JoolsItemName, "Jools", "#"c, Hue.LightCyan, stacks:=True)
+
+        InitializeItem(data, RatTailItemName, "Rat Tail", "/"c, Hue.Gray, stacks:=True)
+        InitializeItem(data, BatWingItemName, "Bat Wing", "0"c, Hue.DarkGray, stacks:=True)
+        InitializeItem(data, SnakeFangItemName, "Snake Fang", "1"c, Hue.White, stacks:=True)
 
         InitializeHealingItem(data, FoodItemName, "Chikkin", "."c, Hue.Brown, 1, stacks:=True)
         InitializeHealingItem(data, PotionItemName, "Potion", " "c, Hue.Red, 5, stacks:=True)
