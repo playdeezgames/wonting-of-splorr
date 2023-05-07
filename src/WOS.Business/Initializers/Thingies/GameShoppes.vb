@@ -180,6 +180,45 @@
                                         .ItemName = PotionItemName,
                                         .Quantity = 1
                                     }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = RatTailItemName,
+                                        .Quantity = 5
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = JoolsItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = SnakeFangItemName,
+                                        .Quantity = 3
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = JoolsItemName,
+                                        .Quantity = 1
+                                    }
+                                },
+                                New TradeData With
+                                {
+                                    .FromItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = BatWingItemName,
+                                        .Quantity = 4
+                                    },
+                                    .ToItem = New ItemInstanceData With
+                                    {
+                                        .ItemName = JoolsItemName,
+                                        .Quantity = 1
+                                    }
                                 }
                             }
                          })
