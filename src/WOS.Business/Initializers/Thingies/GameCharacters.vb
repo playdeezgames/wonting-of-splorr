@@ -7,6 +7,9 @@
     Friend Const ChickenCharacterName = "chicken"
     Friend Const BlobCharacterName = "blob"
     Friend Const DavidCharacterName = "david"
+    Friend Const RatCharacterName = "rat"
+    Friend Const SnakeCharacterName = "snake"
+    Friend Const BatCharacterName = "bat"
     Friend Sub InitializeCharacters(_data As WorldData)
         _data.Characters.Clear()
         InitializeCharacter(
@@ -74,6 +77,69 @@
             itemDrops:=New List(Of (String, Integer, Integer)) From
             {
                 (FoodItemName, 1, 1),
+                (FoodItemName, 0, 1)
+            },
+            deathSfx:=Sfx.EnemyDeath,
+            hitSfx:=Sfx.EnemyHit)
+        InitializeCharacter(
+            _data,
+            RatCharacterName,
+            "Rat",
+            "!"c,
+            Hue.Gray,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 1},
+                {StatisticType.BaseAttack, 4},
+                {StatisticType.MaximumAttack, 2},
+                {StatisticType.BaseDefend, 2},
+                {StatisticType.MaximumDefend, 2},
+                {StatisticType.XPValue, 0}
+            },
+            itemDrops:=New List(Of (String, Integer, Integer)) From
+            {
+                (FoodItemName, 0, 1)
+            },
+            deathSfx:=Sfx.EnemyDeath,
+            hitSfx:=Sfx.EnemyHit)
+        InitializeCharacter(
+            _data,
+            SnakeCharacterName,
+            "Snake",
+            """"c,
+            Hue.Green,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 1},
+                {StatisticType.BaseAttack, 6},
+                {StatisticType.MaximumAttack, 3},
+                {StatisticType.BaseDefend, 1},
+                {StatisticType.MaximumDefend, 1},
+                {StatisticType.XPValue, 0}
+            },
+            itemDrops:=New List(Of (String, Integer, Integer)) From
+            {
+                (FoodItemName, 0, 1)
+            },
+            deathSfx:=Sfx.EnemyDeath,
+            hitSfx:=Sfx.EnemyHit)
+        InitializeCharacter(
+            _data,
+            BatCharacterName,
+            "Bat",
+            "#"c,
+            Hue.DarkGray,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 1},
+                {StatisticType.BaseAttack, 4},
+                {StatisticType.MaximumAttack, 2},
+                {StatisticType.BaseDefend, 3},
+                {StatisticType.MaximumDefend, 3},
+                {StatisticType.XPValue, 0}
+            },
+            itemDrops:=New List(Of (String, Integer, Integer)) From
+            {
                 (FoodItemName, 0, 1)
             },
             deathSfx:=Sfx.EnemyDeath,

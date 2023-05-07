@@ -61,6 +61,9 @@
         FillMap(_data, map, mapColumns - 4, mapRows - 4, 3, 3, EmptyTerrainName)
         PopulateMap(map, forestSpawns)
         CreateTeleportTrigger(map, mapColumns \ 2, mapRows \ 2, TownMap.MapName, TownMap.MapColumns \ 2, TownMap.MapRows - 2)
+        FillMap(_data, map, 2, 2, 1, 1, DownStairsTerrainName)
+        CreateTeleportTrigger(map, 2, 2, GraveyardMap.MapName, GraveyardMap.MapColumns \ 2, GraveyardMap.MapRows - 2)
+        InitializeGraveyard(_data)
     End Sub
     Private ReadOnly forestSpawns As IReadOnlyDictionary(Of String, Integer) =
         New Dictionary(Of String, Integer) From
