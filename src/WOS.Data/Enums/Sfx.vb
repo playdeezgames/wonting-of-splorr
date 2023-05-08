@@ -5,4 +5,5 @@
     LevelUp
     Miss
     PlayerDeath
+    Money
 End Enum

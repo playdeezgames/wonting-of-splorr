@@ -20,7 +20,8 @@ Module Program
                 {Sfx.LevelUp, "Content/LevelUp.wav"},
                 {Sfx.Miss, "Content/Miss.wav"},
                 {Sfx.PlayerDeath, "Content/PlayerDeath.wav"},
-                {Sfx.PlayerHit, "Content/PlayerHit.wav"}
+                {Sfx.PlayerHit, "Content/PlayerHit.wav"},
+                {Sfx.Money, "Content/Money.wav"}
             })
             host.Run()
         End Using

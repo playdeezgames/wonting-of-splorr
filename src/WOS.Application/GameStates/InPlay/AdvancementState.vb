@@ -12,27 +12,29 @@
             Sub(menuItem)
                 Select Case menuItem
                     Case IncreaseIntelligenceText
-                        HandleIntelligenceIncrease()
+                        HandleIntelligenceIncrease(AddressOf parent.PlaySfx)
                     Case IncreaseMaximumHealthText
-                        HandleMaximumHealthIncrease()
+                        HandleMaximumHealthIncrease(AddressOf parent.PlaySfx)
                 End Select
             End Sub,
             Sub()
                 setState(GameState.SelectMode, False)
             End Sub)
     End Sub
-    Private Shared Sub HandleMaximumHealthIncrease()
+    Private Shared Sub HandleMaximumHealthIncrease(playSfx As Action(Of Sfx))
         Dim character = World.Avatar.Character
         Dim cost = character.MaximumHealth * character.GetStatistic(StatisticType.HealthIncreaseMultiplier)
         If cost <= character.XP Then
+            playSfx(Sfx.LevelUp)
             character.XP -= cost
             character.MaximumHealth += 1
         End If
     End Sub
-    Private Shared Sub HandleIntelligenceIncrease()
+    Private Shared Sub HandleIntelligenceIncrease(playSfx As Action(Of Sfx))
         Dim character = World.Avatar.Character
         Dim cost = character.Intelligence * character.GetStatistic(StatisticType.IntelligenceIncreaseMultiplier)
         If cost <= character.XP Then
+            playSfx(Sfx.LevelUp)
             character.XP -= cost
             character.Intelligence += 1
         End If

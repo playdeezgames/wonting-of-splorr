@@ -178,13 +178,14 @@
         Dim quantity = MapCellData.Item.Quantity
         Dim item As IItem = New Item(_data, itemName)
         AddItemsToInventory(item, quantity)
+        Dim sfx As Sfx? = item.PickUpSfx
         Dim msg As New List(Of (Hue, String)) From
             {
                 (Hue.Green, $"{DisplayName} takes {MapCellData.Item.Quantity} {itemName}"),
                 (Hue.Gray, $"{DisplayName} has {GetItemCount(item)} {itemName}")
             }
         MapCellData.Item = Nothing
-        AddMessage(Nothing, msg)
+        AddMessage(sfx, msg)
     End Sub
 
     Private Sub AddItemsToInventory(item As IItem, quantity As Integer)

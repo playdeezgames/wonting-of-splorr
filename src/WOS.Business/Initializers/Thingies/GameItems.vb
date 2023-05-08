@@ -18,8 +18,8 @@
     Friend Const BatWingItemName = "batwing"
     Friend Const SnakeFangItemName = "snakefang"
     Friend Sub InitializeItems(data As WorldData)
-        InitializeItem(data, CrownsItemName, "Crowns", """"c, Hue.Yellow, stacks:=True)
-        InitializeItem(data, JoolsItemName, "Jools", "#"c, Hue.LightCyan, stacks:=True)
+        InitializeItem(data, CrownsItemName, "Crowns", """"c, Hue.Yellow, stacks:=True, pickUpSfx:=Sfx.Money)
+        InitializeItem(data, JoolsItemName, "Jools", "#"c, Hue.LightCyan, stacks:=True, pickUpSfx:=Sfx.Money)
 
         InitializeItem(data, RatTailItemName, "Rat Tail", "/"c, Hue.Gray, stacks:=True)
         InitializeItem(data, BatWingItemName, "Bat Wing", "0"c, Hue.DarkGray, stacks:=True)
@@ -62,14 +62,15 @@
         data.Items(itemName).Statistics(StatisticType.MaximumDefend) = maximumDefend
         data.Items(itemName).Statistics(StatisticType.ArmorDurability) = durability
     End Sub
-    Private Sub InitializeItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, Optional stacks As Boolean = False, Optional equipSlot As EquipSlot? = Nothing)
+    Private Sub InitializeItem(data As WorldData, itemName As String, displayName As String, glyph As Char, hue As Hue, Optional stacks As Boolean = False, Optional equipSlot As EquipSlot? = Nothing, Optional pickUpSfx As Sfx? = Nothing)
         data.Items(itemName) = New ItemData With {
             .DisplayName = displayName,
             .FontName = ItemFontName,
             .Glyph = glyph,
             .Hue = hue,
             .Stacks = stacks,
-            .EquipSlot = equipSlot
+            .EquipSlot = equipSlot,
+            .PickUpSfx = pickUpSfx
             }
     End Sub
 End Module

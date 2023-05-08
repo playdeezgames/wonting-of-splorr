@@ -5,4 +5,5 @@
     Public Property DisplayName As String
     Public Property EquipSlot As EquipSlot?
     Public Property Statistics As New Dictionary(Of StatisticType, Integer)
+    Public Property PickUpSfx As Sfx?
 End Class

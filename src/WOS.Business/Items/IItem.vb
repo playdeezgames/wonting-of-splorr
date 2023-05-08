@@ -16,4 +16,5 @@
     ReadOnly Property IsWeapon As Boolean
     ReadOnly Property MaximumArmorDurability As Integer
     ReadOnly Property MaximumWeaponDurability As Integer
+    ReadOnly Property PickUpSfx As Sfx?
 End Interface
