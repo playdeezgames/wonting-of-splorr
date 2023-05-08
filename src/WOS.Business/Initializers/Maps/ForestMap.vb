@@ -7,7 +7,7 @@
     Friend Const MapColumns = (CellWidth * GridColumns) + GridColumns + 1
     Friend Const MapRows = (CellHeight * GridRows) + GridRows + 1
     Const ShrubCount = 2
-    Private ReadOnly mazeDirections As IReadOnlyDictionary(Of Direction, MazeDirection(Of Direction)) =
+    Friend ReadOnly mazeDirections As IReadOnlyDictionary(Of Direction, MazeDirection(Of Direction)) =
         New Dictionary(Of Direction, MazeDirection(Of Direction)) From
         {
             {Direction.North, New MazeDirection(Of Direction)(Direction.South, 0, -1)},
@@ -64,6 +64,9 @@
         FillMap(_data, map, 2, 2, 1, 1, DownStairsTerrainName)
         CreateTeleportTrigger(map, 2, 2, GraveyardMap.MapName, GraveyardMap.MapColumns \ 2, GraveyardMap.MapRows - 2)
         InitializeGraveyard(_data)
+        FillMap(_data, map, mapColumns - 3, 2, 1, 1, TowerTerrainName)
+        CreateTeleportTrigger(map, mapColumns - 3, 2, $"{TowerMap.MapName}0", TowerMap.MapColumns \ 2, TowerMap.MapRows - 2)
+        InitializeTower(_data)
     End Sub
     Private ReadOnly forestSpawns As IReadOnlyDictionary(Of String, Integer) =
         New Dictionary(Of String, Integer) From

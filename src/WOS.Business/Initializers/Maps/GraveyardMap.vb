@@ -6,8 +6,7 @@
         Const mapName = GraveyardMap.MapName
         Const mapColumns = GraveyardMap.MapColumns
         Const mapRows = GraveyardMap.MapRows
-        Dim map = CreateMap(_data, mapName, mapColumns, mapRows, ForestTerrainName)
-        FillMap(_data, map, 0, 0, mapColumns, mapRows, TombstoneTerrainName)
+        Dim map = CreateMap(_data, mapName, mapColumns, mapRows, TombstoneTerrainName)
         FillMap(_data, map, 1, 1, mapColumns - 2, mapRows - 2, EmptySpawnTerrainName)
 
         FillMap(_data, map, mapColumns \ 2 - 1, mapRows - 4, 3, 3, EmptyTerrainName)
