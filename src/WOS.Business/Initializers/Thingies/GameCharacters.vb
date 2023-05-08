@@ -10,6 +10,9 @@
     Friend Const RatCharacterName = "rat"
     Friend Const SnakeCharacterName = "snake"
     Friend Const BatCharacterName = "bat"
+    Friend Const GoblinCharacterName = "goblin"
+    Friend Const OrcCharacterName = "orc"
+    Friend Const CyclopsCharacterName = "cyclops"
     Friend Sub InitializeCharacters(_data As WorldData)
         _data.Characters.Clear()
         InitializeCharacter(
@@ -37,6 +40,76 @@
         InitializeCharacter(_data, DanCharacterName, "Dan", "\"c, Hue.Cyan)
         InitializeCharacter(_data, SamuliCharacterName, "Sam", "Y"c, Hue.LightMagenta)
         InitializeCharacter(_data, DavidCharacterName, "Dave", "]"c, Hue.Yellow)
+
+        InitializeCharacter(
+            _data,
+            GoblinCharacterName,
+            "Goblin",
+            "."c,
+            Hue.Green,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 1},
+                {StatisticType.BaseAttack, 4},
+                {StatisticType.MaximumAttack, 2},
+                {StatisticType.BaseDefend, 1},
+                {StatisticType.MaximumDefend, 1},
+                {StatisticType.XPValue, 1}
+            },
+            itemDrops:=New List(Of (String, Integer, Integer)) From
+            {
+                (CrownsItemName, 5, 1),
+                (JoolsItemName, 5, 1)
+            },
+            deathSfx:=Sfx.EnemyDeath,
+            hitSfx:=Sfx.EnemyHit)
+        InitializeCharacter(
+            _data,
+            OrcCharacterName,
+            "Orc",
+            "%"c,
+            Hue.LightGreen,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 1},
+                {StatisticType.BaseAttack, 6},
+                {StatisticType.MaximumAttack, 3},
+                {StatisticType.BaseDefend, 2},
+                {StatisticType.MaximumDefend, 2},
+                {StatisticType.XPValue, 1}
+            },
+            itemDrops:=New List(Of (String, Integer, Integer)) From
+            {
+                (CrownsItemName, 10, 1),
+                (JoolsItemName, 10, 1)
+            },
+            deathSfx:=Sfx.EnemyDeath,
+            hitSfx:=Sfx.EnemyHit)
+        InitializeCharacter(
+            _data,
+            CyclopsCharacterName,
+            "Cyclops",
+            ":"c,
+            Hue.Magenta,
+            statistics:=New Dictionary(Of StatisticType, Integer) From
+            {
+                {StatisticType.MaximumHealth, 2},
+                {StatisticType.BaseAttack, 6},
+                {StatisticType.MaximumAttack, 3},
+                {StatisticType.BaseDefend, 3},
+                {StatisticType.MaximumDefend, 3},
+                {StatisticType.XPValue, 2}
+            },
+            itemDrops:=New List(Of (String, Integer, Integer)) From
+            {
+                (CrownsItemName, 20, 1),
+                (JoolsItemName, 20, 1)
+            },
+            deathSfx:=Sfx.EnemyDeath,
+            hitSfx:=Sfx.EnemyHit)
+
+
+
         InitializeCharacter(
             _data,
             BlobCharacterName,

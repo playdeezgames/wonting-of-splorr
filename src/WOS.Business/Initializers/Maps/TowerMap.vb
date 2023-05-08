@@ -15,7 +15,108 @@ Friend Module TowerMap
         Next
         InitializeStairs(_data)
         InitializeBottomLevel(_data)
+        PopulateTower(_data)
     End Sub
+
+    Private Sub PopulateTower(_data As WorldData)
+        For level = 0 To TowerLevels - 1
+            PopulateLevel(_data, level)
+        Next
+    End Sub
+
+    Private Sub PopulateLevel(_data As WorldData, level As Integer)
+        Dim map = New Map(_data, $"{MapName}{level}")
+        PopulateMap(map, levelSpawns(level))
+    End Sub
+
+    Private ReadOnly levelSpawns As New List(Of IReadOnlyDictionary(Of String, Integer)) From
+        {
+            New Dictionary(Of String, Integer) From
+            {
+                {GoblinCharacterName, 48},
+                {OrcCharacterName, 4}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {GoblinCharacterName, 40},
+                {OrcCharacterName, 8},
+                {CyclopsCharacterName, 2}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {GoblinCharacterName, 32},
+                {OrcCharacterName, 12},
+                {CyclopsCharacterName, 4}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {GoblinCharacterName, 24},
+                {OrcCharacterName, 16},
+                {CyclopsCharacterName, 6}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {GoblinCharacterName, 16},
+                {OrcCharacterName, 20},
+                {CyclopsCharacterName, 8}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {GoblinCharacterName, 8},
+                {OrcCharacterName, 24},
+                {CyclopsCharacterName, 10}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 28},
+                {CyclopsCharacterName, 12}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 32},
+                {CyclopsCharacterName, 14}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 36},
+                {CyclopsCharacterName, 16}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 40},
+                {CyclopsCharacterName, 18}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 44},
+                {CyclopsCharacterName, 20}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 48},
+                {CyclopsCharacterName, 22}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 40},
+                {CyclopsCharacterName, 24}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 32},
+                {CyclopsCharacterName, 26}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 24},
+                {CyclopsCharacterName, 28}
+            },
+            New Dictionary(Of String, Integer) From
+            {
+                {OrcCharacterName, 16},
+                {CyclopsCharacterName, 30}
+            }
+        }
 
     Private Sub InitializeStairs(_data As WorldData)
         For level = 0 To TowerLevels - 2
