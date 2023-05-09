@@ -67,12 +67,12 @@
                                 {
                                     .FromItem = New ItemInstanceData With
                                     {
-                                        .ItemName = ChainMailItemName,
+                                        .ItemName = JoolsItemName,
                                         .Quantity = 50
                                     },
                                     .ToItem = New ItemInstanceData With
                                     {
-                                        .ItemName = ShieldItemName,
+                                        .ItemName = ChainMailItemName,
                                         .Quantity = 1
                                     }
                                 },
