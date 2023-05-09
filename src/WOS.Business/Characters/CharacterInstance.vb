@@ -90,7 +90,7 @@
         Dim msgSfx As Sfx?
         If attack > defend Then
             Dim damage = attack - defend
-            target.WearArmor(damage)
+            target.WearArmor(defend)
             msg.Add((Hue.Gray, $"{target.DisplayName} takes {damage} damage!"))
             target.Health -= damage
             If target.IsDead Then
@@ -106,6 +106,7 @@
                 msgSfx = target.HitSfx
             End If
         Else
+            target.WearArmor(Math.Min(attack, defend))
             msgSfx = Sfx.Miss
             msg.Add((Hue.Gray, $"{DisplayName} misses!"))
         End If
